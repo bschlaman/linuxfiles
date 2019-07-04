@@ -1,0 +1,7 @@
+zathura
+shellcheck
+figlet
+youtube-dl
+ffmpeg
+simple-mtpfs
+id3v2

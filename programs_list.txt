@@ -5,3 +5,4 @@ youtube-dl
 ffmpeg
 simple-mtpfs
 id3v2
+ranger

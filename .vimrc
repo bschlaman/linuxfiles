@@ -18,7 +18,7 @@ set softtabstop=4              " <TAB> cols in insert mode
 "set autoindent                " <TAB> after <CR>
 
 set wildmenu                   " Autocomplete commands
-
+set splitright splitbelow      " Splits appear right, down
 set mouse-=a
 
 " Turn off search highlight

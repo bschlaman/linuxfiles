@@ -24,4 +24,9 @@ set mouse-=a
 " Turn off search highlight
 nnoremap <leader><space> :nohlsearch<CR>
 " Highlight last inserted text
-nnoremap gI `[v`] 
+nnoremap gI `[v`]
+
+" Autocomplete brackets
+inoremap {<CR> {<CR>}<C-o>O
+inoremap ( ()<C-o>i
+inoremap [ []<C-o>i

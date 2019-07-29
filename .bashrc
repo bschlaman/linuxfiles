@@ -56,3 +56,11 @@ function setwall(){
 	[ $# -ne 1 ] && return
 	FULLPATH=`realpath $1` && gsettings set org.gnome.desktop.background picture-uri "file:$FULLPATH"
 }
+ function vt(){
+    local vcfolder=`ls -d /usr/share/vim/*/colors | egrep 'vim[0-9]+'` && printf '\n'
+    ls $vcfolder | cut -d"." -f1 | grep -v README | nl
+    read -p "Select desired theme: " ntheme
+    local theme=`ls $vcfolder | cut -d"." -f1 | grep -v README | nl | grep -w $ntheme | cut -f2`
+    echo "########### $theme"
+    sed -i "s/colorscheme [a-zA-Z]*/colorscheme $theme/" .vimrc && echo Updated vim theme to $theme
+}

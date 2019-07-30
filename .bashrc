@@ -8,6 +8,9 @@
 if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
+if [ -f ~/.bash_prompt ]; then
+         . ~/.bash_prompt
+fi
 
 # User specific environment
 if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]
@@ -16,20 +19,15 @@ then
 fi
 export PATH
 
-# Uncomment the following line if you don't like systemctl's auto-paging feature:
-# export SYSTEMD_PAGER=
-
 # Infinite history, history file size
-
 HISTSIZE= HISTFILESIZE=
-
-# User specific aliases and functions
 
 set -o vi
 
-alias ll="ls -lrt --color=auto"
 alias sl="ls"
+alias ll="ls -lrt --color=auto"
 alias grep="grep --color=auto"
+alias diff="diff --color=auto"
 
 alias src="source ~/.bashrc"
 alias pi="ssh -q brendan@162.222.55.231 -p 2023"
@@ -43,6 +41,7 @@ alias cddoc="cd ~/Documents"
 alias cdpic="cd ~/Pictures"
 alias cdvid="cd ~/Videos"
 alias cdm="cd ~/Music"
+alias cdphone="cd /run/user/*/gvfs/mtp*/Phone"
 
 # Outputs a number between 0 and $1 ; 10 by default
 function rand(){
@@ -56,11 +55,10 @@ function setwall(){
 	[ $# -ne 1 ] && return
 	FULLPATH=`realpath $1` && gsettings set org.gnome.desktop.background picture-uri "file:$FULLPATH"
 }
- function vt(){
+function vt(){
     local vcfolder=`ls -d /usr/share/vim/*/colors | egrep 'vim[0-9]+'` && printf '\n'
     ls $vcfolder | cut -d"." -f1 | grep -v README | nl
     read -p "Select desired theme: " ntheme
     local theme=`ls $vcfolder | cut -d"." -f1 | grep -v README | nl | grep -w $ntheme | cut -f2`
-    echo "########### $theme"
-    sed -i "s/colorscheme [a-zA-Z]*/colorscheme $theme/" .vimrc && echo Updated vim theme to $theme
+    sed -i "s/colorscheme [a-zA-Z]*/colorscheme $theme/" ~/.vimrc && echo Updated vim theme to $theme
 }

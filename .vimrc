@@ -8,7 +8,7 @@ set incsearch                  " Search as characters enter
 set hlsearch                   " Highlight search
 
 syntax on                      " Enable syntax highlighting
-"colorscheme                   " Color scheme in /usr/share/vim/vim81/colors/*.vim
+colorscheme ron                   " Color scheme in /usr/share/vim/vim81/colors/*.vim
 
 set showmatch                  " Highlight matching [{()}]
 

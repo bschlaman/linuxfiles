@@ -22,7 +22,10 @@ export PATH
 # Infinite history, history file size
 HISTSIZE= HISTFILESIZE=
 
+# vi movements in terminal after <ESC>
 set -o vi
+# Disable Ctrl-S and Ctrl-Q (freeze and unfreeze) in terminal
+stty -ixon
 
 alias sl="ls"
 alias ll="ls -lrt --color=auto"

@@ -4,24 +4,18 @@
 #| |_) | (_| \__ \ | | | | | (__ 
 #|_.__/ \__,_|___/_| |_|_|  \___|
 
-# User specific environment
-if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]
-then
-    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
-fi
-export PATH
+# Source global definitions
+[ -f /etc/bashrc ] && [ -r /etc/bashrc ] && source /etc/bashrc
 
-# Load the dotfiles:
-for file in ~/.{aliases,bash_prompt}; do
-        [ -r "$file" ] && [ -f "$file" ] && source "$file";
-done;
-unset file;
+# Load the dotfiles
+for FILE in ~/.{aliases,bash_prompt}; do
+        [ -r "$FILE" ] && [ -f "$FILE" ] && source "$FILE";
+done
+unset FILE
 
 # Infinite history, history file size
 HISTSIZE= HISTFILESIZE=
 
-# vi movements in terminal after <ESC>
-set -o vi
 # Disable Ctrl-S and Ctrl-Q (freeze and unfreeze) in terminal
 stty -ixon
 
@@ -30,17 +24,20 @@ alias ll="ls -lrt --color=auto"
 alias grep="grep --color=auto"
 alias diff="diff --color=auto"
 
-alias src="source ~/.bashrc"
+alias src="source ~/.bash_profile"
+alias vp='vim -S ~/.vim_sessions/profiles.vim'
+alias vvrc="vim ~/.vimrc"
+alias vbrc="vim ~/.bashrc"
+
 alias pi="ssh -q brendan@162.222.55.231 -p 2023"
 alias showip="echo 162.222.55.231:2185"
-alias cdh="cd ~/Desktop/hax"
 alias yta="youtube-dl -x --audio-format mp3"
 alias rn="ranger"
 
+alias cdh="cd ~/Desktop/hax"
 alias cdd="cd ~/Downloads"
 alias cddoc="cd ~/Documents"
 alias cdpic="cd ~/Pictures"
-alias cdvid="cd ~/Videos"
 alias cdm="cd ~/Music"
 alias cdphone="cd /run/user/*/gvfs/mtp*/Phone"
 

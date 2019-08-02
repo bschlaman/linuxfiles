@@ -2,20 +2,19 @@ set number relativenumber      " Line numbers, relative
 set scrolloff=3                " Scroll begins from offset
 
 set showcmd                    " Show latest command
-"set cursorline                " Underline current line
 
-set incsearch                  " Search as characters enter
 set hlsearch                   " Highlight search
+"set incsearch                 " Search as characters enter
 
 syntax on                      " Enable syntax highlighting
-colorscheme ron                   " Color scheme in /usr/share/vim/vim81/colors/*.vim
+colorscheme ron                " Color scheme in /usr/share/vim/vim81/colors/*.vim
 
 set showmatch                  " Highlight matching [{()}]
 
 set tabstop=4                  " <TAB> visual cols
 set softtabstop=4              " <TAB> cols in insert mode 
 "set expandtab                 " <TAB> set to softtabstop val
-"set autoindent                " <TAB> after <CR>
+set autoindent                 " <TAB> after <CR>
 
 set wildmenu                   " Autocomplete commands
 set splitright splitbelow      " Splits appear right, down
@@ -35,8 +34,8 @@ nnoremap gI `[v`]
 inoremap <C-@> System.out.println("");<left><left><left>
 
 " Resize splits
-map <C-[> <C-W><
-map <C-]> <C-W>>
+map <C-n> <C-w><
+map <C-m> <C-w>>
 " Move between splits
 map <C-h> <C-w>h
 map <C-j> <C-w>j

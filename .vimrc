@@ -27,6 +27,19 @@ nnoremap <leader><space> :nohlsearch<CR>
 nnoremap gI `[v`]
 
 " Autocomplete brackets
-inoremap {<CR> {<CR>}<C-o>O
-inoremap ( ()<C-o>i
-inoremap [ []<C-o>i
+"inoremap {<CR> {<CR>}<C-o>O
+"inoremap ( ()<C-o>i
+"inoremap [ []<C-o>i
+
+" Quick java shortcut (make file specific)
+inoremap <C-@> System.out.println("");<left><left><left>
+
+" Resize splits
+map <C-[> <C-W><
+map <C-]> <C-W>>
+" Move between splits
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
+

@@ -1,12 +1,4 @@
-# .bash_profile
+[ -f "$HOME/.profile" ] && [ -r "$HOME/.profile" ] && source "$HOME/.profile"
 
-# Get the aliases and functions
-if [ -f ~/.bashrc ]; then
-	. ~/.bashrc
-fi
-if [ -f ~/.bash_prompt ]; then
-	. ~/.bash_prompt
-fi
-
-
-# User specific environment and startup programs
+# vi movements in terminal after <ESC> (Can't do with shell!)
+set -o vi

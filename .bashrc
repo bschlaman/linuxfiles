@@ -4,20 +4,18 @@
 #| |_) | (_| \__ \ | | | | | (__ 
 #|_.__/ \__,_|___/_| |_|_|  \___|
 
-# Source global definitions
-if [ -f /etc/bashrc ]; then
-	. /etc/bashrc
-fi
-if [ -f ~/.bash_prompt ]; then
-         . ~/.bash_prompt
-fi
-
 # User specific environment
 if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]
 then
     PATH="$HOME/.local/bin:$HOME/bin:$PATH"
 fi
 export PATH
+
+# Load the dotfiles:
+for file in ~/.{aliases,bash_prompt}; do
+        [ -r "$file" ] && [ -f "$file" ] && source "$file";
+done;
+unset file;
 
 # Infinite history, history file size
 HISTSIZE= HISTFILESIZE=

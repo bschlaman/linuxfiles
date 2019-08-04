@@ -57,6 +57,8 @@ function vt(){
     local vcfolder=`ls -d /usr/share/vim/*/colors | egrep 'vim[0-9]+'` && printf '\n'
     ls $vcfolder | cut -d"." -f1 | grep -v README | nl
     read -p "Select desired theme: " ntheme
-    local theme=`ls $vcfolder | cut -d"." -f1 | grep -v README | nl | grep -w $ntheme | cut -f2`
-    sed -i "s/colorscheme [a-zA-Z]*/colorscheme $theme/" ~/.vimrc && echo Updated vim theme to $theme
+    local theme=`ls $vcfolder | cut -d"." -f1 | grep -v README | nl | grep -w $ntheme | cut -f2` && sptheme="$theme"
+	local cindex=`grep colorscheme ~/.vimrc | grep -ob '"' | cut -d":" -f1`
+	for x in `seq 0 $(( cindex - 13 -${#theme} ))` ; do sptheme="$sptheme " ; done
+    sed -i "s/colorscheme [a-zA-Z]*[[:space:]]*/colorscheme $sptheme/" ~/.vimrc | grep color #&& echo Updated vim theme to $theme
 }

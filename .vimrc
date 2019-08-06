@@ -32,6 +32,7 @@ nnoremap gI `[v`]
 
 " Quick java shortcut (make file specific)
 inoremap <C-@> System.out.println("");<left><left><left>
+nnoremap <Space><Space> <Esc>/\[!!\]<Enter>"_c5l
 
 " Resize splits
 map <C-n> <C-w><

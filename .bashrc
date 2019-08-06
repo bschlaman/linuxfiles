@@ -31,6 +31,7 @@ alias vbrc="vim ~/.bashrc"
 
 alias pi="ssh -q brendan@162.222.55.231 -p 2023"
 alias showip="echo 162.222.55.231:2185"
+alias bat="cat /sys/class/power_supply/BAT1/capacity"
 alias yta="youtube-dl -x --audio-format mp3"
 alias rn="ranger"
 

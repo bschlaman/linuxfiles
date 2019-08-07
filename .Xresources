@@ -1,0 +1,100 @@
+URxvt.font: xft:monospace:size=16
+URxvt.scrollBar: false
+
+! Colors
+
+URxvt*boldMode: true
+URxvt*colorBDMode: false
+!URxvt*colorBD: cyan
+
+!! Base16 Flat
+!#define base00 #2C3E50
+!#define base01 #34495E
+!#define base02 #7F8C8D
+!#define base03 #95A5A6
+!#define base04 #BDC3C7
+!#define base05 #e0e0e0
+!#define base06 #f5f5f5
+!#define base07 #ECF0F1
+!#define base08 #E74C3C
+!#define base09 #E67E22
+!#define base0A #F1C40F
+!#define base0B #2ECC71
+!#define base0C #1ABC9C
+!#define base0D #3498DB
+!#define base0E #9B59B6
+!#define base0F #be643c
+
+! Base16 Eighties
+#define base00 #2d2d2d
+#define base01 #393939
+#define base02 #515151
+#define base03 #747369
+#define base04 #a09f93
+#define base05 #d3d0c8
+#define base06 #e8e6df
+#define base07 #f2f0ec
+#define base08 #f2777a
+#define base09 #f99157
+#define base0A #ffcc66
+#define base0B #99cc99
+#define base0C #66cccc
+#define base0D #6699cc
+#define base0E #cc99cc
+#define base0F #d27b53
+
+!! Base16 Atelier Dune
+!#define base00 #20201d
+!#define base01 #292824
+!#define base02 #6e6b5e
+!#define base03 #7d7a68
+!#define base04 #999580
+!#define base05 #a6a28c
+!#define base06 #e8e4cf
+!#define base07 #fefbec
+!#define base08 #d73737
+!#define base09 #b65611
+!#define base0A #cfb017
+!#define base0B #60ac39
+!#define base0C #1fad83
+!#define base0D #6684e1
+!#define base0E #b854d4
+!#define base0F #d43552
+
+
+! Dark
+URxvt*foreground:   base05
+URxvt*background:   base00
+URxvt*cursorColor:  base05
+URxvt*cursorColor2:  base05
+!URxvt*cursorUnderline: true
+URxvt*cursorBlink: true
+
+! Light
+!URxvt*foreground:   base02
+!URxvt*background:   base07
+!URxvt*cursorColor:  base02
+!URxvt*cursorColor2:  base02
+
+URxvt*color0:       base00
+URxvt*color1:       base08
+URxvt*color2:       base0B
+URxvt*color3:       base0A
+URxvt*color4:       base0D
+URxvt*color5:       base0E
+URxvt*color6:       base0C
+URxvt*color7:       base05
+URxvt*color8:       base03
+URxvt*color9:       base08
+URxvt*color10:      base0B
+URxvt*color11:      base0A
+URxvt*color12:      base0D
+URxvt*color13:      base0E
+URxvt*color14:      base0C
+URxvt*color15:      base07
+URxvt*color16:      base09
+URxvt*color17:      base0F
+URxvt*color18:      base01
+URxvt*color19:      base02
+URxvt*color20:      base04
+URxvt*color21:      base06

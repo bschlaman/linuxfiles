@@ -19,12 +19,14 @@ HISTSIZE= HISTFILESIZE=
 # Disable Ctrl-S and Ctrl-Q (freeze and unfreeze) in terminal
 stty -ixon
 
+alias ls="ls --color=auto"
 alias sl="ls"
 alias ll="ls -lrt --color=auto"
 alias grep="grep --color=auto"
 alias diff="diff --color=auto"
 
 alias src="source ~/.bash_profile"
+alias urxsrc="xrdb ~/.Xresources"
 alias vp='vim -S ~/.vim_sessions/profiles.vim'
 alias vvrc="vim ~/.vimrc"
 alias vbrc="vim ~/.bashrc"

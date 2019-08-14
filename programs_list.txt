@@ -4,5 +4,6 @@ figlet
 youtube-dl
 ffmpeg
 simple-mtpfs
-id3v2
+i3-gaps
 ranger
+xrandr

@@ -35,13 +35,16 @@ alias pi="ssh -q brendan@162.222.55.231 -p 2023"
 alias showip="echo 162.222.55.231:2185"
 alias bat="cat /sys/class/power_supply/BAT1/capacity"
 alias yta="youtube-dl -x --audio-format mp3"
+alias i3r="i3-msg restart"
+alias wifi="sudo netctl start wlo1-NETGEAR04"
 alias rn="ranger"
 
-alias cdh="cd ~/Desktop/hax"
-alias cdd="cd ~/Downloads"
-alias cddoc="cd ~/Documents"
-alias cdpic="cd ~/Pictures"
-alias cdm="cd ~/Music"
+alias cdmain="cd ~/main"
+alias cdh="cd ~/main/hax"
+alias cdd="cd ~/downloads"
+alias cddoc="cd ~/documents"
+alias cdpic="cd ~/pictures"
+alias cdm="cd ~/music"
 alias cdphone="cd /run/user/*/gvfs/mtp*/Phone"
 
 # Outputs a number between 0 and $1 ; 10 by default
@@ -54,7 +57,9 @@ function rand(){
 }
 function setwall(){
 	[ $# -ne 1 ] && return
-	FULLPATH=`realpath $1` && gsettings set org.gnome.desktop.background picture-uri "file:$FULLPATH"
+	FULLPATH=`realpath $1`
+	#gsettings set org.gnome.desktop.background picture-uri "file:$FULLPATH"
+	feh --bg-scale $FULLPATH
 }
 function vt(){
     local vcfolder=`ls -d /usr/share/vim/*/colors | egrep 'vim[0-9]+'` && printf '\n'

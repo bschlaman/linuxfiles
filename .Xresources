@@ -1,5 +1,8 @@
 URxvt.font: xft:monospace:size=16
 URxvt.scrollBar: false
+URxvt.perl-ext-common: default,resize-font
+URxvt.resize-font.smaller: C-j
+URxvt.resize-font.bigger: C-k
 
 ! Colors
 

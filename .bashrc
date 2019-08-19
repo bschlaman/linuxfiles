@@ -15,13 +15,14 @@ unset FILE
 
 # Infinite history, history file size
 HISTSIZE= HISTFILESIZE=
+HISTCONTROL=ignoredups
 
 # Disable Ctrl-S and Ctrl-Q (freeze and unfreeze) in terminal
 stty -ixon
 
 alias ls="ls --color=auto"
 alias sl="ls"
-alias ll="ls -lrt --color=auto"
+alias ll="ls -lrt"
 alias grep="grep --color=auto"
 alias diff="diff --color=auto"
 
@@ -31,8 +32,10 @@ alias vp='vim -S ~/.vim_sessions/profiles.vim'
 alias vvrc="vim ~/.vimrc"
 alias vbrc="vim ~/.bashrc"
 
-alias pi="ssh -q brendan@162.222.55.231 -p 2023"
+alias pi="ssh -qp 2023 pi@162.222.55.231"
+alias pib="ssh -qp 2023 brendan@162.222.55.231"
 alias showip="echo 162.222.55.231:2185"
+alias curlip="echo curl 162.222.55.231:2185 && curl 162.222.55.231:2185"
 alias bat="cat /sys/class/power_supply/BAT1/capacity"
 alias yta="youtube-dl -x --audio-format mp3"
 alias i3r="i3-msg restart"
@@ -45,7 +48,7 @@ alias cdd="cd ~/downloads"
 alias cddoc="cd ~/documents"
 alias cdpic="cd ~/pictures"
 alias cdm="cd ~/music"
-alias cdphone="cd /run/user/*/gvfs/mtp*/Phone"
+#alias cdphone="cd /run/user/*/gvfs/mtp*/Phone"
 
 # Outputs a number between 0 and $1 ; 10 by default
 function rand(){

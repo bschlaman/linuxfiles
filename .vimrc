@@ -54,4 +54,5 @@ autocmd FileType html inoremap ;d <div><CR><CR></div><CR>[!!]<Esc>2ki
 autocmd FileType html inoremap ;p <p></p>[!!]<Esc>FpT>i
 autocmd FileType html inoremap ;ul <ul><CR><CR></ul><CR>[!!]<Esc>2ki
 autocmd FileType html inoremap ;li <li></li>[!!]<Esc>FlT>i
-autocmd FileType html inoremap ,a <a<Space>href="">[!!]</a><Space>[!!]<Esc>14hi
+autocmd FileType html inoremap ;a <a<Space>href="">[!!]</a><Space>[!!]<Esc>14hi
+autocmd FileType html inoremap ;sup <sup></sup>[!!]<Esc>FsT>i

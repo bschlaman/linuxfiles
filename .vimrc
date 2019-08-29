@@ -43,6 +43,8 @@ map <C-k> <C-w>k
 map <C-l> <C-w>l
 
 filetype plugin on
+" Disable auto commenting
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 autocmd FileType java inoremap <C-@> System.out.println("");<left><left><left>
 autocmd FileType html inoremap ;h1 <h1></h1>[!!]<Esc>FhT>i

@@ -27,7 +27,6 @@ alias grep="grep --color=auto"
 alias diff="diff --color=auto"
 
 alias src="source ~/.bash_profile"
-alias urxsrc="xrdb ~/.Xresources"
 alias vp='vim -S ~/.vim_sessions/profiles.vim'
 alias vvrc="vim ~/.vimrc"
 alias vbrc="vim ~/.bashrc"
@@ -72,4 +71,16 @@ function vt(){
 	local cindex=`grep colorscheme ~/.vimrc | grep -ob '"' | cut -d":" -f1`
 	for x in `seq 0 $(( cindex - 13 -${#theme} ))` ; do sptheme="$sptheme " ; done
     sed -i "s/colorscheme [a-zA-Z]*[[:space:]]*/colorscheme $sptheme/" ~/.vimrc | grep color #&& echo Updated vim theme to $theme
+}
+function wifistop(){
+    for x in /etc/netctl/wlo1-* ; do
+    echo Stopping $x
+    sudo netctl stop `basename $x`
+    done
+}
+function linuxcomp(){
+for x in `find . -maxdepth 1 -name ".*" -and -not -type d` ; do
+echo "#### $x ####"
+diff ~/main/hax/linux_files/$x ~/$x
+done
 }

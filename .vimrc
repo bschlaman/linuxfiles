@@ -15,6 +15,7 @@ set tabstop=4                  " <TAB> visual cols
 set softtabstop=4              " <TAB> cols in insert mode 
 set expandtab                  " <TAB> set to softtabstop val
 set autoindent                 " <TAB> after <CR>
+set paste                      " Indentation preserved in paste
 
 set wildmenu                   " Autocomplete commands
 set splitright splitbelow      " Splits appear right, down

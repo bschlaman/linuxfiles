@@ -14,8 +14,10 @@ done
 unset FILE
 
 # Infinite history, history file size
-HISTSIZE= HISTFILESIZE=
+HISTSIZE=
+HISTFILESIZE=
 HISTCONTROL=ignoredups
+HISTTIMEFORMAT="%d/%m/%y %T "
 
 # Disable Ctrl-S and Ctrl-Q (freeze and unfreeze) in terminal
 stty -ixon
@@ -47,7 +49,7 @@ alias cdd="cd ~/downloads"
 alias cddoc="cd ~/documents"
 alias cdpic="cd ~/pictures"
 alias cdm="cd ~/music"
-#alias cdphone="cd /run/user/*/gvfs/mtp*/Phone"
+alias cdw="cd /etc/netctl"
 
 # Outputs a number between 0 and $1 ; 10 by default
 function rand(){
@@ -79,8 +81,15 @@ function wifistop(){
     done
 }
 function linuxcomp(){
-for x in `find . -maxdepth 1 -name ".*" -and -not -type d` ; do
-echo "#### $x ####"
-diff ~/main/hax/linux_files/$x ~/$x
-done
+    for x in `find . -maxdepth 1 -name ".*" -and -not -type d` ; do
+    echo "#### $x ####"
+    diff ~/main/hax/linux_files/$x ~/$x
+    done
+}
+function transfer(){
+    if [ "$1" = "topi" ] ; then
+    scp -P 2023 $2 162.222.55.231:/transfer
+    elif [ "$1" = "frompi" ] ; then
+    scp -P 2023 162.222.55.231:/transfer/$2 .
+    fi
 }

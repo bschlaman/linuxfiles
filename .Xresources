@@ -3,6 +3,13 @@ URxvt.scrollBar: false
 URxvt.perl-ext-common: default,resize-font
 URxvt.resize-font.smaller: C-j
 URxvt.resize-font.bigger: C-k
+! Switching copy + paste from CTRL-ALT to CTRL-SHIFT
+URxvt.keysym.Shift-Control-V: eval:paste_clipboard
+URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard
+URxvt.keysym.Control-Meta-c: builtin-string:
+URxvt.keysym.Control-Meta-v: builtin-string:
+URxvt.iso14755: false
+URxvt.iso14755_52: false
 
 ! Colors
 

@@ -5,6 +5,5 @@ set -o vi
 
 
 if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]] ; then
-	xrdb ~/.Xresources
 	exec startx
 fi

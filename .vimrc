@@ -7,7 +7,7 @@ set hlsearch                   " Highlight search
 "set incsearch                 " Search as characters enter
 
 syntax on                      " Enable syntax highlighting
-colorscheme ron                " Color scheme in /usr/share/vim/vim81/colors/*.vim
+colorscheme deus               " Color scheme in /usr/share/vim/vim81/colors/*.vim
 
 set showmatch                  " Highlight matching [{()}]
 
@@ -15,7 +15,7 @@ set tabstop=4                  " <TAB> visual cols
 set softtabstop=4              " <TAB> cols in insert mode 
 set expandtab                  " <TAB> set to softtabstop val
 set autoindent                 " <TAB> after <CR>
-set paste                      " Indentation preserved in paste
+"set paste                      " Indentation preserved in paste
 
 set wildmenu                   " Autocomplete commands
 set splitright splitbelow      " Splits appear right, down
@@ -46,12 +46,11 @@ map <C-l> <C-w>l
 filetype plugin on
 " Disable auto commenting
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
-
 autocmd FileType java inoremap <C-@> System.out.println("");<left><left><left>
 autocmd FileType html inoremap ;h1 <h1></h1>[!!]<Esc>FhT>i
 autocmd FileType html inoremap ;h2 <h2></h2>[!!]<Esc>FhT>i
 autocmd FileType html inoremap ;h3 <h3></h3>[!!]<Esc>FhT>i
-autocmd FileType html inoremap ;i <em></em>[!!]<Esc>FeT>i
+autocmd FileType html inoremap ;em <em></em>[!!]<Esc>FeT>i
 autocmd FileType html inoremap ;b <strong></strong>[!!]<Esc>FsT>i
 autocmd FileType html inoremap ;d <div><CR><CR></div><CR>[!!]<Esc>2ki
 autocmd FileType html inoremap ;p <p></p>[!!]<Esc>FpT>i

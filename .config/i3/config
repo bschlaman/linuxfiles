@@ -173,10 +173,13 @@ bar {
 
 for_window [class="^.*"] border pixel 2
 gaps inner 15
-gaps outer 15
+gaps outer 10
 bindsym $mod+Shift+d		gaps inner current set 0; gaps outer current set 0
 bindsym $mod+z			    gaps outer current plus 5
 bindsym $mod+Shift+z		gaps outer current minus 5
 bindsym $mod+x			    gaps inner current plus 5
 bindsym $mod+Shift+x		gaps inner current minus 5
 bindsym $mod+p              move workspace to output right
+
+#bindsym $mod+l i3lock -i bg1.png
+#bindsym $mod+Shift+l i3lock -c 000000

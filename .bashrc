@@ -27,6 +27,7 @@ alias sl="ls"
 alias ll="ls -lrt"
 alias grep="grep --color=auto"
 alias diff="diff --color=auto"
+alias rl="readlink -f"
 
 alias src="source ~/.bash_profile"
 alias vp='vim -S ~/.vim_sessions/profiles.vim'
@@ -37,9 +38,13 @@ alias pi="ssh -qp 2023 pi@162.222.55.231"
 alias pib="ssh -qp 2023 brendan@162.222.55.231"
 alias showip="echo 162.222.55.231:2185"
 alias curlip="echo curl 162.222.55.231:2185 && curl 162.222.55.231:2185"
+alias curlwebhttp="echo curl 162.222.55.231:443 && curl 162.222.55.231:443"
+alias curlweb="echo curl https://www.schlamalama.com && curl https://www.schlamalama.com"
 alias bat="cat /sys/class/power_supply/BAT1/capacity"
+alias cdb="cd /sys/class/backlight/amdgpu_bl0"
 alias yta="youtube-dl -x --audio-format mp3"
 alias i3r="i3-msg restart"
+alias lock="i3lock -c 000000"
 alias wifi="sudo netctl start wlo1-NETGEAR04"
 alias rn="ranger"
 
@@ -50,6 +55,7 @@ alias cddoc="cd ~/documents"
 alias cdpic="cd ~/pictures"
 alias cdm="cd ~/music"
 alias cdw="cd /etc/netctl"
+alias cdpy="cd ~/main/hax/python_files"
 
 # Outputs a number between 0 and $1 ; 10 by default
 function rand(){
@@ -88,8 +94,8 @@ function linuxcomp(){
 }
 function transfer(){
     if [ "$1" = "topi" ] ; then
-    scp -P 2023 $2 162.222.55.231:/transfer
+    scp -rP 2023 $2 162.222.55.231:/transfer
     elif [ "$1" = "frompi" ] ; then
-    scp -P 2023 162.222.55.231:/transfer/$2 .
+    scp -rP 2023 162.222.55.231:/transfer/$2 .
     fi
 }

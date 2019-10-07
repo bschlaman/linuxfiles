@@ -93,6 +93,10 @@ function linuxcomp(){
     echo "#### $x ####"
     diff ~/main/hax/linux_files/$x ~/$x
     done
+    for x in `find .config -type f` ; do
+    echo "#### $x ####"
+    diff ~/main/hax/linux_files/$x ~/$x
+    done
 }
 function transfer(){
     if [ "$1" = "topi" ] ; then

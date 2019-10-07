@@ -7,3 +7,4 @@ simple-mtpfs
 i3-gaps
 ranger
 xrandr
+texlive-core

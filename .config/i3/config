@@ -32,6 +32,15 @@ floating_modifier $mod
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
 
+# start a floating terminal
+bindsym $mod+Shift+Return exec i3-sensible-terminal -name floating
+for_window [instance="floating"] floating enable
+
+# Make the currently focused window a scratchpad
+bindsym $mod+Shift+minus move scratchpad
+# Show the first scratchpad window
+bindsym $mod+minus scratchpad show
+
 # kill focused window
 bindsym $mod+Shift+q kill
 

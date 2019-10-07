@@ -19,6 +19,8 @@ HISTFILESIZE=
 HISTCONTROL=ignoredups
 HISTTIMEFORMAT="%d/%m/%y %T "
 
+FCEDIT=vim
+
 # Disable Ctrl-S and Ctrl-Q (freeze and unfreeze) in terminal
 stty -ixon
 
@@ -97,5 +99,7 @@ function transfer(){
     scp -rP 2023 $2 162.222.55.231:/transfer
     elif [ "$1" = "frompi" ] ; then
     scp -rP 2023 162.222.55.231:/transfer/$2 .
+    else
+    echo "ERROR: use either \"topi\" or \"frompi\""
     fi
 }

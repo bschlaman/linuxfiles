@@ -1,8 +1,8 @@
 URxvt.font: xft:monospace:size=16
 URxvt.scrollBar: false
 URxvt.perl-ext-common: default,resize-font
-URxvt.resize-font.smaller: C-j
-URxvt.resize-font.bigger: C-k
+URxvt.resize-font.smaller: C-J
+URxvt.resize-font.bigger: C-K
 ! Switching copy + paste from CTRL-ALT to CTRL-SHIFT
 URxvt.keysym.Shift-Control-V: eval:paste_clipboard
 URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard

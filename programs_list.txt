@@ -1,10 +1,26 @@
-zathura
+[ Basics ]
+vim
+git
+
+[ Productivity ]
+mupdf
+simple-mtpfs
+texlive-core
+
+[ Misc ]
 shellcheck
 figlet
 youtube-dl
-ffmpeg
-simple-mtpfs
-i3-gaps
 ranger
+
+[ Function ]
+ffmpeg
 xrandr
-texlive-core
+alsa
+
+[ Graphical Env ]
+xorg
+i3-gaps
+i3lock
+urxvt-unicode
+compton

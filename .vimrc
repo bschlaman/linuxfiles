@@ -19,7 +19,7 @@ set autoindent                 " <TAB> after <CR>
 
 set wildmenu                   " Autocomplete commands
 set splitright splitbelow      " Splits appear right, down
-set mouse-=a
+"set mouse-=a
 
 " Turn off search highlight
 nnoremap <leader><space> :nohlsearch<CR>
@@ -46,7 +46,9 @@ map <C-l> <C-w>l
 filetype plugin on
 " Disable auto commenting
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+
 autocmd FileType java inoremap <C-@> System.out.println("");<left><left><left>
+autocmd FileType java,css,javascript inoremap {<CR> {<CR>}<C-o>O<TAB>
 autocmd FileType html inoremap ;h1 <h1></h1>[!!]<Esc>FhT>i
 autocmd FileType html inoremap ;h2 <h2></h2>[!!]<Esc>FhT>i
 autocmd FileType html inoremap ;h3 <h3></h3>[!!]<Esc>FhT>i
@@ -61,8 +63,17 @@ autocmd FileType html inoremap ;a <a<Space>href="">[!!]</a>[!!]<Esc>13hi
 autocmd FileType html inoremap ;sup <sup></sup>[!!]<Esc>FsT>i
 autocmd FileType html inoremap ;sub <sub></sub>[!!]<Esc>FsT>i
 
+autocmd FileType html  let Comment="<!-- " | let EndComment=" -->"
+autocmd FileType css  let Comment="/* " | let EndComment=" */"
+
 function! MakeListItem()
     normal! mm0i<li>A</li>`m
 endfunction
 nnoremap <leader>l :call MakeListItem()<CR>
 
+function CommentLines()
+  exe ":s@^@".g:Comment."@g"
+  exe ":s@$@".g:EndComment."@g"
+endfunction
+" map visual mode keycombo 'co' to this function
+vmap co :call CommentLines()<CR>

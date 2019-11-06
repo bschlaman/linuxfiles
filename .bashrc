@@ -52,6 +52,8 @@ alias rn="ranger"
 
 alias cdmain="cd ~/main"
 alias cdh="cd ~/main/hax"
+alias cdhtml="cd ~/main/hax/html_files"
+alias cds="cd ~/main/hax/scripts/"
 alias cdd="cd ~/downloads"
 alias cddoc="cd ~/documents"
 alias cdpic="cd ~/pictures"

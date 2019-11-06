@@ -17,6 +17,7 @@ ranger
 ffmpeg
 xrandr
 alsa
+xf86-input-libinput
 
 [ Graphical Env ]
 xorg

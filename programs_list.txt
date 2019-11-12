@@ -23,5 +23,9 @@ xf86-input-libinput
 xorg
 i3-gaps
 i3lock
+xss-lock
 urxvt-unicode
 compton
+
+[ Config ]
+/etc/systemd/logind.conf HandleLidSwitchDocked=suspend

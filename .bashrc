@@ -52,6 +52,7 @@ alias rn="ranger"
 
 alias cdmain="cd ~/main"
 alias cdh="cd ~/main/hax"
+alias cdlin="cd ~/main/hax/linux_files"
 alias cdhtml="cd ~/main/hax/html_files"
 alias cds="cd ~/main/hax/scripts/"
 alias cdd="cd ~/downloads"
@@ -82,7 +83,7 @@ function vt(){
     local theme=`ls $vcfolder | cut -d"." -f1 | grep -v README | nl | grep -w $ntheme | cut -f2` && sptheme="$theme"
 	local cindex=`grep colorscheme ~/.vimrc | grep -ob '"' | cut -d":" -f1`
 	for x in `seq 0 $(( cindex - 13 -${#theme} ))` ; do sptheme="$sptheme " ; done
-    sed -i "s/colorscheme [a-zA-Z]*[[:space:]]*/colorscheme $sptheme/" ~/.vimrc | grep color #&& echo Updated vim theme to $theme
+    sed -i "s/colorscheme [a-zA-Z]*[[:space:]]*/colorscheme $sptheme/" ~/.vimrc | grep color && echo Updated vim theme to $theme
 }
 function wifistop(){
     for x in /etc/netctl/wlo1-* ; do

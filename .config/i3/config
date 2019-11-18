@@ -191,4 +191,4 @@ bindsym $mod+Shift+x		gaps inner current minus 5
 bindsym $mod+p              move workspace to output right
 bindsym $mod+m              move workspace to output left
 
-bindsym $mod+o exec i3lock -ent -i ~/pictures/bulletproofs.png
+bindsym $mod+o exec i3lock -ent -p default -i ~/pictures/bulletproofs.png

@@ -1,3 +1,4 @@
+autocmd VimEnter * echo "Welcome! >^.^<"
 set number relativenumber      " Line numbers, relative
 set scrolloff=3                " Scroll begins from offset
 
@@ -23,6 +24,8 @@ set splitright splitbelow      " Splits appear right, down
 
 " Turn off search highlight
 nnoremap <leader><space> :nohlsearch<CR>
+" Toggle numbers
+nnoremap <leader>n :set number! relativenumber!<CR>
 " Highlight last inserted text
 nnoremap gI `[v`]
 nnoremap <C-s> :%s//g<Left><Left>

@@ -86,27 +86,28 @@ function vt(){
     sed -i "s/colorscheme [a-zA-Z]*[[:space:]]*/colorscheme $sptheme/" ~/.vimrc | grep color && echo Updated vim theme to $theme
 }
 function wifistop(){
+    sudo whoami > /dev/null 2>&1
     for x in /etc/netctl/wlo1-* ; do
-    echo Stopping $x
-    sudo netctl stop `basename $x`
+        echo Stopping `basename $x`
+        sudo netctl stop `basename $x`
     done
 }
 function linuxcomp(){
     for x in `find . -maxdepth 1 -name ".*" -and -not -type d` ; do
-    echo "#### $x ####"
-    diff ~/main/hax/linux_files/$x ~/$x
+        echo "#### $x ####"
+        diff ~/main/hax/linux_files/$x ~/$x
     done
-    for x in `find .config -type f` ; do
-    echo "#### $x ####"
-    diff ~/main/hax/linux_files/$x ~/$x
+    for x in `find ./.config -type f` ; do
+        echo "#### $x ####"
+        diff ~/main/hax/linux_files/$x ~/$x
     done
 }
 function transfer(){
-    if [ "$1" = "topi" ] ; then
-    scp -rP 2023 $2 162.222.55.231:/transfer
-    elif [ "$1" = "frompi" ] ; then
-    scp -rP 2023 162.222.55.231:/transfer/$2 .
+    if [ "$1" = "topi" ] && [ $# -gt 1 ] ; then
+        shift && eval "scp -rP 2023 $(echo {$@,} | sed 's/ /,/g') 162.222.55.231:/transfer"
+    elif [ "$1" = "frompi" ] && [ $# -gt 1 ] ; then
+        shift && eval "scp -rP 2023 162.222.55.231:/transfer/$(echo {$@,} | sed 's/ /,/g') ."
     else
-    echo "ERROR: use either \"topi\" or \"frompi\""
+        echo "ERROR: use either \"topi\" or \"frompi\""
     fi
 }

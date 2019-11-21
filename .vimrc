@@ -1,7 +1,6 @@
 autocmd VimEnter * echo "Welcome! >^.^<"
 set number relativenumber      " Line numbers, relative
 set scrolloff=3                " Scroll begins from offset
-
 set showcmd                    " Show latest command
 
 set hlsearch                   " Highlight search
@@ -22,12 +21,22 @@ set wildmenu                   " Autocomplete commands
 set splitright splitbelow      " Splits appear right, down
 "set mouse-=a
 
+" Shortcuts
+nnoremap H 0
+nnoremap L $
+nnoremap J <C-F>
+nnoremap K <C-B>
+
+" Avoiding ESC key. o for out
+inoremap <C-o> <Esc>
+vnoremap <C-o> <Esc>
+
 " Turn off search highlight
 nnoremap <leader><space> :nohlsearch<CR>
 " Toggle numbers
 nnoremap <leader>n :set number! relativenumber!<CR>
-" Highlight last inserted text
-nnoremap gI `[v`]
+" Surround visual in quotes
+vnoremap <leader>" <Esc>`>a"<Esc>`<i"<Esc>`>2l
 nnoremap <C-s> :%s//g<Left><Left>
 
 " Autocomplete brackets

@@ -22,7 +22,7 @@ HISTTIMEFORMAT="%d/%m/%y %T "
 FCEDIT=vim
 
 # Disable Ctrl-S and Ctrl-Q (freeze and unfreeze) in terminal
-stty -ixon
+[[ $- == *i* ]] && stty -ixon
 
 alias ls="ls --color=auto"
 alias sl="ls"
@@ -104,9 +104,9 @@ function linuxcomp(){
 }
 function transfer(){
     if [ "$1" = "topi" ] && [ $# -gt 1 ] ; then
-        shift && eval "scp -rP 2023 $(echo {$@,} | sed 's/ /,/g') 162.222.55.231:/transfer"
+        shift && eval "scp -rP 2023 {$(echo $@, | sed 's/ /,/g')} 162.222.55.231:/transfer"
     elif [ "$1" = "frompi" ] && [ $# -gt 1 ] ; then
-        shift && eval "scp -rP 2023 162.222.55.231:/transfer/$(echo {$@,} | sed 's/ /,/g') ."
+        shift && eval "scp -rP 2023 162.222.55.231:/transfer/{$(echo $@, | sed 's/ /,/g')} ."
     else
         echo "ERROR: use either \"topi\" or \"frompi\""
     fi

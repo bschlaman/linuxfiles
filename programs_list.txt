@@ -18,6 +18,7 @@ ffmpeg
 xrandr
 alsa
 xf86-input-libinput
+acpilight
 
 [ Graphical Env ]
 xorg
@@ -29,3 +30,4 @@ compton
 
 [ Config ]
 /etc/systemd/logind.conf HandleLidSwitchDocked=suspend
+/etc/udev/rules.d/90-backlight.rules video group

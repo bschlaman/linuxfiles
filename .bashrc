@@ -49,6 +49,7 @@ alias i3r="i3-msg restart"
 alias lock="i3lock -c 000000"
 alias wifi="sudo netctl start wlo1-NETGEAR04"
 alias rn="ranger"
+alias slideshow="feh -d -. ."
 
 alias cdmain="cd ~/main"
 alias cdh="cd ~/main/hax"
@@ -104,9 +105,9 @@ function linuxcomp(){
 }
 function transfer(){
     if [ "$1" = "topi" ] && [ $# -gt 1 ] ; then
-        shift && eval "scp -rP 2023 {$(echo $@, | sed 's/ /,/g')} 162.222.55.231:/transfer"
+        shift && eval "scp -rP 2023 $(echo $@ | sed '/\([a-zA-Z]\+ [a-zA-Z]\+\)/s/\(.*\)/{\1}/;s/ /,/g') 162.222.55.231:/transfer"
     elif [ "$1" = "frompi" ] && [ $# -gt 1 ] ; then
-        shift && eval "scp -rP 2023 162.222.55.231:/transfer/{$(echo $@, | sed 's/ /,/g')} ."
+        shift && eval "scp -rP 2023 162.222.55.231:/transfer/$(echo $@ | sed '/\([a-zA-Z]\+ [a-zA-Z]\+\)/s/\(.*\)/{\1}/;s/ /,/g') ."
     else
         echo "ERROR: use either \"topi\" or \"frompi\""
     fi

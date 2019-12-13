@@ -207,7 +207,7 @@ bindsym XF86AudioLowerVolume exec --no-startup-id "amixer -q -c 1 set Master 5%-
 set $bg     #2c2c2e
 set $fg     #9f9f9f
 set $hi     #efef8f
-set $ac     #a0afa0
+set $ac     #707f70
 set $tx     #040404
 set $ia     #8f8f8f
 set $be     #8faf9f

@@ -36,18 +36,21 @@ alias vp='vim -S ~/.vim_sessions/profiles.vim'
 alias vvrc="vim ~/.vimrc"
 alias vbrc="vim ~/.bashrc"
 
-alias pi="ssh -qp 2023 pi@162.222.55.231"
-alias pib="ssh -qp 2023 brendan@162.222.55.231"
-alias showip="echo 162.222.55.231:2185"
-alias curlip="echo curl 162.222.55.231:2185 && curl 162.222.55.231:2185"
-alias curlwebhttp="echo curl 162.222.55.231:443 && curl 162.222.55.231:443"
+alias pi="ssh -qp 2023 pi@68.168.184.138"
+alias pib="ssh -qp 2023 brendan@68.168.184.138"
+alias pi0="ssh -qp 2024 brendan@68.168.184.138"
+alias showip="echo 68.168.184.138:2185"
+alias curlip="echo curl 68.168.184.138:2185 && curl 68.168.184.138:2185"
+alias curlwebhttp="echo curl 68.168.184.138:443 && curl 68.168.184.138:443"
 alias curlweb="echo curl https://www.schlamalama.com && curl https://www.schlamalama.com"
 alias bat="cat /sys/class/power_supply/BAT1/capacity"
 alias cdb="cd /sys/class/backlight/amdgpu_bl0"
 alias yta="youtube-dl -x --audio-format mp3"
 alias i3r="i3-msg restart"
 alias lock="i3lock -c 000000"
-alias wifi="sudo netctl start wlo1-NETGEAR04"
+alias num="xset q | grep \"Num Lock\" | awk '{ print \$8 }'"
+alias wifi="sudo netctl start wlo1-TP-Link_D625"
+alias wifihome="sudo netctl start wlo1-MySpectrumWiFi58-2G"
 alias rn="ranger"
 alias slideshow="feh -d -. ."
 
@@ -105,9 +108,9 @@ function linuxcomp(){
 }
 function transfer(){
     if [ "$1" = "topi" ] && [ $# -gt 1 ] ; then
-        shift && eval "scp -rP 2023 $(echo $@ | sed '/\([a-zA-Z]\+ [a-zA-Z]\+\)/s/\(.*\)/{\1}/;s/ /,/g') 162.222.55.231:/transfer"
+        shift && eval "scp -rP 2023 $(echo $@ | sed '/\([a-zA-Z]\+ [a-zA-Z]\+\)/s/\(.*\)/{\1}/;s/ /,/g') 68.168.184.138:/transfer"
     elif [ "$1" = "frompi" ] && [ $# -gt 1 ] ; then
-        shift && eval "scp -rP 2023 162.222.55.231:/transfer/$(echo $@ | sed '/\([a-zA-Z]\+ [a-zA-Z]\+\)/s/\(.*\)/{\1}/;s/ /,/g') ."
+        shift && eval "scp -rP 2023 68.168.184.138:/transfer/$(echo $@ | sed '/\([a-zA-Z]\+ [a-zA-Z]\+\)/s/\(.*\)/{\1}/;s/ /,/g') ."
     else
         echo "ERROR: use either \"topi\" or \"frompi\""
     fi

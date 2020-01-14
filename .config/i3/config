@@ -183,7 +183,8 @@ bindsym $mod+r mode "resize"
 for_window [class="^.*"] border pixel 2
 gaps inner 15
 gaps outer 10
-bindsym $mod+Shift+d		gaps inner current set 0; gaps outer current set 0
+bindsym $mod+Shift+f		gaps inner current set 0; gaps outer current set 0
+bindsym $mod+Shift+d		gaps inner current set 15; gaps outer current set 10
 bindsym $mod+z			    gaps outer current plus 5
 bindsym $mod+Shift+z		gaps outer current minus 5
 bindsym $mod+x			    gaps inner current plus 5
@@ -192,6 +193,8 @@ bindsym $mod+p              move workspace to output right
 bindsym $mod+m              move workspace to output left
 
 bindsym $mod+o exec i3lock -ent -p default -i ~/pictures/bulletproofs.png
+bindsym --release $mod+Shift+s exec scrot -s
+bindsym $mod+c exec chromium
 
 set $refresh_i3status exec --no-startup-id killall -USR1 i3status
 
@@ -199,6 +202,7 @@ set $refresh_i3status exec --no-startup-id killall -USR1 i3status
 bindsym XF86MonBrightnessUp exec xbacklight -inc 5 && echo $(xbacklight -get) > ~/.config/brightness ; $refresh_i3status
 # Decrease brightness
 bindsym XF86MonBrightnessDown exec xbacklight -dec 5 && echo $(xbacklight -get) > ~/.config/brightness ; $refresh_i3status
+# Volume
 bindsym XF86AudioMute        exec --no-startup-id "amixer -q -c 1 set Master toggle" ; $refresh_i3status
 bindsym XF86AudioRaiseVolume exec --no-startup-id "amixer -q -c 1 set Master 5%+ unmute" ; $refresh_i3status
 bindsym XF86AudioLowerVolume exec --no-startup-id "amixer -q -c 1 set Master 5%- unmute" ; $refresh_i3status

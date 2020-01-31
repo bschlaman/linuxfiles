@@ -115,3 +115,9 @@ function transfer(){
         echo "ERROR: use either \"topi\" or \"frompi\""
     fi
 }
+function comptonset(){
+    [ -f ~/.config/compton/compton.conf ] && \
+    lspci | grep -i virtualbox > /dev/null && \
+    echo "You are in a VBox guest. Turning off compton vsync..." && \
+    sed -i '/vsync =/s/true/false/' ~/.config/compton/compton.conf
+}

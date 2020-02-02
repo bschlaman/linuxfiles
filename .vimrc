@@ -13,7 +13,7 @@ set showmatch                  " Highlight matching [{()}]
 
 set tabstop=4                  " <TAB> visual cols
 set softtabstop=4              " <TAB> cols in insert mode 
-"set expandtab                  " <TAB> set to softtabstop val
+set expandtab                  " <TAB> set to softtabstop val
 set autoindent                 " <TAB> after <CR>
 "set paste                      " Indentation preserved in paste
 set ignorecase                 " Auto \c on searches.  Use \C for case-sensitive

@@ -1,4 +1,7 @@
-URxvt.font: xft:monospace:size=16
+URxvt.font: xft:Fantasque Sans Mono:size=16
+!URxvt.font: xft:Source Code Variable:size=16
+!URxvt.font: xft:Inconsolata:size=16
+!URxvt.font: xft:monospace:size=16
 URxvt.scrollBar: false
 URxvt.perl-ext-common: default,resize-font
 URxvt.resize-font.smaller: C-J

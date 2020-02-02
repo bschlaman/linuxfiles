@@ -20,7 +20,6 @@ set ignorecase                 " Auto \c on searches.  Use \C for case-sensitive
 
 set wildmenu                   " Autocomplete commands
 set splitright splitbelow      " Splits appear right, down
-"set mouse-=a
 
 " Shortcuts
 nnoremap H 0
@@ -41,7 +40,7 @@ vnoremap <leader>" <Esc>`>a"<Esc>`<i"<Esc>`>2l
 nnoremap <C-s> :%s//g<Left><Left>
 
 " Autocomplete brackets
-"inoremap {<CR> {<CR>}<C-o>O
+inoremap {<CR> {<CR>}<C-o>O<TAB>
 "inoremap ( ()<C-o>i
 "inoremap [ []<C-o>i
 
@@ -61,7 +60,7 @@ filetype plugin on
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 autocmd FileType java inoremap <C-@> System.out.println("");<left><left><left>
-autocmd FileType java,css,javascript inoremap {<CR> {<CR>}<C-o>O<TAB>
+autocmd FileType java,css,javascript,c,h inoremap {<CR> {<CR>}<C-o>O<TAB>
 autocmd FileType html inoremap ;h1 <h1></h1>[!!]<Esc>FhT>i
 autocmd FileType html inoremap ;h2 <h2></h2>[!!]<Esc>FhT>i
 autocmd FileType html inoremap ;h3 <h3></h3>[!!]<Esc>FhT>i
@@ -76,8 +75,8 @@ autocmd FileType html inoremap ;a <a<Space>href="">[!!]</a>[!!]<Esc>13hi
 autocmd FileType html inoremap ;sup <sup></sup>[!!]<Esc>FsT>i
 autocmd FileType html inoremap ;sub <sub></sub>[!!]<Esc>FsT>i
 
-autocmd FileType html  let Comment="<!-- " | let EndComment=" -->"
-autocmd FileType css  let Comment="/* " | let EndComment=" */"
+autocmd FileType html let Comment="<!-- " | let EndComment=" -->"
+autocmd FileType css let Comment="/* " | let EndComment=" */"
 
 function! MakeListItem()
     normal! mm0i<li>A</li>`m

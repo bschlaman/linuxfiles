@@ -9,7 +9,7 @@
 
 # Load the dotfiles
 for FILE in ~/.{aliases,bash_prompt}; do
-        [ -r "$FILE" ] && [ -f "$FILE" ] && source "$FILE";
+    [ -r "$FILE" ] && [ -f "$FILE" ] && source "$FILE";
 done
 unset FILE
 
@@ -20,6 +20,8 @@ HISTCONTROL=ignoredups
 HISTTIMEFORMAT="%d/%m/%y %T "
 
 FCEDIT=vim
+IP=127.0.0.1
+[ -f ~/.ip ] && grep -q "IP=[0-9]\+" ~/.ip && IP=`cut -d= -f2 ~/.ip`
 
 # Disable Ctrl-S and Ctrl-Q (freeze and unfreeze) in terminal
 [[ $- == *i* ]] && stty -ixon
@@ -34,14 +36,14 @@ alias rl="readlink -f"
 alias src="source ~/.bash_profile"
 alias vp='vim -S ~/.vim_sessions/profiles.vim'
 alias vvrc="vim ~/.vimrc"
-alias vbrc="vim ~/.bashrc"
+alias vrc="vim ~/.bashrc"
 
-alias pi="ssh -qp 2023 pi@68.168.184.138"
-alias pib="ssh -qp 2023 brendan@68.168.184.138"
-alias pi0="ssh -qp 2024 brendan@68.168.184.138"
-alias showip="echo 68.168.184.138:2185"
-alias curlip="echo curl 68.168.184.138:2185 && curl 68.168.184.138:2185"
-alias curlwebhttp="echo curl 68.168.184.138:443 && curl 68.168.184.138:443"
+alias pi="ssh -qp 2023 pi@${IP}"
+alias pib="ssh -qp 2023 brendan@${IP}"
+alias pi0="ssh -qp 2024 brendan@${IP}"
+alias showip="echo ${IP}:2185"
+alias curlip="echo curl ${IP}:2185 && curl ${IP}:2185"
+alias curlwebhttp="echo curl ${IP}:443 && curl ${IP}:443"
 alias curlweb="echo curl https://www.schlamalama.com && curl https://www.schlamalama.com"
 alias bat="cat /sys/class/power_supply/BAT1/capacity"
 alias cdb="cd /sys/class/backlight/amdgpu_bl0"
@@ -49,6 +51,7 @@ alias yta="youtube-dl -x --audio-format mp3"
 alias i3r="i3-msg restart"
 alias lock="i3lock -c 000000"
 alias num="xset q | grep \"Num Lock\" | awk '{ print \$8 }'"
+alias fonts="fc-list | cut -d: -f2 | sort | uniq"
 alias wifi="sudo netctl start wlo1-TP-Link_D625"
 alias wifihome="sudo netctl start wlo1-MySpectrumWiFi58-2G"
 alias sdocker="sudo systemctl start docker"
@@ -98,20 +101,21 @@ function wifistop(){
     done
 }
 function linuxcomp(){
-    for x in `find . -maxdepth 1 -name ".*" -and -not -type d` ; do
+    [ -d ~/main/hax/linux_files/ ] && dir=~/main/hax/linux_files || dir="."
+    for x in `find $dir -maxdepth 1 -name ".*" -and -not -type d -printf "%P\n"` ; do
         echo "#### $x ####"
-        diff ~/main/hax/linux_files/$x ~/$x
+        diff $dir/$x ~/$x
     done
-    for x in `find ./.config -type f` ; do
+    for x in `find $dir/.config -type f -printf "%P\n"` ; do
         echo "#### $x ####"
-        diff ~/main/hax/linux_files/$x ~/$x
+        diff $dir/.config/$x ~/.config/$x
     done
 }
 function transfer(){
     if [ "$1" = "topi" ] && [ $# -gt 1 ] ; then
-        shift && eval "scp -rP 2023 $(echo $@ | sed '/\([a-zA-Z]\+ [a-zA-Z]\+\)/s/\(.*\)/{\1}/;s/ /,/g') 68.168.184.138:/transfer"
+        shift && eval "scp -rP 2023 $(echo $@ | sed '/\([a-zA-Z]\+ [a-zA-Z]\+\)/s/\(.*\)/{\1}/;s/ /,/g') ${IP}:/transfer"
     elif [ "$1" = "frompi" ] && [ $# -gt 1 ] ; then
-        shift && eval "scp -rP 2023 68.168.184.138:/transfer/$(echo $@ | sed '/\([a-zA-Z]\+ [a-zA-Z]\+\)/s/\(.*\)/{\1}/;s/ /,/g') ."
+        shift && eval "scp -rP 2023 ${IP}:/transfer/$(echo $@ | sed '/\([a-zA-Z]\+ [a-zA-Z]\+\)/s/\(.*\)/{\1}/;s/ /,/g') ."
     else
         echo "ERROR: use either \"topi\" or \"frompi\""
     fi
@@ -120,5 +124,6 @@ function comptonset(){
     [ -f ~/.config/compton/compton.conf ] && \
     lspci | grep -i virtualbox > /dev/null && \
     echo "You are in a VBox guest. Turning off compton vsync..." && \
-    sed -i '/vsync =/s/true/false/' ~/.config/compton/compton.conf
+    sed -i '/vsync =/s/true/false/' ~/.config/compton/compton.conf \ ||
+    echo "You are not in a VBox guest; nothing to do." 
 }

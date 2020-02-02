@@ -34,7 +34,7 @@ alias rl="readlink -f"
 alias src="source ~/.bash_profile"
 alias vp='vim -S ~/.vim_sessions/profiles.vim'
 alias vvrc="vim ~/.vimrc"
-alias vbrc="vim ~/.bashrc"
+alias vrc="vim ~/.bashrc"
 
 alias pi="ssh -qp 2023 pi@68.168.184.138"
 alias pib="ssh -qp 2023 brendan@68.168.184.138"
@@ -49,6 +49,7 @@ alias yta="youtube-dl -x --audio-format mp3"
 alias i3r="i3-msg restart"
 alias lock="i3lock -c 000000"
 alias num="xset q | grep \"Num Lock\" | awk '{ print \$8 }'"
+alias fonts="fc-list | cut -d: -f2 | sort | uniq"
 alias wifi="sudo netctl start wlo1-TP-Link_D625"
 alias wifihome="sudo netctl start wlo1-MySpectrumWiFi58-2G"
 alias rn="ranger"
@@ -97,13 +98,14 @@ function wifistop(){
     done
 }
 function linuxcomp(){
-    for x in `find . -maxdepth 1 -name ".*" -and -not -type d` ; do
+    [ -d ~/main/hax/linux_files/ ] && dir=~/main/hax/linux_files || dir="."
+    for x in `find $dir -maxdepth 1 -name ".*" -and -not -type d -printf "%P\n"` ; do
         echo "#### $x ####"
-        diff ~/main/hax/linux_files/$x ~/$x
+        diff $dir/$x ~/$x
     done
-    for x in `find ./.config -type f` ; do
+    for x in `find $dir/.config -type f -printf "%P\n"` ; do
         echo "#### $x ####"
-        diff ~/main/hax/linux_files/$x ~/$x
+        diff $dir/.config/$x ~/.config/$x
     done
 }
 function transfer(){

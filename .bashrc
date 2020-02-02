@@ -51,6 +51,7 @@ alias lock="i3lock -c 000000"
 alias num="xset q | grep \"Num Lock\" | awk '{ print \$8 }'"
 alias wifi="sudo netctl start wlo1-TP-Link_D625"
 alias wifihome="sudo netctl start wlo1-MySpectrumWiFi58-2G"
+alias sdocker="sudo systemctl start docker"
 alias rn="ranger"
 alias slideshow="feh -d -. ."
 

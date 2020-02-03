@@ -55,6 +55,7 @@ alias fonts="fc-list | cut -d: -f2 | sort | uniq"
 alias wifi="sudo netctl start wlo1-TP-Link_D625"
 alias wifihome="sudo netctl start wlo1-MySpectrumWiFi58-2G"
 alias sdocker="sudo systemctl start docker"
+alias docker="sudo docker"
 alias rn="ranger"
 alias slideshow="feh -d -. ."
 
@@ -94,11 +95,11 @@ function vt(){
     sed -i "s/colorscheme [a-zA-Z]*[[:space:]]*/colorscheme $sptheme/" ~/.vimrc | grep color && echo Updated vim theme to $theme
 }
 function wifistop(){
-    sudo whoami > /dev/null 2>&1
-    for x in /etc/netctl/wlo1-* ; do
-        echo Stopping `basename $x`
-        sudo netctl stop `basename $x`
-    done
+    active=`sudo netctl list | grep \* | sed 's/* \([^\s]\+\)/\1/'`
+    if [ ! -z "$active" ] ; then
+        echo Stopping $active
+        sudo netctl stop $active
+    fi
 }
 function linuxcomp(){
     [ -d ~/main/hax/linux_files/ ] && dir=~/main/hax/linux_files || dir="."

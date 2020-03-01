@@ -114,9 +114,9 @@ function linuxcomp(){
 }
 function transfer(){
     if [ "$1" = "topi" ] && [ $# -gt 1 ] ; then
-        shift && eval "scp -rP 2023 $(echo $@ | sed '/\([a-zA-Z]\+ [a-zA-Z]\+\)/s/\(.*\)/{\1}/;s/ /,/g') ${IP}:/transfer"
+        shift && eval "scp -rpP 2023 $(echo $@ | sed '/\([a-zA-Z]\+ [a-zA-Z]\+\)/s/\(.*\)/{\1}/;s/ /,/g') ${IP}:/transfer"
     elif [ "$1" = "frompi" ] && [ $# -gt 1 ] ; then
-        shift && eval "scp -rP 2023 ${IP}:/transfer/$(echo $@ | sed '/\([a-zA-Z]\+ [a-zA-Z]\+\)/s/\(.*\)/{\1}/;s/ /,/g') ."
+        shift && eval "scp -rpP 2023 ${IP}:/transfer/$(echo $@ | sed '/\([a-zA-Z]\+ [a-zA-Z]\+\)/s/\(.*\)/{\1}/;s/ /,/g') ."
     else
         echo "ERROR: use either \"topi\" or \"frompi\""
     fi

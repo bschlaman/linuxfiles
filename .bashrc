@@ -21,7 +21,9 @@ HISTTIMEFORMAT="%d/%m/%y %T "
 
 FCEDIT=vim
 IP=127.0.0.1
-[ -f ~/.ip ] && grep -q "IP=[0-9]\+" ~/.ip && IP=`cut -d= -f2 ~/.ip`
+GCPIP=127.0.0.1
+[ -f ~/.ip ] && grep -q "IP=[0-9]\+" ~/.ip && IP=`grep "IP=[0-9]\+" ~/.ip | cut -d= -f2`
+[ -f ~/.ip ] && grep -q "IP_GCP=[0-9]\+" ~/.ip && GCPIP=` grep "IP_GCP=[0-9]\+" ~/.ip | cut -d= -f2`
 
 # Disable Ctrl-S and Ctrl-Q (freeze and unfreeze) in terminal
 [[ $- == *i* ]] && stty -ixon
@@ -41,6 +43,7 @@ alias vrc="vim ~/.bashrc"
 alias pi="ssh -qp 2023 pi@${IP}"
 alias pib="ssh -qp 2023 brendan@${IP}"
 alias pi0="ssh -qp 2024 brendan@${IP}"
+alias gcp="ssh brendan_schlaman@${GCPIP}"
 alias showip="echo ${IP}:2185"
 alias curlip="echo curl ${IP}:2185 && curl ${IP}:2185"
 alias curlwebhttp="echo curl ${IP}:443 && curl ${IP}:443"

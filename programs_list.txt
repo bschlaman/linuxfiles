@@ -31,3 +31,4 @@ compton
 [ Config ]
 /etc/systemd/logind.conf HandleLidSwitchDocked=suspend
 /etc/udev/rules.d/90-backlight.rules video group
+/usr/share/X11/xorg.conf.d/40-libinput.conf  Option "NaturalScrolling" "True"

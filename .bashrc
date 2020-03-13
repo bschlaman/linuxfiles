@@ -21,7 +21,7 @@ HISTTIMEFORMAT="%d/%m/%y %T "
 
 FCEDIT=vim
 IP=127.0.0.1
-[ -f ~/.ip ] && grep -q "IP=[0-9]\+" ~/.ip && IP=`cut -d= -f2 ~/.ip`
+[ -f ~/.ip ] && grep -q "IP=[0-9]\+" ~/.ip && IP=`grep "^IP=" ~/.ip | cut -d= -f2`
 
 # Disable Ctrl-S and Ctrl-Q (freeze and unfreeze) in terminal
 [[ $- == *i* ]] && stty -ixon
@@ -55,14 +55,15 @@ alias fonts="fc-list | cut -d: -f2 | sort | uniq"
 alias wifi="sudo netctl start wlo1-TP-Link_D625"
 alias wifihome="sudo netctl start wlo1-MySpectrumWiFi58-2G"
 alias sdocker="sudo systemctl start docker"
+alias restartx="ps -ef | grep xinit | grep -v grep | awk '{print $2}' | xargs kill"
 alias docker="sudo docker"
 alias rn="ranger"
-alias slideshow="feh -d -. ."
 
 alias cdmain="cd ~/main"
 alias cdh="cd ~/main/hax"
 alias cdlin="cd ~/main/hax/linux_files"
 alias cdhtml="cd ~/main/hax/html_files"
+alias cdhd="cd ~/main/hax/docker"
 alias cds="cd ~/main/hax/scripts/"
 alias cdd="cd ~/downloads"
 alias cddoc="cd ~/documents"
@@ -127,4 +128,7 @@ function comptonset(){
     echo "You are in a VBox guest. Turning off compton vsync..." && \
     sed -i '/vsync =/s/true/false/' ~/.config/compton/compton.conf \ ||
     echo "You are not in a VBox guest; nothing to do." 
+}
+function slideshow(){
+    [ "$1" = "-r" ] && feh -dz -. -B black || feh -d -. -B black
 }

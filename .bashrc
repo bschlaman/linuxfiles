@@ -22,8 +22,8 @@ HISTTIMEFORMAT="%d/%m/%y %T "
 FCEDIT=vim
 IP=127.0.0.1
 GCPIP=127.0.0.1
-[ -f ~/.ip ] && grep -q "^IP=[0-9]\+" ~/.ip && IP=`grep "^IP=[0-9]\+" ~/.ip | cut -d= -f2`
-[ -f ~/.ip ] && grep -q "^IP_GCP=[0-9]\+" ~/.ip && GCPIP=`grep "^IP_GCP=[0-9]\+" ~/.ip | cut -d= -f2`
+[ -f ~/.ip ] && IP=`grep "^IP=[0-9]\+" ~/.ip | cut -d= -f2`
+[ -f ~/.ip ] && GCPIP=`grep "^IP_GCP=[0-9]\+" ~/.ip | cut -d= -f2`
 
 # Disable Ctrl-S and Ctrl-Q (freeze and unfreeze) in terminal
 [[ $- == *i* ]] && stty -ixon

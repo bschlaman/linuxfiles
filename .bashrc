@@ -18,6 +18,8 @@ HISTSIZE=
 HISTFILESIZE=
 HISTCONTROL=ignoredups
 HISTTIMEFORMAT="%d/%m/%y %T "
+PROMPT_COMMAND="history -a;$PROMPT_COMMAND"
+shopt -s histappend
 
 FCEDIT=vim
 IP=127.0.0.1

@@ -11,9 +11,9 @@ silent! colorscheme deus               " Color scheme in /usr/share/vim/vim81/co
 
 set showmatch                  " Highlight matching [{()}]
 
-set tabstop=4                  " <TAB> visual cols
-set softtabstop=4              " <TAB> cols in insert mode 
-set expandtab                  " <TAB> set to softtabstop val
+set tabstop=2                  " <TAB> visual cols
+set softtabstop=2              " <TAB> cols in insert mode 
+set noexpandtab                " <TAB> not spaces
 set autoindent                 " <TAB> after <CR>
 "set paste                      " Indentation preserved in paste
 set ignorecase                 " Auto \c on searches.  Use \C for case-sensitive
@@ -59,6 +59,7 @@ filetype plugin on
 " Disable auto commenting
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
+autocmd FileType python setlocal tabstop=4 softtabstop=4 expandtab
 autocmd FileType java inoremap <C-@> System.out.println("");<left><left><left>
 autocmd FileType java,css,javascript,c,h inoremap {<CR> {<CR>}<C-o>O<TAB>
 autocmd FileType html inoremap ;h1 <h1></h1>[!!]<Esc>FhT>i

@@ -20,6 +20,10 @@ HISTCONTROL=ignoredups
 HISTTIMEFORMAT="%d/%m/%y %T "
 PROMPT_COMMAND="history -a;$PROMPT_COMMAND"
 shopt -s histappend
+# Fix for st del key
+tput smkx
+
+[ -d "$HOME/.bin" ] && PATH="$HOME/.bin:$PATH"
 
 FCEDIT=vim
 IP=127.0.0.1
@@ -101,7 +105,7 @@ function vt(){
     sed -i "s/colorscheme [a-zA-Z]*[[:space:]]*/colorscheme $sptheme/" ~/.vimrc | grep color && echo Updated vim theme to $theme
 }
 function wifistop(){
-    active=`sudo netctl list | grep \* | sed 's/* \([^\s]\+\)/\1/'`
+    active=`netctl list | grep \* | sed 's/* \([^\s]\+\)/\1/'`
     if [ ! -z "$active" ] ; then
         echo Stopping $active
         sudo netctl stop $active

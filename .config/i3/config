@@ -197,7 +197,8 @@ bindsym $mod+o exec i3lock -ent -p default -i ~/pictures/favorites/dustybg.png
 bindsym --release $mod+Shift+s exec scrot -s
 bindsym $mod+c exec chromium
 
-set $refresh_i3status exec --no-startup-id killall -USR1 i3status
+#set $refresh_i3status exec --no-startup-id killall -USR1 i3status
+set $refresh_i3status exec :
 
 # Increase brightness
 bindsym XF86MonBrightnessUp exec xbacklight -inc 5 && echo $(xbacklight -get) > ~/.config/brightness ; $refresh_i3status
@@ -246,3 +247,9 @@ bar {
 }
 bindsym --release Num_Lock  exec pkill -SIGRTMIN+11 i3blocks
 bindsym --release Caps_Lock exec pkill -SIGRTMIN+11 i3blocks
+bindsym --release XF86MonBrightnessUp exec pkill -SIGRTMIN+10 i3blocks
+bindsym --release XF86MonBrightnessDown exec pkill -SIGRTMIN+10 i3blocks
+bindsym --release XF86AudioMute exec pkill -SIGRTMIN+9 i3blocks
+bindsym --release XF86AudioRaiseVolume exec pkill -SIGRTMIN+9 i3blocks
+bindsym --release XF86AudioLowerVolume exec pkill -SIGRTMIN+9 i3blocks
+

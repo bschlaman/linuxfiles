@@ -31,6 +31,12 @@ GCPIP=127.0.0.1
 [ -f ~/.ip ] && IP=`grep "^IP=[0-9]\+" ~/.ip | cut -d= -f2`
 [ -f ~/.ip ] && GCPIP=`grep "^IP_GCP=[0-9]\+" ~/.ip | cut -d= -f2`
 
+# Port variables in case I am local
+#PI3PORT=2023
+#PI4PORT=2024
+PI3PORT=22
+PI4PORT=22
+
 # Disable Ctrl-S and Ctrl-Q (freeze and unfreeze) in terminal
 [[ $- == *i* ]] && stty -ixon
 
@@ -40,15 +46,16 @@ alias ll="ls -lrt"
 alias grep="grep --color=auto"
 alias diff="diff --color=auto"
 alias rl="readlink -f"
+alias fdate='date "+%Y-%m-%d %H:%M"'
 
 alias src="source ~/.bash_profile"
 alias vp='vim -S ~/.vim_sessions/profiles.vim'
 alias vvrc="vim ~/.vimrc"
 alias vrc="vim ~/.bashrc"
 
-alias pi="ssh -qp 2023 pi@${IP}"
-alias pib="ssh -qp 2023 brendan@${IP}"
-alias pi0="ssh -qp 2024 brendan@${IP}"
+alias pi="ssh -p ${PI3PORT} pi@${IP}"
+alias pib="ssh -p ${PI3PORT} brendan@${IP}"
+alias pi0="ssh -p ${PI4PORT} brendan@${IP}"
 alias gcp="ssh brendan_schlaman@${GCPIP}"
 alias showip="echo ${IP}:2185"
 alias curlip="echo curl ${IP}:2185 && curl ${IP}:2185"
@@ -124,9 +131,9 @@ function linuxcomp(){
 }
 function transfer(){
     if [ "$1" = "topi" ] && [ $# -gt 1 ] ; then
-        shift && eval "scp -rpP 2023 $(echo $@ | sed '/\([a-zA-Z]\+ [a-zA-Z]\+\)/s/\(.*\)/{\1}/;s/ /,/g') ${IP}:/transfer"
+        shift && eval "scp -rpP ${PI3PORT} $(echo $@ | sed '/\([a-zA-Z]\+ [a-zA-Z]\+\)/s/\(.*\)/{\1}/;s/ /,/g') ${IP}:/transfer"
     elif [ "$1" = "frompi" ] && [ $# -gt 1 ] ; then
-        shift && eval "scp -rpP 2023 ${IP}:/transfer/$(echo $@ | sed '/\([a-zA-Z]\+ [a-zA-Z]\+\)/s/\(.*\)/{\1}/;s/ /,/g') ."
+        shift && eval "scp -rpP ${PI3PORT} ${IP}:/transfer/$(echo $@ | sed '/\([a-zA-Z]\+ [a-zA-Z]\+\)/s/\(.*\)/{\1}/;s/ /,/g') ."
     else
         echo "ERROR: use either \"topi\" or \"frompi\""
     fi

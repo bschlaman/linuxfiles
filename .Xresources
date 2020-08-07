@@ -116,11 +116,11 @@ URxvt*color21:      base06
 
 
 !! Transparency (0-1):
-*.alpha: 0.2
+*.alpha: 0.9
 
 !! Set a default font and font size as below:
-!*.font: monospace:size=18
-*.font: Liberation Mono:size=18
+*.font: monospace:size=18
+!*.font: Liberation Mono:size=18
 
 /* name		dark	light */
 /* black	0	8 */

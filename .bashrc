@@ -122,6 +122,7 @@ function wifistop(){
 }
 function linuxcomp(){
     [ -d ~/main/hax/linux_files/ ] && dir=~/main/hax/linux_files || dir="."
+		#find -type f | grep -v \.git | grep /\\. | cut -c 3-
     for x in `find $dir -maxdepth 1 -name ".*" -and -not -type d -printf "%P\n"` ; do
         echo "#### $x ####"
         diff $dir/$x ~/$x

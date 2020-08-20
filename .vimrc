@@ -35,6 +35,8 @@ vnoremap <C-o> <Esc>
 nnoremap <leader><space> :nohlsearch<CR>
 " Toggle numbers
 nnoremap <leader>n :set number! relativenumber!<CR>
+" Toggle paste
+nnoremap <leader>p :set paste!<CR>
 " Surround visual in quotes
 vnoremap <leader>" <Esc>`>a"<Esc>`<i"<Esc>`>2l
 nnoremap <C-s> :%s//g<Left><Left>

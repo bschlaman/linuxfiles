@@ -60,6 +60,8 @@ map <C-l> <C-w>l
 filetype plugin on
 " Disable auto commenting
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+" .aliases syntax set
+autocmd BufNewFile,BufRead *.aliases set syntax=bash
 
 autocmd FileType python setlocal tabstop=4 softtabstop=4 expandtab
 autocmd FileType java inoremap <C-@> System.out.println("");<left><left><left>

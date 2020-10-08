@@ -75,6 +75,7 @@ alias sdocker="sudo systemctl start docker"
 alias restartx="ps -ef | grep xinit | grep -v grep | awk '{print $2}' | xargs kill"
 alias docker="sudo docker"
 alias gitcfg="git config user.name \"Brendan Schlaman\" && git config user.email \"brendan.schlaman@gmail.com\""
+alias gl="git log -m -3 --pretty=format:\"Commit Hash: %h Author: %an <%ae> Date: %cd\""
 alias rn="ranger"
 
 alias cdmain="cd ~/main"

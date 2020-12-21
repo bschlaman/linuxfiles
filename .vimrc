@@ -31,6 +31,8 @@ nnoremap K <C-B>
 inoremap <C-o> <Esc>
 vnoremap <C-o> <Esc>
 
+noremap <C-f> /
+
 " Turn off search highlight
 nnoremap <leader><space> :nohlsearch<CR>
 " Toggle numbers

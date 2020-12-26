@@ -1,25 +1,36 @@
-autocmd VimEnter * echo "Welcome! >^.^<"
-set number relativenumber      " Line numbers, relative
-set scrolloff=3                " Scroll begins from offset
-set showcmd                    " Show latest command
+autocmd VimEnter * :call Init()
+function Init()
+	echo ""
+	echon "Welcome! >^.^< | "
+	echon "using colorscheme: "
+	echon g:colors_name
+endfunction
 
-set hlsearch                   " Highlight search
-"set incsearch                 " Search as characters enter
+" the basics
+set number relativenumber
+set scrolloff=3
+set showcmd
+set hlsearch
+set showmatch
+set ignorecase
+set wildmenu
+set splitright splitbelow
 
-syntax on                      " Enable syntax highlighting
-silent! colorscheme deus               " Color scheme in /usr/share/vim/vim81/colors/*.vim
+" tabs or spaces?
+set tabstop=2
+set softtabstop=2
+set noexpandtab
+set autoindent
 
-set showmatch                  " Highlight matching [{()}]
-
-set tabstop=2                  " <TAB> visual cols
-set softtabstop=2              " <TAB> cols in insert mode 
-set noexpandtab                " <TAB> not spaces
-set autoindent                 " <TAB> after <CR>
-"set paste                      " Indentation preserved in paste
-set ignorecase                 " Auto \c on searches.  Use \C for case-sensitive
-
-set wildmenu                   " Autocomplete commands
-set splitright splitbelow      " Splits appear right, down
+syntax on
+let schemes = ["deus", "gruvbox", "molokai"]
+for name in schemes
+	if filereadable($HOME.'/.vim/colors/'.name.'.vim')
+		execute "colorscheme " . name
+		break
+	endif
+endfor
+set background=dark
 
 " Shortcuts
 nnoremap H 0
@@ -40,6 +51,10 @@ nnoremap <leader>p :set paste!<CR>
 " Surround visual in quotes
 vnoremap <leader>" <Esc>`>a"<Esc>`<i"<Esc>`>2l
 nnoremap <C-s> :%s//g<Left><Left>
+nnoremap <leader>d "_d
+xnoremap <leader>d "_d
+nnoremap <leader>r "_diwP
+xnoremap <leader>r "_diwP
 
 " Autocomplete brackets
 inoremap {<CR> {<CR>}<C-o>O<TAB>
@@ -65,7 +80,7 @@ autocmd BufNewFile,BufRead *.aliases set syntax=bash
 
 autocmd FileType python setlocal tabstop=4 softtabstop=4 expandtab
 autocmd FileType java inoremap <C-@> System.out.println("");<left><left><left>
-autocmd FileType java,css,javascript,c,h inoremap {<CR> {<CR>}<C-o>O<TAB>
+
 autocmd FileType html inoremap ;h1 <h1></h1>[!!]<Esc>FhT>i
 autocmd FileType html inoremap ;h2 <h2></h2>[!!]<Esc>FhT>i
 autocmd FileType html inoremap ;h3 <h3></h3>[!!]<Esc>FhT>i

@@ -26,6 +26,7 @@ tput smkx
 [ -d "$HOME/.bin" ] && PATH="$HOME/.bin:$PATH"
 
 FCEDIT=vim
+EDITOR=vim
 IP=127.0.0.1
 GCPIP=127.0.0.1
 [ -f ~/.ip ] && IP=`grep "^IP=[0-9]\+" ~/.ip | cut -d= -f2`

@@ -41,6 +41,7 @@ nnoremap K <C-B>
 " Avoiding ESC key. o for out
 inoremap <C-o> <Esc>
 vnoremap <C-o> <Esc>
+nnoremap <C-o> <Esc>
 
 " Turn off search highlight
 nnoremap <leader><space> :nohlsearch<CR>

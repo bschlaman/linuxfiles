@@ -26,12 +26,12 @@ shopt -s histappend
 # fix for st del key
 tput smkx
 # signing commits if no GUI
-GPG_TTY=$(tty)
+export GPG_TTY=$(tty)
 
 [ -d "$HOME/.bin" ] && PATH="$HOME/.bin:$PATH"
 
 FCEDIT=vim
-EDITOR=vim
+export EDITOR=vim
 IP=127.0.0.1
 GCPIP=127.0.0.1
 [ -f ~/.ip ] && IP=`grep "^IP=[0-9]\+" ~/.ip | cut -d= -f2`

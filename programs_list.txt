@@ -1,6 +1,7 @@
 [ Basics ]
 vim
 git
+jq
 
 [ Productivity ]
 mupdf

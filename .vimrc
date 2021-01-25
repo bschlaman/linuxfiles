@@ -26,7 +26,7 @@ set noexpandtab
 set autoindent
 
 syntax on
-let schemes = ["tender", "deus", "gruvbox", "molokai"]
+let schemes = ["tender", "anderson", "deus", "gruvbox", "molokai"]
 for name in schemes
 	if filereadable($HOME.'/.vim/colors/'.name.'.vim')
 		execute "colorscheme " . name

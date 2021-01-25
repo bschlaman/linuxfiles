@@ -6,6 +6,9 @@ function Init()
 	echon g:colors_name
 endfunction
 
+" avoid 'Hit ENTER' message upon startup
+set cmdheight=2
+
 " the basics
 set number relativenumber
 set scrolloff=3
@@ -23,7 +26,7 @@ set noexpandtab
 set autoindent
 
 syntax on
-let schemes = ["deus", "gruvbox", "molokai"]
+let schemes = ["tender", "deus", "gruvbox", "molokai"]
 for name in schemes
 	if filereadable($HOME.'/.vim/colors/'.name.'.vim')
 		execute "colorscheme " . name

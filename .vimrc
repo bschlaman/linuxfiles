@@ -7,7 +7,7 @@ function Init()
 endfunction
 
 " avoid 'Hit ENTER' message upon startup
-set cmdheight=2
+" set cmdheight=2
 
 " the basics
 set number relativenumber
@@ -26,7 +26,7 @@ set noexpandtab
 set autoindent
 
 syntax on
-let schemes = ["tender", "anderson", "deus", "gruvbox", "molokai"]
+let schemes = ["badwolf", "monokai", "tender", "anderson", "deus", "gruvbox", "molokai"]
 for name in schemes
 	if filereadable($HOME.'/.vim/colors/'.name.'.vim')
 		execute "colorscheme " . name
@@ -94,22 +94,44 @@ autocmd FileType html inoremap ;d <div><CR><CR></div><CR>[!!]<Esc>2ki
 autocmd FileType html inoremap ;p <p></p>[!!]<Esc>FpT>i
 autocmd FileType html inoremap ;ul <ul><CR><CR></ul><CR>[!!]<Esc>2ki
 autocmd FileType html inoremap ;ol <ol><CR><CR></ol><CR>[!!]<Esc>2ki
-autocmd FileType html inoremap ;li <li></li>[!!]<Esc>FlT>i
+
 autocmd FileType html inoremap ;a <a<Space>href="">[!!]</a>[!!]<Esc>13hi
 autocmd FileType html inoremap ;sup <sup></sup>[!!]<Esc>FsT>i
 autocmd FileType html inoremap ;sub <sub></sub>[!!]<Esc>FsT>i
-
-autocmd FileType html let Comment="<!-- " | let EndComment=" -->"
-autocmd FileType css let Comment="/* " | let EndComment=" */"
 
 function! MakeListItem()
     normal! mm0i<li>A</li>`m
 endfunction
 nnoremap <leader>l :call MakeListItem()<CR>
 
+autocmd FileType html let Comment="<!-- " | let EndComment=" -->"
+autocmd FileType css let Comment="/* " | let EndComment=" */"
+
 function CommentLines()
-  exe ":s@^@".g:Comment."@g"
-  exe ":s@$@".g:EndComment."@g"
+  exe ":s#^#".g:Comment."#g"
+  exe ":s#$#".g:EndComment."#g"
 endfunction
 " map visual mode keycombo 'co' to this function
-vmap co :call CommentLines()<CR>
+vnoremap co :call CommentLines()<CR>
+vnoremap cu :s#\%V/\*\<Bar>\**/\%V##g <CR>
+
+" vim-go
+let g:go_fmt_command = "goimports"
+let g:go_highlight_array_whitespace_error = 1
+let g:go_highlight_chan_whitespace_error = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_space_tab_error = 1
+let g:go_highlight_trailing_whitespace_error = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_functions = 0
+let g:go_highlight_function_calls = 0
+let g:go_highlight_types = 0
+let g:go_highlight_fields = 1
+let g:go_highlight_build_constraints = 0
+let g:go_highlight_generate_tags = 0
+let g:go_highlight_string_spellcheck = 1
+let g:go_highlight_format_strings = 1
+let g:go_highlight_variable_declarations = 0
+let g:go_highlight_variable_assignments = 0
+let g:go_highlight_diagnostic_errors = 1
+let g:go_highlight_diagnostic_warnings = 1

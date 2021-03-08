@@ -113,8 +113,8 @@ function CommentLines()
 endfunction
 " map visual mode keycombo 'co' to this function
 " vnoremap co :call CommentLines()<CR>
-vnoremap co :s#\%V\(.*\)\%V#\/*\1*\/#g <CR>
-vnoremap cu :s#\%V/\*\<Bar>\**/\%V##g <CR>
+vnoremap co :s#\%V\(.*\)\%V#\/*\1*\/#g <CR> :nohlsearch <CR>
+vnoremap cu :s#\%V/\*\<Bar>\**/\%V##g <CR> :nohlsearch <CR>
 
 " vim-go
 let g:go_fmt_command = "goimports"

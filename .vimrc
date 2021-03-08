@@ -100,19 +100,20 @@ autocmd FileType html inoremap ;sup <sup></sup>[!!]<Esc>FsT>i
 autocmd FileType html inoremap ;sub <sub></sub>[!!]<Esc>FsT>i
 
 function! MakeListItem()
-    normal! mm0i<li>A</li>`m
+	normal! mm0i<li>A</li>`m
 endfunction
 nnoremap <leader>l :call MakeListItem()<CR>
 
-autocmd FileType html let Comment="<!-- " | let EndComment=" -->"
-autocmd FileType css let Comment="/* " | let EndComment=" */"
+autocmd FileType html let Comment="<!--" | let EndComment="-->"
+autocmd FileType css let Comment="/*" | let EndComment="*/"
 
 function CommentLines()
-  exe ":s#^#".g:Comment."#g"
-  exe ":s#$#".g:EndComment."#g"
+	exe ":s#^#".g:Comment."#g"
+	exe ":s#$#".g:EndComment."#g"
 endfunction
 " map visual mode keycombo 'co' to this function
-vnoremap co :call CommentLines()<CR>
+" vnoremap co :call CommentLines()<CR>
+vnoremap co :s#\%V\(.*\)\%V#\/*\1*\/#g <CR>
 vnoremap cu :s#\%V/\*\<Bar>\**/\%V##g <CR>
 
 " vim-go

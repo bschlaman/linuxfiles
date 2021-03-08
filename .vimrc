@@ -108,13 +108,17 @@ autocmd FileType html let Comment="<!--" | let EndComment="-->"
 autocmd FileType css let Comment="/*" | let EndComment="*/"
 
 function CommentLines()
-	exe ":s#^#".g:Comment."#g"
-	exe ":s#$#".g:EndComment."#g"
+	exe ":s#\\%V\\(.*\\)\\%V\\(.\\)#".g:Comment."\\1\\2".g:EndComment."#g"
 endfunction
+" not working right now
+" function UnCommentLines()
+" 	exe ":s#\\%V".g:Comment."\\<Bar>".g:EndComment."\\%V##g"
+" endfunction
 " map visual mode keycombo 'co' to this function
-" vnoremap co :call CommentLines()<CR>
-vnoremap co :s#\%V\(.*\)\%V#\/*\1*\/#g <CR> :nohlsearch <CR>
-vnoremap cu :s#\%V/\*\<Bar>\**/\%V##g <CR> :nohlsearch <CR>
+vnoremap co :call CommentLines()<CR>
+" vnoremap cz :call UnCommentLines()<CR>
+" vnoremap cx :s#\%V\(.*\)\%V\(.\)#\/*\1\2*\/#g <CR> :nohlsearch <CR>
+vnoremap cu :s#\%V/\*\<Bar>\*/\%V##g <CR> :nohlsearch <CR>
 
 " vim-go
 let g:go_fmt_command = "goimports"

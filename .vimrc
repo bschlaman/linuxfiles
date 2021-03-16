@@ -120,6 +120,9 @@ vnoremap co :call CommentLines()<CR>
 " vnoremap cx :s#\%V\(.*\)\%V\(.\)#\/*\1\2*\/#g <CR> :nohlsearch <CR>
 vnoremap cu :s#\%V/\*\<Bar>\*/\%V##g <CR> :nohlsearch <CR>
 
+" make a word a tag, in any filetype
+nnoremap mt yiwi<<Esc>ea></<Esc>pa><Esc>F<
+
 " vim-go
 let g:go_fmt_command = "goimports"
 let g:go_highlight_array_whitespace_error = 1

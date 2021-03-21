@@ -57,6 +57,6 @@ echo -e "You might want to install..."
 echo -e "sudo pacman -Sy ${PROGRAMS}"
 
 echo -e "${BLD}source ~/.bashrc${NC}"
-export PS1="\[\e[1m\]\[\e[34m\][\[\e[33m\]\u\[\e[32m\]@\[\e[31m\]\h \[\e[35m\]\W\$(prompt_git \"\[\e[37m\] on \[\e[32m\]\")\[\e[34m\]]\[\e[37m\]$ \[\e[0m\]"
+echo 'export PS1="\[\e[1m\]\[\e[34m\][\[\e[33m\]\u\[\e[32m\]@\[\e[31m\]\h \[\e[35m\]\W\$(prompt_git \"\[\e[37m\] on \[\e[32m\]\")\[\e[34m\]]\[\e[37m\]$ \[\e[0m\]"'
 
 popd > /dev/null

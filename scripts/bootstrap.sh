@@ -2,7 +2,7 @@
 
 ROOT="$(cd "$(dirname "$0")" &>/dev/null; pwd -P)"
 echo ROOT: $ROOT
-pushd $ROOT
+pushd $ROOT > /dev/null
 
 # dependencies
 [ -f ./colors.sh ] && source ./colors.sh
@@ -38,10 +38,10 @@ select opt in $options ; do
 	case $opt in
 		"gruvbox")
 				mkdir tmp
-				pushd tmp
+				pushd tmp > /dev/null
 				git clone https://github.com/morhetz/gruvbox.git
 				cp ./gruvbox/colors/gruvbox.vim ~/.vim/colors/
-				popd
+				popd > /dev/null
 				rm -rf ./tmp
 				;;
 		"vim-go")
@@ -56,7 +56,7 @@ PROGRAMS="vim jq htop"
 echo -e "You might want to install..."
 echo -e "sudo pacman -Sy ${PROGRAMS}"
 
-source ~/.bashrc
+echo -e "${BLD}source ~/.bashrc${NC}"
 export PS1="\[\e[1m\]\[\e[34m\][\[\e[33m\]\u\[\e[32m\]@\[\e[31m\]\h \[\e[35m\]\W\$(prompt_git \"\[\e[37m\] on \[\e[32m\]\")\[\e[34m\]]\[\e[37m\]$ \[\e[0m\]"
 
-popd
+popd > /dev/null

@@ -2,6 +2,7 @@
 
 ROOT="$(cd "$(dirname "$0")" &>/dev/null; pwd -P)"
 echo ROOT: $ROOT
+pushd $ROOT
 
 # dependencies
 [ -f ./colors.sh ] && source ./colors.sh
@@ -54,3 +55,5 @@ done
 PROGRAMS="vim jq htop"
 echo -e "You might want to install..."
 echo -e "sudo pacman -Sy ${PROGRAMS}"
+
+popd

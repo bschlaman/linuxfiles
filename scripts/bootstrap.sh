@@ -40,7 +40,7 @@ select opt in $options ; do
 				mkdir tmp
 				pushd tmp
 				git clone https://github.com/morhetz/gruvbox.git
-				cp ./colors/gruvbox.vim ~/.vim/colors/
+				cp ./gruvbox/colors/gruvbox.vim ~/.vim/colors/
 				popd
 				rm -r ./tmp
 				;;

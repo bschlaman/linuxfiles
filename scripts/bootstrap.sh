@@ -18,7 +18,7 @@ DOTFILES="
 "
 for df in $DOTFILES ; do
 echo -e "copying dotfile [ ${YEL}${df}${NC} ] to ~"
-cp -v ./${df} ~
+cp -v ../${df} ~
 done
 
 # vim

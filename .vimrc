@@ -82,6 +82,8 @@ filetype plugin on
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 " .aliases syntax set
 autocmd BufNewFile,BufRead *.aliases set syntax=bash
+" in case colorscheme doesn't recognize dockerfiles
+autocmd BufEnter *.dockerfile set filetype=dockerfile
 
 autocmd FileType python setlocal tabstop=4 softtabstop=4 expandtab
 autocmd FileType java inoremap <C-@> System.out.println("");<left><left><left>

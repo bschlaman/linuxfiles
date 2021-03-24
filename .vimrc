@@ -55,6 +55,7 @@ nnoremap <leader>p :set paste!<CR>
 " Surround visual in quotes
 vnoremap <leader>" <Esc>`>a"<Esc>`<i"<Esc>`>2l
 nnoremap <C-s> :%s//g<Left><Left>
+nnoremap vr :so ~/.vimrc<CR>
 nnoremap <leader>d "_d
 xnoremap <leader>d "_d
 nnoremap <leader>r "_diwP
@@ -65,7 +66,7 @@ inoremap {<CR> {<CR>}<C-o>O<TAB>
 "inoremap ( ()<C-o>i
 "inoremap [ []<C-o>i
 
-nnoremap <Space><Space> <Esc>/\[!!\]<Enter>"_c4l
+nnoremap <Space><Space> /\[!!\]<Enter>"_d4l
 
 " Resize splits
 map <C-n> <C-w><
@@ -90,7 +91,7 @@ autocmd FileType html inoremap ;h2 <h2></h2>[!!]<Esc>FhT>i
 autocmd FileType html inoremap ;h3 <h3></h3>[!!]<Esc>FhT>i
 autocmd FileType html inoremap ;em <em></em>[!!]<Esc>FeT>i
 autocmd FileType html inoremap ;b <strong></strong>[!!]<Esc>FsT>i
-autocmd FileType html inoremap ;d <div><CR><CR></div><CR>[!!]<Esc>2ki
+autocmd FileType html inoremap ;d <div>[!!]<CR></div><Esc>kTv
 autocmd FileType html inoremap ;p <p></p>[!!]<Esc>FpT>i
 autocmd FileType html inoremap ;ul <ul><CR><CR></ul><CR>[!!]<Esc>2ki
 autocmd FileType html inoremap ;ol <ol><CR><CR></ol><CR>[!!]<Esc>2ki

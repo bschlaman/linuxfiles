@@ -17,9 +17,11 @@ DOTFILES="
 .vimrc
 "
 for df in $DOTFILES ; do
-echo -e "copying dotfile [ ${YEL}${df}${NC} ] to ~"
-cp -v ../${df} ~
+	echo -e "copying dotfile [ ${YEL}${df}${NC} ] to ~"
+	cp -v ../${df} ~
 done
+
+mkdir -pv ~/.bin
 
 # vim
 echo -e "${BLD}Creating vim directories...${NC}"
@@ -37,13 +39,13 @@ exit
 select opt in $options ; do
 	case $opt in
 		"gruvbox")
-				mkdir tmp
-				pushd tmp > /dev/null
-				git clone https://github.com/morhetz/gruvbox.git
-				cp ./gruvbox/colors/gruvbox.vim ~/.vim/colors/
-				popd > /dev/null
-				rm -rf ./tmp
-				;;
+			mkdir tmp
+			pushd tmp > /dev/null
+			git clone https://github.com/morhetz/gruvbox.git
+			cp ./gruvbox/colors/gruvbox.vim ~/.vim/colors/
+			popd > /dev/null
+			rm -rf ./tmp
+			;;
 		"vim-go")
 			git clone https://github.com/fatih/vim-go.git ~/.vim/pack/plugins/start/vim-go
 			;;

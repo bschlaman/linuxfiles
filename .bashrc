@@ -79,6 +79,7 @@ alias docker="sudo docker"
 alias gitcfg="git config user.name \"Brendan Schlaman\" && git config user.email \"brendan.schlaman@gmail.com\""
 alias gl="git log -m -3 --pretty=format:\"Commit Hash: %h Author: %an <%ae> Date: %cd\""
 alias rn="ranger"
+alias tf="terraform"
 
 alias cdmain="cd ~/main"
 alias cdh="cd ~/main/hax"

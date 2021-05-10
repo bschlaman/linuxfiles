@@ -88,16 +88,17 @@ autocmd BufEnter *.dockerfile set filetype=dockerfile
 autocmd FileType python setlocal tabstop=4 softtabstop=4 expandtab
 autocmd FileType java inoremap <C-@> System.out.println("");<left><left><left>
 
+autocmd FileType html nnoremap <leader>ac F<wwi<Space>class=""<Esc>i
 autocmd FileType html inoremap ;h1 <h1></h1>[!!]<Esc>FhT>i
 autocmd FileType html inoremap ;h2 <h2></h2>[!!]<Esc>FhT>i
 autocmd FileType html inoremap ;h3 <h3></h3>[!!]<Esc>FhT>i
 autocmd FileType html inoremap ;em <em></em>[!!]<Esc>FeT>i
 autocmd FileType html inoremap ;b <strong></strong>[!!]<Esc>FsT>i
 autocmd FileType html inoremap ;d <div>[!!]<CR></div><Esc>kTv
+autocmd FileType html inoremap ;cd <div class="">[!!]<CR></div><Esc>kci"
 autocmd FileType html inoremap ;p <p></p>[!!]<Esc>FpT>i
 autocmd FileType html inoremap ;ul <ul><CR><CR></ul><CR>[!!]<Esc>2ki
 autocmd FileType html inoremap ;ol <ol><CR><CR></ol><CR>[!!]<Esc>2ki
-
 autocmd FileType html inoremap ;a <a<Space>href="">[!!]</a>[!!]<Esc>13hi
 autocmd FileType html inoremap ;sup <sup></sup>[!!]<Esc>FsT>i
 autocmd FileType html inoremap ;sub <sub></sub>[!!]<Esc>FsT>i

@@ -20,26 +20,28 @@ HISTCONTROL=ignoredups
 HISTTIMEFORMAT="%d/%m/%y %T "
 PROMPT_COMMAND="history -a;$PROMPT_COMMAND"
 shopt -s histappend
-# Fix for st del key
+
+# disable Ctrl-S and Ctrl-Q (freeze and unfreeze) in terminal
+[[ $- == *i* ]] && stty -ixon
+# fix for st del key
 tput smkx
+# signing commits if no GUI
+export GPG_TTY=$(tty)
 
 [ -d "$HOME/.bin" ] && PATH="$HOME/.bin:$PATH"
 
 FCEDIT=vim
-EDITOR=vim
+export EDITOR=vim
 IP=127.0.0.1
 GCPIP=127.0.0.1
 [ -f ~/.ip ] && IP=`grep "^IP=[0-9]\+" ~/.ip | cut -d= -f2`
 [ -f ~/.ip ] && GCPIP=`grep "^IP_GCP=[0-9]\+" ~/.ip | cut -d= -f2`
 
-# Port variables in case I am local
+# port variables in case I am local
 #PI3PORT=2023
 #PI4PORT=2024
 PI3PORT=22
 PI4PORT=22
-
-# Disable Ctrl-S and Ctrl-Q (freeze and unfreeze) in terminal
-[[ $- == *i* ]] && stty -ixon
 
 alias ls="ls --color=auto"
 alias sl="ls"
@@ -57,7 +59,6 @@ alias vrc="vim ~/.bashrc"
 alias pi="ssh -p ${PI3PORT} pi@${IP}"
 alias pib="ssh -p ${PI3PORT} brendan@${IP}"
 alias pi0="ssh -p ${PI4PORT} brendan@${IP}"
-alias gcp="ssh brendan_schlaman@${GCPIP}"
 
 alias showip="echo ${IP}:2185"
 alias curlip="echo curl ${IP}:2185 && curl ${IP}:2185"
@@ -78,6 +79,7 @@ alias docker="sudo docker"
 alias gitcfg="git config user.name \"Brendan Schlaman\" && git config user.email \"brendan.schlaman@gmail.com\""
 alias gl="git log -m -3 --pretty=format:\"Commit Hash: %h Author: %an <%ae> Date: %cd\""
 alias rn="ranger"
+alias tf="terraform"
 
 alias cdmain="cd ~/main"
 alias cdh="cd ~/main/hax"

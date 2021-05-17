@@ -45,6 +45,7 @@ PI4PORT=22
 
 alias ls="ls --color=auto"
 alias sl="ls"
+alias dc="cd"
 alias ll="ls -lrt"
 alias grep="grep --color=auto"
 alias diff="diff --color=auto"

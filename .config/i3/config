@@ -194,7 +194,7 @@ bindsym $mod+p              move workspace to output right
 bindsym $mod+m              move workspace to output left
 
 bindsym $mod+o exec i3lock -ent -p default -i ~/pictures/favorites/dustybg.png
-bindsym --release $mod+Shift+s exec scrot -s
+bindsym --release $mod+Shift+s exec escrotum -sC
 bindsym $mod+c exec chromium
 
 #set $refresh_i3status exec --no-startup-id killall -USR1 i3status

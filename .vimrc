@@ -99,7 +99,7 @@ autocmd FileType html inoremap ;cd <div class="">[!!]<CR></div><Esc>kci"
 autocmd FileType html inoremap ;p <p></p>[!!]<Esc>FpT>i
 autocmd FileType html inoremap ;ul <ul><CR><CR></ul><CR>[!!]<Esc>2ki
 autocmd FileType html inoremap ;ol <ol><CR><CR></ol><CR>[!!]<Esc>2ki
-autocmd FileType html inoremap ;a <a<Space>href="">[!!]</a>[!!]<Esc>13hi
+autocmd FileType html inoremap ;a <a<Space>href="" target="_blank">[!!]</a>[!!]<Esc>29hi
 autocmd FileType html inoremap ;sup <sup></sup>[!!]<Esc>FsT>i
 autocmd FileType html inoremap ;sub <sub></sub>[!!]<Esc>FsT>i
 
@@ -147,3 +147,8 @@ let g:go_highlight_variable_declarations = 0
 let g:go_highlight_variable_assignments = 0
 let g:go_highlight_diagnostic_errors = 1
 let g:go_highlight_diagnostic_warnings = 1
+" Shortcuts again because vim-go messes this up
+nnoremap H 0
+nnoremap L $
+nnoremap J <C-F>
+nnoremap K <C-B>

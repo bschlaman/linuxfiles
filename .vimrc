@@ -104,7 +104,7 @@ autocmd FileType html inoremap ;sup <sup></sup>[!!]<Esc>FsT>i
 autocmd FileType html inoremap ;sub <sub></sub>[!!]<Esc>FsT>i
 
 function! MakeListItem()
-	normal! mm0i<li>A</li>`m
+	normal! mm^i<li>A</li>`m
 endfunction
 nnoremap <leader>l :call MakeListItem()<CR>
 

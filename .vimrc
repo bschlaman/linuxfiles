@@ -45,6 +45,9 @@ nnoremap K <C-B>
 inoremap <C-o> <Esc>
 vnoremap <C-o> <Esc>
 nnoremap <C-o> <Esc>
+inoremap <C-@> <Esc>
+vnoremap <C-@> <Esc>
+nnoremap <C-@> <Esc>
 
 " Turn off search highlight
 nnoremap <leader><space> :nohlsearch<CR>

@@ -15,3 +15,4 @@ do
 	git checkout --track $rem/$brname
 done
 
+git checkout $mbranch

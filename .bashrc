@@ -81,6 +81,7 @@ alias gitcfg="git config user.name \"Brendan Schlaman\" && git config user.email
 alias gl="git log -m -3 --pretty=format:\"Commit Hash: %h Author: %an <%ae> Date: %cd\""
 alias rn="ranger"
 alias tf="terraform"
+alias tmux="tmux -u"
 
 alias cdmain="cd ~/main"
 alias cdh="cd ~/main/hax"

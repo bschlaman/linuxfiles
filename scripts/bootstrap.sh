@@ -15,6 +15,7 @@ DOTFILES="
 .bashrc
 .bash_prompt
 .vimrc
+.tmux.conf
 "
 for df in $DOTFILES ; do
 	echo -e "copying dotfile [ ${YEL}${df}${NC} ] to ~"

@@ -50,6 +50,9 @@ select opt in $options ; do
 		"vim-go")
 			git clone https://github.com/fatih/vim-go.git ~/.vim/pack/plugins/start/vim-go
 			;;
+		"vim-terraform")
+			git clone https://github.com/hashivim/vim-terraform.git ~/.vim/pack/plugins/start/vim-terraform
+			;;
 		"exit") break;;
 	esac
 done

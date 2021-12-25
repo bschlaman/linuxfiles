@@ -35,6 +35,7 @@ PS3=" > "
 options="
 gruvbox
 vim-go
+vim-terraform
 exit
 "
 select opt in $options ; do

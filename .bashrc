@@ -5,7 +5,7 @@
 #|_.__/ \__,_|___/_| |_|_|  \___|
 
 # Source global definitions
-[ -f /etc/bashrc ] && [ -r /etc/bashrc ] && source /etc/bashrc
+# [ -f /etc/bashrc ] && [ -r /etc/bashrc ] && source /etc/bashrc
 
 # Load the dotfiles
 for FILE in ~/.{aliases,bash_prompt}; do
@@ -32,21 +32,11 @@ export GPG_TTY=$(tty)
 
 FCEDIT=vim
 export EDITOR=vim
-IP=127.0.0.1
-GCPIP=127.0.0.1
-[ -f ~/.ip ] && IP=`grep "^IP=[0-9]\+" ~/.ip | cut -d= -f2`
-[ -f ~/.ip ] && GCPIP=`grep "^IP_GCP=[0-9]\+" ~/.ip | cut -d= -f2`
-
-# port variables in case I am local
-#PI3PORT=2023
-#PI4PORT=2024
-PI3PORT=22
-PI4PORT=22
 
 alias ls="ls --color=auto"
+alias ll="ls -lrt"
 alias sl="ls"
 alias dc="cd"
-alias ll="ls -lrt"
 alias grep="grep --color=auto"
 alias diff="diff --color=auto"
 alias rl="readlink -f"
@@ -57,13 +47,6 @@ alias vp='vim -S ~/.vim_sessions/profiles.vim'
 alias vvrc="vim ~/.vimrc"
 alias vrc="vim ~/.bashrc"
 
-alias pi="ssh -p ${PI3PORT} pi@${IP}"
-alias pib="ssh -p ${PI3PORT} brendan@${IP}"
-alias pi0="ssh -p ${PI4PORT} brendan@${IP}"
-
-alias showip="echo ${IP}:2185"
-alias curlip="echo curl ${IP}:2185 && curl ${IP}:2185"
-alias curlwebhttp="echo curl ${IP}:443 && curl ${IP}:443"
 alias curlweb="echo curl https://www.schlamalama.com && curl https://www.schlamalama.com"
 alias bat="cat /sys/class/power_supply/BAT1/capacity"
 alias cdb="cd /sys/class/backlight/amdgpu_bl0"
@@ -74,7 +57,6 @@ alias num="xset q | grep \"Num Lock\" | awk '{ print \$8 }'"
 alias fonts="fc-list | cut -d: -f2 | sort | uniq"
 alias wifi="sudo netctl start wlo1-TP-Link_D625"
 alias wifihome="sudo netctl start wlo1-MySpectrumWiFi58-2G"
-alias sdocker="sudo systemctl start docker"
 alias restartx="ps -ef | grep xinit | grep -v grep | awk '{print $2}' | xargs kill"
 alias docker="sudo docker"
 alias gitcfg="git config user.name \"Brendan Schlaman\" && git config user.email \"brendan.schlaman@gmail.com\""
@@ -82,19 +64,6 @@ alias gl="git log -m -3 --pretty=format:\"Commit Hash: %h Author: %an <%ae> Date
 alias rn="ranger"
 alias tf="terraform"
 alias tmux="tmux -u"
-
-alias cdmain="cd ~/main"
-alias cdh="cd ~/main/hax"
-alias cdlin="cd ~/main/hax/linux_files"
-alias cdhtml="cd ~/main/hax/html_files"
-alias cdhd="cd ~/main/hax/docker"
-alias cds="cd ~/main/hax/scripts/"
-alias cdd="cd ~/downloads"
-alias cddoc="cd ~/documents"
-alias cdpic="cd ~/pictures"
-alias cdm="cd ~/music"
-alias cdw="cd /etc/netctl"
-alias cdpy="cd ~/main/hax/python_files"
 
 # Outputs a number between 0 and $1 ; 10 by default
 function rand(){
@@ -111,13 +80,13 @@ function setwall(){
 	feh --bg-scale $FULLPATH
 }
 function vt(){
-    local vcfolder=`ls -d /usr/share/vim/*/colors | egrep 'vim[0-9]+'` && printf '\n'
-    ls $vcfolder | cut -d"." -f1 | grep -v README | nl
-    read -p "Select desired theme: " ntheme
-    local theme=`ls $vcfolder | cut -d"." -f1 | grep -v README | nl | grep -w $ntheme | cut -f2` && sptheme="$theme"
+	local vcfolder=`ls -d /usr/share/vim/*/colors | egrep 'vim[0-9]+'` && printf '\n'
+	ls $vcfolder | cut -d"." -f1 | grep -v README | nl
+	read -p "Select desired theme: " ntheme
+	local theme=`ls $vcfolder | cut -d"." -f1 | grep -v README | nl | grep -w $ntheme | cut -f2` && sptheme="$theme"
 	local cindex=`grep colorscheme ~/.vimrc | grep -ob '"' | cut -d":" -f1`
 	for x in `seq 0 $(( cindex - 13 -${#theme} ))` ; do sptheme="$sptheme " ; done
-    sed -i "s/colorscheme [a-zA-Z]*[[:space:]]*/colorscheme $sptheme/" ~/.vimrc | grep color && echo Updated vim theme to $theme
+	sed -i "s/colorscheme [a-zA-Z]*[[:space:]]*/colorscheme $sptheme/" ~/.vimrc | grep color && echo Updated vim theme to $theme
 }
 function wifistop(){
     active=`netctl list | grep \* | sed 's/* \([^\s]\+\)/\1/'`

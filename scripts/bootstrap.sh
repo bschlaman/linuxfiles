@@ -37,6 +37,7 @@ options="
 gruvbox
 vim-go
 vim-terraform
+vim-solidity
 exit
 "
 select opt in $options ; do
@@ -54,6 +55,9 @@ select opt in $options ; do
 			;;
 		"vim-terraform")
 			git clone https://github.com/hashivim/vim-terraform.git ~/.vim/pack/plugins/start/vim-terraform
+			;;
+		"vim-solidity")
+			git clone https://github.com/TovarishFin/vim-solidity.git ~/.vim/pack/plugins/start/vim-solidity
 			;;
 		"exit") break;;
 	esac

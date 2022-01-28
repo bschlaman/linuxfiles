@@ -132,7 +132,7 @@ vnoremap cu :s#\%V/\*\<Bar>\*/\%V##g <CR> :nohlsearch <CR>
 " make a word a tag, in any filetype
 nnoremap mt yiwi<<Esc>ea></<Esc>pa><Esc>F<
 
-" vim-go
+" syntax plugins
 let g:go_fmt_command = "goimports"
 let g:go_highlight_array_whitespace_error = 1
 let g:go_highlight_chan_whitespace_error = 1
@@ -140,18 +140,15 @@ let g:go_highlight_extra_types = 1
 let g:go_highlight_space_tab_error = 0
 let g:go_highlight_trailing_whitespace_error = 0
 let g:go_highlight_operators = 1
-let g:go_highlight_functions = 0
-let g:go_highlight_function_calls = 0
 let g:go_highlight_types = 1
 let g:go_highlight_fields = 1
-let g:go_highlight_build_constraints = 0
-let g:go_highlight_generate_tags = 0
 let g:go_highlight_string_spellcheck = 1
 let g:go_highlight_format_strings = 1
-let g:go_highlight_variable_declarations = 0
-let g:go_highlight_variable_assignments = 0
 let g:go_highlight_diagnostic_errors = 1
 let g:go_highlight_diagnostic_warnings = 1
+let g:python_highlight_all = 1
+let g:python_highlight_space_errors = 0
+
 " Shortcuts again because vim-go messes this up
 nnoremap H 0
 nnoremap L $

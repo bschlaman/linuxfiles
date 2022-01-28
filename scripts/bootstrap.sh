@@ -36,6 +36,7 @@ PS3=" > "
 options="
 gruvbox
 vim-go
+vim-python
 vim-terraform
 vim-solidity
 exit
@@ -52,6 +53,9 @@ select opt in $options ; do
 			;;
 		"vim-go")
 			git clone https://github.com/fatih/vim-go.git ~/.vim/pack/plugins/start/vim-go
+			;;
+		"vim-python")
+			git clone https://github.com/vim-python/python-syntax.git ~/.vim/pack/plugins/start/vim-python
 			;;
 		"vim-terraform")
 			git clone https://github.com/hashivim/vim-terraform.git ~/.vim/pack/plugins/start/vim-terraform

@@ -1,7 +1,6 @@
 autocmd VimEnter * :call Init()
 function Init()
 	echo ""
-	echon "Welcome! >^.^< | "
 	echon "using colorscheme: "
 	echon g:colors_name
 endfunction
@@ -65,7 +64,7 @@ nnoremap <leader>r "_diwP
 xnoremap <leader>r "_diwP
 
 " Autocomplete brackets
-inoremap {<CR> {<CR>}<C-o>O<TAB>
+inoremap {<CR> {<CR>}<Esc>O<TAB>
 "inoremap ( ()<C-o>i
 "inoremap [ []<C-o>i
 
@@ -89,6 +88,7 @@ autocmd BufNewFile,BufRead *.aliases set syntax=bash
 autocmd BufEnter *.dockerfile set filetype=dockerfile
 
 autocmd FileType python setlocal tabstop=4 softtabstop=4 expandtab
+autocmd FileType solidity setlocal tabstop=4 softtabstop=4 expandtab
 autocmd FileType yaml setlocal tabstop=2 softtabstop=2 expandtab
 autocmd FileType tf setlocal tabstop=2 softtabstop=2 expandtab
 autocmd FileType java inoremap <C-@> System.out.println("");<left><left><left>

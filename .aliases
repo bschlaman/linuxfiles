@@ -3,13 +3,14 @@
 # signing commits if no GUI
 export GPG_TTY=$(tty)
 
-[ -d "$HOME/.bin" ] && PATH="$HOME/.bin:$PATH"
+export PATH=$PATH:$HOME/.bin
 
 FCEDIT=vim
 export EDITOR=vim
 
 alias ls="ls --color=auto"
 alias ll="ls -lrth"
+alias l="ll"
 alias sl="ls"
 alias dc="cd"
 alias grep="grep --color=auto"
@@ -17,28 +18,28 @@ alias diff="diff --color=auto"
 alias rl="readlink -f"
 alias fdate='date "+%Y-%m-%d %H:%M"'
 
+alias docker="sudo docker"
+alias gitcfg="git config user.name \"Brendan Schlaman\" && git config user.email \"brendan.schlaman@gmail.com\""
+alias gl="git log -m -3 --pretty=format:\"Commit Hash: %h Author: %an <%ae> Date: %cd\""
+alias tf="terraform"
+alias tmux="tmux -u"
+
 alias src="source ~/.bash_profile"
 alias vp="vim -S ~/.vim_sessions/profiles.vim"
 alias vvrc="vim ~/.vimrc"
 alias vrc="vim ~/.bashrc"
 
-alias curlweb="echo curl https://www.schlamalama.com && curl https://www.schlamalama.com"
+# helpful arch / i3 stuff
 alias bat="cat /sys/class/power_supply/BAT1/capacity"
-alias cdb="cd /sys/class/backlight/amdgpu_bl0"
-alias yta="youtube-dl -x --audio-format mp3"
 alias i3r="i3-msg restart"
 alias lock="i3lock -c 000000"
 alias num="xset q | grep \"Num Lock\" | awk '{ print \$8 }'"
 alias fonts="fc-list | cut -d: -f2 | sort | uniq"
-alias wifi="sudo netctl start wlo1-TP-Link_D625"
-alias wifihome="sudo netctl start wlo1-MySpectrumWiFi58-2G"
 alias restartx="ps -ef | grep xinit | grep -v grep | awk '{print $2}' | xargs kill"
-alias docker="sudo docker"
-alias gitcfg="git config user.name \"Brendan Schlaman\" && git config user.email \"brendan.schlaman@gmail.com\""
-alias gl="git log -m -3 --pretty=format:\"Commit Hash: %h Author: %an <%ae> Date: %cd\""
-alias rn="ranger"
-alias tf="terraform"
-alias tmux="tmux -u"
+
+#############
+# Functions #
+#############
 
 # Outputs a number between 0 and $1 ; 10 by default
 function rand(){

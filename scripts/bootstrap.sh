@@ -39,6 +39,7 @@ vim-go
 vim-python
 vim-terraform
 vim-solidity
+java-syntax
 exit
 "
 select opt in $options ; do
@@ -62,6 +63,9 @@ select opt in $options ; do
 			;;
 		"vim-solidity")
 			git clone https://github.com/TovarishFin/vim-solidity.git ~/.vim/pack/plugins/start/vim-solidity
+			;;
+		"java-syntax")
+			git clone https://github.com/uiiaoo/java-syntax.vim ~/.vim/pack/plugins/start/java-syntax/
 			;;
 		"exit") break;;
 	esac

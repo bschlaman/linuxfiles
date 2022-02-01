@@ -148,6 +148,8 @@ let g:go_highlight_diagnostic_errors = 1
 let g:go_highlight_diagnostic_warnings = 1
 let g:python_highlight_all = 1
 let g:python_highlight_space_errors = 0
+highlight link javaIdentifier NONE
+highlight link javaDelimiter NONE
 
 " Shortcuts again because vim-go messes this up
 nnoremap H 0

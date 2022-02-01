@@ -20,7 +20,7 @@ DOTFILES="
 "
 for df in $DOTFILES ; do
 	echo -e "copying dotfile [ ${YEL}${df}${NC} ] to ~"
-	cp -v ../${df} ~
+	cp -vi ../${df} ~
 done
 
 mkdir -pv ~/.bin
@@ -47,25 +47,25 @@ select opt in $options ; do
 		"gruvbox")
 			mkdir tmp
 			pushd tmp > /dev/null
-			git clone https://github.com/morhetz/gruvbox.git
+			git clone --depth 1 https://github.com/morhetz/gruvbox.git
 			cp ./gruvbox/colors/gruvbox.vim ~/.vim/colors/
 			popd > /dev/null
 			rm -rf ./tmp
 			;;
 		"vim-go")
-			git clone https://github.com/fatih/vim-go.git ~/.vim/pack/plugins/start/vim-go
+			git clone --depth 1 https://github.com/fatih/vim-go.git ~/.vim/pack/plugins/start/vim-go
 			;;
 		"vim-python")
-			git clone https://github.com/vim-python/python-syntax.git ~/.vim/pack/plugins/start/vim-python
+			git clone --depth 1 https://github.com/vim-python/python-syntax.git ~/.vim/pack/plugins/start/vim-python
 			;;
 		"vim-terraform")
-			git clone https://github.com/hashivim/vim-terraform.git ~/.vim/pack/plugins/start/vim-terraform
+			git clone --depth 1 https://github.com/hashivim/vim-terraform.git ~/.vim/pack/plugins/start/vim-terraform
 			;;
 		"vim-solidity")
-			git clone https://github.com/TovarishFin/vim-solidity.git ~/.vim/pack/plugins/start/vim-solidity
+			git clone --depth 1 https://github.com/TovarishFin/vim-solidity.git ~/.vim/pack/plugins/start/vim-solidity
 			;;
 		"java-syntax")
-			git clone https://github.com/uiiaoo/java-syntax.vim ~/.vim/pack/plugins/start/java-syntax/
+			git clone --depth 1 https://github.com/uiiaoo/java-syntax.vim ~/.vim/pack/plugins/start/java-syntax/
 			;;
 		"exit") break;;
 	esac

@@ -90,6 +90,7 @@ autocmd BufEnter *.dockerfile set filetype=dockerfile
 autocmd FileType python setlocal tabstop=4 softtabstop=4 expandtab
 autocmd FileType solidity setlocal tabstop=4 softtabstop=4 expandtab
 autocmd FileType yaml setlocal tabstop=2 softtabstop=2 expandtab
+autocmd FileType markdown setlocal tabstop=2 softtabstop=2 expandtab
 autocmd FileType tf setlocal tabstop=2 softtabstop=2 expandtab
 autocmd FileType java inoremap <C-@> System.out.println("");<left><left><left>
 

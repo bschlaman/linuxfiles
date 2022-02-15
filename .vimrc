@@ -21,6 +21,7 @@ set splitright splitbelow
 " tabs or spaces?
 set tabstop=2
 set softtabstop=2
+set shiftwidth=2
 set noexpandtab
 set autoindent
 
@@ -62,13 +63,10 @@ nnoremap <leader>d "_d
 xnoremap <leader>d "_d
 nnoremap <leader>r "_diwP
 xnoremap <leader>r "_diwP
+inoremap <C-F> <C-X><C-F>
 
 " Autocomplete brackets
 inoremap {<CR> {<CR>}<Esc>O<TAB>
-"inoremap ( ()<C-o>i
-"inoremap [ []<C-o>i
-
-nnoremap <Space><Space> /\[!!\]<Enter>"_d4l
 
 " Resize splits
 map <C-n> <C-w><
@@ -87,14 +85,14 @@ autocmd BufNewFile,BufRead *.aliases set syntax=bash
 " in case colorscheme doesn't recognize dockerfiles
 autocmd BufEnter *.dockerfile set filetype=dockerfile
 
-autocmd FileType python setlocal tabstop=4 softtabstop=4 expandtab
-autocmd FileType solidity setlocal tabstop=4 softtabstop=4 expandtab
-autocmd FileType yaml setlocal tabstop=2 softtabstop=2 expandtab
-autocmd FileType markdown setlocal tabstop=2 softtabstop=2 expandtab
-autocmd FileType tf setlocal tabstop=2 softtabstop=2 expandtab
-autocmd FileType java setlocal tabstop=2 softtabstop=2 expandtab
-autocmd FileType java inoremap <C-s> System.out.println("");<left><left><left>
+autocmd FileType python setlocal ts=4 sts=4 sw=4 et
+autocmd FileType solidity setlocal ts=4 sts=4 sw=4 et
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 et
+autocmd FileType markdown setlocal ts=2 sts=2 sw=2 et
+autocmd FileType tf setlocal ts=2 sts=2 sw=2 et
+autocmd FileType java setlocal ts=4 sts=4 sw=4 et
 
+autocmd FileType html nnoremap <Space><Space> /\[!!\]<Enter>"_d4l
 autocmd FileType html nnoremap <leader>ac F<wwi<Space>class=""<Esc>i
 autocmd FileType html inoremap ;h1 <h1></h1>[!!]<Esc>FhT>i
 autocmd FileType html inoremap ;h2 <h2></h2>[!!]<Esc>FhT>i
@@ -109,6 +107,7 @@ autocmd FileType html inoremap ;ol <ol><CR><CR></ol><CR>[!!]<Esc>2ki
 autocmd FileType html inoremap ;a <a<Space>href="" target="_blank">[!!]</a>[!!]<Esc>29hi
 autocmd FileType html inoremap ;sup <sup></sup>[!!]<Esc>FsT>i
 autocmd FileType html inoremap ;sub <sub></sub>[!!]<Esc>FsT>i
+autocmd FileType java inoremap <C-s> System.out.println("");<left><left><left>
 
 function! MakeListItem()
 	normal! mm^i<li>A</li>`m

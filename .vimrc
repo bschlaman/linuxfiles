@@ -93,7 +93,7 @@ autocmd FileType yaml setlocal tabstop=2 softtabstop=2 expandtab
 autocmd FileType markdown setlocal tabstop=2 softtabstop=2 expandtab
 autocmd FileType tf setlocal tabstop=2 softtabstop=2 expandtab
 autocmd FileType java setlocal tabstop=2 softtabstop=2 expandtab
-autocmd FileType java inoremap <C-@> System.out.println("");<left><left><left>
+autocmd FileType java inoremap <C-s> System.out.println("");<left><left><left>
 
 autocmd FileType html nnoremap <leader>ac F<wwi<Space>class=""<Esc>i
 autocmd FileType html inoremap ;h1 <h1></h1>[!!]<Esc>FhT>i

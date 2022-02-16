@@ -26,7 +26,7 @@ set noexpandtab
 set autoindent
 
 syntax on
-let schemes = ["badwolf", "monokai", "tender", "anderson", "deus", "gruvbox", "molokai"]
+let schemes = ["badwolf", "monokai", "gruvbox-material", "tender", "anderson", "deus", "gruvbox", "molokai"]
 for name in schemes
 	if filereadable($HOME.'/.vim/colors/'.name.'.vim')
 		execute "colorscheme " . name
@@ -149,6 +149,8 @@ let g:go_highlight_diagnostic_errors = 1
 let g:go_highlight_diagnostic_warnings = 1
 let g:python_highlight_all = 1
 let g:python_highlight_space_errors = 0
+let g:python_highlight_func_calls = 0
+highlight link pythonBuiltinFunc Yellow
 highlight link javaIdentifier NONE
 highlight link javaDelimiter NONE
 

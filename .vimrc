@@ -85,6 +85,10 @@ autocmd BufNewFile,BufRead *.aliases set syntax=bash
 " in case colorscheme doesn't recognize dockerfiles
 autocmd BufEnter *.dockerfile set filetype=dockerfile
 
+" autoformatting with clang-format
+" TODO: check for existence of clang-format binary
+autocmd FileType java setlocal formatprg=clang-format\ -assume-filename=test.java\ -style=\"{ColumnLimit:\ 0,\ IndentWidth:\ 4,\ JavaImportGroups:\ ['java',\ 'javax',\ 'org',\ 'com']}\"
+
 autocmd FileType python setlocal ts=4 sts=4 sw=4 et
 autocmd FileType solidity setlocal ts=4 sts=4 sw=4 et
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 et

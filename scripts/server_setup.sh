@@ -21,3 +21,10 @@ done
 for host in $hosts; do
 	ssh $host cat ~/.ssh/id_rsa.pub
 done
+
+# useful arch compute instance creation commands for arch
+# git clone https://github.com/GoogleCloudPlatform/compute-archlinux-image-builder
+# sed -i 's/10G/30G/' build-arch-gce
+# gcloud compute instances create archlinux --image-project=arch-linux-gce --image-family=arch --boot-disk-size=30GB
+# gcloud compute instances create archsite --image-project=arch-linux-gce --image-family=arch --boot-disk-size=30GB
+# gcloud compute instances create server --image-project=arch-linux-gce --image-family=arch --boot-disk-size=30GB

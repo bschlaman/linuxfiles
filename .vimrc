@@ -60,28 +60,28 @@ vnoremap <leader>" <Esc>`>a"<Esc>`<i"<Esc>`>2l
 nnoremap <C-s> :%s//g<Left><Left>
 nnoremap vr :so ~/.vimrc<CR>
 nnoremap <leader>d "_d
-xnoremap <leader>d "_d
+vnoremap <leader>d "_d
 nnoremap <leader>r "_diwP
-xnoremap <leader>r "_diwP
+vnoremap <leader>r "_diwP
 inoremap <C-F> <C-X><C-F>
 
 " Autocomplete brackets
 inoremap {<CR> {<CR>}<Esc>O<TAB>
 
 " Resize splits
-map <C-n> <C-w><
-map <C-m> <C-w>>
+noremap <C-n> <C-w><
+noremap <C-m> <C-w>>
 " Move between splits
-map <C-h> <C-w>h
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-l> <C-w>l
+noremap <C-h> <C-w>h
+noremap <C-j> <C-w>j
+noremap <C-k> <C-w>k
+noremap <C-l> <C-w>l
 
 filetype plugin on
 " Disable auto commenting
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 " .aliases syntax set
-autocmd BufNewFile,BufRead *.aliases set syntax=bash
+autocmd BufEnter *.aliases set syntax=bash
 " in case colorscheme doesn't recognize dockerfiles
 autocmd BufEnter *.dockerfile set filetype=dockerfile
 

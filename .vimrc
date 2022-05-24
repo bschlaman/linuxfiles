@@ -36,10 +36,10 @@ endfor
 set background=dark
 
 " Shortcuts
-nnoremap H 0
-nnoremap L $
-nnoremap J <C-F>
-nnoremap K <C-B>
+noremap H 0
+noremap L $
+noremap J <C-F>
+noremap K <C-B>
 
 " Avoiding ESC key. o for out
 inoremap <C-o> <Esc>

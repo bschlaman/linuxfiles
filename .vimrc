@@ -77,6 +77,9 @@ noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
 
+" Enforce italicized comments
+highlight Comment cterm=italic
+
 filetype plugin on
 " Disable auto commenting
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o

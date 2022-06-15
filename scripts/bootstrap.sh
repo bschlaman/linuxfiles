@@ -67,6 +67,11 @@ select opt in $options ; do
 		"java-syntax")
 			git clone --depth 1 https://github.com/uiiaoo/java-syntax.vim ~/.vim/pack/plugins/start/java-syntax/
 			;;
+		"clang-format")
+			output=~/.bin/clang-format
+			curl -L -o $output https://github.com/muttleyxd/clang-tools-static-binaries/releases/download/master-f3a37dd2/clang-format-10_linux-amd64 && \
+			chmod +x $output
+			;;
 		"exit") break;;
 	esac
 done

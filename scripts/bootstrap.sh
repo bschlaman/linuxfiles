@@ -28,7 +28,8 @@ mkdir -pv ~/.bin
 # vim
 echo -e "${BLD}Creating vim directories...${NC}"
 mkdir -pv ~/.vim/colors
-mkdir -pv ~/.vim/pack/plugins/start/
+mkdir -pv ~/.vim/pack/plugins/start
+mkdir -pv ~/.vim/swap
 
 # optional addons
 echo -e "${BLD}Optional addons${NC}"

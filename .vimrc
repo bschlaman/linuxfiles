@@ -18,6 +18,9 @@ set ignorecase
 set wildmenu
 set splitright splitbelow
 
+" enforcing swap directory
+set directory=~/.vim/swap//
+
 " tabs or spaces?
 set tabstop=2
 set softtabstop=2

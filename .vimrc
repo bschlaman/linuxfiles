@@ -95,6 +95,9 @@ autocmd BufEnter *.dockerfile set filetype=dockerfile
 " TODO: check for existence of clang-format binary
 autocmd FileType java setlocal formatprg=clang-format\ -assume-filename=test.java\ -style=\"{ColumnLimit:\ 0,\ IndentWidth:\ 4,\ JavaImportGroups:\ ['java',\ 'javax',\ 'org',\ 'com']}\"
 
+" TODO: this is currently not working well.  BinPackArguments: false is to fix InsertTrailingCommas issue
+autocmd FileType javascript setlocal formatprg=clang-format\ -style=\"{ColumnLimit:\ 0,\ UseTab:\ AlignWithSpaces,\ InsertTrailingCommas:\ Wrapped,\ JavaScriptQuotes:\ Double,\ JavaScriptWrapImports:\ true,\ BinPackArguments:\ false}\"
+
 autocmd FileType python setlocal ts=4 sts=4 sw=4 et
 autocmd FileType solidity setlocal ts=4 sts=4 sw=4 et
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 et

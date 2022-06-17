@@ -70,7 +70,7 @@ select opt in $options ; do
 			;;
 		"clang-format")
 			output=~/.bin/clang-format
-			curl -L -o $output https://github.com/muttleyxd/clang-tools-static-binaries/releases/download/master-f3a37dd2/clang-format-10_linux-amd64 && \
+			curl -L -o $output https://github.com/muttleyxd/clang-tools-static-binaries/releases/download/master-208096c1/clang-format-14_linux-amd64 && \
 			chmod +x $output
 			;;
 		"exit") break;;

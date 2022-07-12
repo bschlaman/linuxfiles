@@ -80,6 +80,17 @@ noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
 
+" Resizing and moving in terminal mode
+if has("terminal")
+	" TODO: not working - ENTER causes resize
+	" tnoremap <C-n> <C-w><
+	" tnoremap <C-m> <C-w>>
+	tnoremap <C-h> <C-w>h
+	tnoremap <C-j> <C-w>j
+	tnoremap <C-k> <C-w>k
+	tnoremap <C-l> <C-w>l
+endif
+
 " Enforce italicized comments
 highlight Comment cterm=italic
 

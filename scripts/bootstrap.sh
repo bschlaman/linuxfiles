@@ -4,6 +4,10 @@ ROOT="$(cd "$(dirname "$0")" &>/dev/null; pwd -P)"
 echo ROOT: $ROOT
 pushd $ROOT > /dev/null
 
+#TODO: this script needs to be transformed into an update script, not just a
+# bootstrap script.  This script shoudl allow me to sync my latest dotfiles
+# keeping in mind limitations of the host OS
+
 # dependencies
 [ -f ./colors.sh ] && source ./colors.sh
 
@@ -18,6 +22,8 @@ DOTFILES="
 .tmux.conf
 .aliases
 "
+# TODO: add .bash_completion
+# TODO: add file existence checks
 for df in $DOTFILES ; do
 	echo -e "copying dotfile [ ${YEL}${df}${NC} ] to ~"
 	cp -vi ../${df} ~
@@ -41,6 +47,8 @@ vim-python
 vim-terraform
 vim-solidity
 java-syntax
+vim-javascript
+clang-format
 exit
 "
 select opt in $options ; do
@@ -67,6 +75,9 @@ select opt in $options ; do
 			;;
 		"java-syntax")
 			git clone --depth 1 https://github.com/uiiaoo/java-syntax.vim ~/.vim/pack/plugins/start/java-syntax/
+			;;
+		"vim-javascript")
+			  git clone https://github.com/pangloss/vim-javascript.git ~/.vim/pack/vim-javascript/start/vim-javascript
 			;;
 		"clang-format")
 			output=~/.bin/clang-format

@@ -29,6 +29,7 @@ set noexpandtab
 set autoindent
 
 syntax on
+set termguicolors
 let schemes = ["badwolf", "monokai", "gruvbox-material", "tender", "anderson", "deus", "gruvbox", "molokai"]
 for name in schemes
 	if filereadable($HOME.'/.vim/colors/'.name.'.vim')
@@ -41,8 +42,8 @@ set background=dark
 " Shortcuts
 noremap H 0
 noremap L $
-noremap J <C-F>
-noremap K <C-B>
+noremap J <C-d>
+noremap K <C-u>
 
 " Avoiding ESC key. o for out
 inoremap <C-o> <Esc>
@@ -108,6 +109,10 @@ autocmd FileType java setlocal formatprg=clang-format\ -assume-filename=test.jav
 
 " TODO: this is currently not working well.  BinPackArguments: false is to fix InsertTrailingCommas issue
 autocmd FileType javascript setlocal formatprg=clang-format\ -style=\"{ColumnLimit:\ 0,\ UseTab:\ AlignWithSpaces,\ InsertTrailingCommas:\ Wrapped,\ JavaScriptQuotes:\ Double,\ JavaScriptWrapImports:\ true,\ BinPackArguments:\ false}\"
+
+if exists(":Black")
+	autocmd BufWritePre *.py Black
+endif
 
 autocmd FileType python setlocal ts=4 sts=4 sw=4 et
 autocmd FileType solidity setlocal ts=4 sts=4 sw=4 et
@@ -181,5 +186,5 @@ highlight link javaDelimiter NONE
 " Shortcuts again because vim-go messes this up
 nnoremap H 0
 nnoremap L $
-nnoremap J <C-F>
-nnoremap K <C-B>
+nnoremap J <C-d>
+nnoremap K <C-u>

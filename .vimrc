@@ -30,7 +30,7 @@ set autoindent
 
 syntax on
 set termguicolors
-let schemes = ["badwolf", "monokai", "gruvbox-material", "tender", "anderson", "deus", "gruvbox", "molokai"]
+let schemes = ["hybrid_material", "badwolf", "monokai", "gruvbox-material", "tender", "anderson", "deus", "gruvbox", "molokai"]
 for name in schemes
 	if filereadable($HOME.'/.vim/colors/'.name.'.vim')
 		execute "colorscheme " . name
@@ -38,6 +38,10 @@ for name in schemes
 	endif
 endfor
 set background=dark
+" hybrid_material colorscheme
+let g:enable_bold_font = 1
+let g:enable_italic_font = 1
+let g:hybrid_transparent_background = 1
 
 " Shortcuts
 noremap H 0
@@ -65,6 +69,7 @@ nnoremap <C-s> :%s//g<Left><Left>
 nnoremap vr :so ~/.vimrc<CR>
 nnoremap <leader>d "_d
 vnoremap <leader>d "_d
+vnoremap <leader>p "_dP"
 nnoremap <leader>r "_diwP
 vnoremap <leader>r "_diwP
 inoremap <C-F> <C-X><C-F>

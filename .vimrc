@@ -115,9 +115,7 @@ autocmd FileType java setlocal formatprg=clang-format\ -assume-filename=test.jav
 " TODO: this is currently not working well.  BinPackArguments: false is to fix InsertTrailingCommas issue
 autocmd FileType javascript setlocal formatprg=clang-format\ -style=\"{ColumnLimit:\ 0,\ UseTab:\ AlignWithSpaces,\ InsertTrailingCommas:\ Wrapped,\ JavaScriptQuotes:\ Double,\ JavaScriptWrapImports:\ true,\ BinPackArguments:\ false}\"
 
-if exists(":Black")
-	autocmd BufWritePre *.py Black
-endif
+autocmd BufWritePre *.py Black
 
 autocmd FileType python setlocal ts=4 sts=4 sw=4 et
 autocmd FileType solidity setlocal ts=4 sts=4 sw=4 et

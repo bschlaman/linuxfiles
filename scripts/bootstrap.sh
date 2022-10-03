@@ -48,6 +48,7 @@ vim-terraform
 vim-solidity
 java-syntax
 vim-javascript
+rust.vim
 clang-format
 exit
 "
@@ -77,7 +78,10 @@ select opt in $options ; do
 			git clone --depth 1 https://github.com/uiiaoo/java-syntax.vim ~/.vim/pack/plugins/start/java-syntax/
 			;;
 		"vim-javascript")
-			  git clone https://github.com/pangloss/vim-javascript.git ~/.vim/pack/vim-javascript/start/vim-javascript
+			git clone https://github.com/pangloss/vim-javascript.git ~/.vim/pack/vim-javascript/start/vim-javascript
+			;;
+		"rust.vim")
+			git clone https://github.com/rust-lang/rust.vim ~/.vim/pack/plugins/start/rust.vim
 			;;
 		"clang-format")
 			output=~/.bin/clang-format

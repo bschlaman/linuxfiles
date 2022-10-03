@@ -30,7 +30,9 @@ set autoindent
 
 syntax on
 set termguicolors
-let schemes = ["hybrid_material", "badwolf", "monokai", "gruvbox-material", "tender", "anderson", "deus", "gruvbox", "molokai"]
+
+" colorscheme stuff
+let schemes = ["gruvbox-material", "hybrid_material", "badwolf", "monokai", "gruvbox-material", "tender", "anderson", "deus", "gruvbox", "molokai"]
 for name in schemes
 	if filereadable($HOME.'/.vim/colors/'.name.'.vim')
 		execute "colorscheme " . name
@@ -50,12 +52,10 @@ noremap J <C-d>
 noremap K <C-u>
 
 " Avoiding ESC key. o for out
-inoremap <C-o> <Esc>
-vnoremap <C-o> <Esc>
-nnoremap <C-o> <Esc>
-inoremap <C-@> <Esc>
-vnoremap <C-@> <Esc>
-nnoremap <C-@> <Esc>
+" disabling for now in favor of using C-[
+" inoremap <C-o> <Esc>
+" vnoremap <C-o> <Esc>
+" nnoremap <C-o> <Esc>
 
 " Turn off search highlight
 nnoremap <leader><space> :nohlsearch<CR>
@@ -97,9 +97,6 @@ if has("terminal")
 	tnoremap <C-l> <C-w>l
 endif
 
-" Enforce italicized comments
-highlight Comment cterm=italic
-
 filetype plugin on
 filetype plugin indent on
 " Disable auto commenting
@@ -108,15 +105,15 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 autocmd BufEnter *.aliases set syntax=bash
 " in case colorscheme doesn't recognize dockerfiles
 autocmd BufEnter *.dockerfile set filetype=dockerfile
+" Enforce italicized comments
+highlight Comment cterm=italic
 
 " autoformatting with clang-format
 " TODO: check for existence of clang-format binary
 autocmd FileType java setlocal formatprg=clang-format\ -assume-filename=test.java\ -style=\"{ColumnLimit:\ 0,\ IndentWidth:\ 4,\ JavaImportGroups:\ ['java',\ 'javax',\ 'org',\ 'com']}\"
 
 " TODO: this is currently not working well.  BinPackArguments: false is to fix InsertTrailingCommas issue
-autocmd FileType javascript setlocal formatprg=clang-format\ -style=\"{ColumnLimit:\ 0,\ UseTab:\ AlignWithSpaces,\ InsertTrailingCommas:\ Wrapped,\ JavaScriptQuotes:\ Double,\ JavaScriptWrapImports:\ true,\ BinPackArguments:\ false}\"
-
-autocmd BufWritePre *.py Black
+autocmd FileType javascript setlocal formatprg=clang-format\ -style=\"{UseTab:\ AlignWithSpaces,\ InsertTrailingCommas:\ Wrapped,\ JavaScriptQuotes:\ Double,\ JavaScriptWrapImports:\ true,\ BinPackArguments:\ false}\"
 
 autocmd FileType python setlocal ts=4 sts=4 sw=4 et
 autocmd FileType solidity setlocal ts=4 sts=4 sw=4 et
@@ -183,11 +180,22 @@ let g:go_highlight_diagnostic_warnings = 1
 let g:python_highlight_all = 1
 let g:python_highlight_space_errors = 0
 let g:python_highlight_func_calls = 0
+
 highlight link pythonBuiltinFunc Yellow
 highlight link javaIdentifier NONE
 highlight link javaDelimiter NONE
 
+autocmd BufWritePre *.py Black
+
+" --quote-props consistent; --use-tabs true (although this seems to be fine already); --arrow-parens avoid
+let g:prettier#autoformat = 1
+let g:prettier#autoformat_require_pragma = 0
+let g:prettier#config#quote_props = 'consistent' " had to manually add this to ~/.vim/pack/plugins/start/vim-prettier/autoload/prettier/resolver/config.vim
+let g:prettier#config#arrow_parens = 'avoid'
+
+
 " Shortcuts again because vim-go messes this up
+" TODO (2022.10.03): find a better solution
 nnoremap H 0
 nnoremap L $
 nnoremap J <C-d>

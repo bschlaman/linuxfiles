@@ -48,6 +48,7 @@ vim-terraform
 vim-solidity
 java-syntax
 vim-javascript
+vim-prettier
 rust.vim
 clang-format
 exit
@@ -79,6 +80,9 @@ select opt in $options ; do
 			;;
 		"vim-javascript")
 			git clone https://github.com/pangloss/vim-javascript.git ~/.vim/pack/vim-javascript/start/vim-javascript
+			;;
+		"vim-prettier")
+			git clone https://github.com/prettier/vim-prettier ~/.vim/pack/plugins/start/vim-prettier
 			;;
 		"rust.vim")
 			git clone https://github.com/rust-lang/rust.vim ~/.vim/pack/plugins/start/rust.vim

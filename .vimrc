@@ -72,6 +72,7 @@ vnoremap <leader>d "_d
 vnoremap <leader>p "_dP"
 nnoremap <leader>r "_diwP
 vnoremap <leader>r "_diwP
+" filename completion
 inoremap <C-F> <C-X><C-F>
 
 " Autocomplete brackets
@@ -107,13 +108,6 @@ autocmd BufEnter *.aliases set syntax=bash
 autocmd BufEnter *.dockerfile set filetype=dockerfile
 " Enforce italicized comments
 highlight Comment cterm=italic
-
-" autoformatting with clang-format
-" TODO: check for existence of clang-format binary
-autocmd FileType java setlocal formatprg=clang-format\ -assume-filename=test.java\ -style=\"{ColumnLimit:\ 0,\ IndentWidth:\ 4,\ JavaImportGroups:\ ['java',\ 'javax',\ 'org',\ 'com']}\"
-
-" TODO: this is currently not working well.  BinPackArguments: false is to fix InsertTrailingCommas issue
-autocmd FileType javascript setlocal formatprg=clang-format\ -style=\"{UseTab:\ AlignWithSpaces,\ InsertTrailingCommas:\ Wrapped,\ JavaScriptQuotes:\ Double,\ JavaScriptWrapImports:\ true,\ BinPackArguments:\ false}\"
 
 autocmd FileType python setlocal ts=4 sts=4 sw=4 et
 autocmd FileType solidity setlocal ts=4 sts=4 sw=4 et
@@ -194,9 +188,21 @@ let g:prettier#config#quote_props = 'consistent' " had to manually add this to ~
 let g:prettier#config#arrow_parens = 'avoid'
 
 
+" HERE BE DRAGONS
+
 " Shortcuts again because vim-go messes this up
 " TODO (2022.10.03): find a better solution
 nnoremap H 0
 nnoremap L $
 nnoremap J <C-d>
 nnoremap K <C-u>
+
+
+" TODO (2022.10.03): purge clang-format from my life completely
+" autoformatting with clang-format
+" TODO: check for existence of clang-format binary
+" autocmd FileType java setlocal formatprg=clang-format\ -assume-filename=test.java\ -style=\"{ColumnLimit:\ 0,\ IndentWidth:\ 4,\ JavaImportGroups:\ ['java',\ 'javax',\ 'org',\ 'com']}\"
+
+" TODO: this is currently not working well at all - format looks very weird.  I should really give up on clang-format
+" BinPackArguments: false is to fix InsertTrailingCommas issue
+" autocmd FileType javascript setlocal formatprg=clang-format\ -style=\"{InsertTrailingCommas:\ Wrapped,\ JavaScriptQuotes:\ Double,\ JavaScriptWrapImports:\ true,\ BinPackArguments:\ false}\"

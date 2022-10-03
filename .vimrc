@@ -101,6 +101,7 @@ endif
 highlight Comment cterm=italic
 
 filetype plugin on
+filetype plugin indent on
 " Disable auto commenting
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 " .aliases syntax set

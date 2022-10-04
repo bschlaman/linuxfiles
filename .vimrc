@@ -31,8 +31,14 @@ set autoindent
 syntax on
 set termguicolors
 
-" colorscheme stuff
-let schemes = ["gruvbox-material", "hybrid_material", "badwolf", "monokai", "gruvbox-material", "tender", "anderson", "deus", "gruvbox", "molokai"]
+" colorscheme stuff.  colorscheme specific settings should come before 'colorscheme XXX'
+" everforest colorscheme
+let g:everforest_background = 'hard'
+" hybrid_material colorscheme
+let g:enable_bold_font = 1
+let g:enable_italic_font = 1
+let g:hybrid_transparent_background = 1
+let schemes = ["everforest", "gruvbox-material", "hybrid_material", "badwolf", "monokai", "gruvbox-material", "tender", "anderson", "deus", "gruvbox", "molokai"]
 for name in schemes
 	if filereadable($HOME.'/.vim/colors/'.name.'.vim')
 		execute "colorscheme " . name
@@ -40,10 +46,6 @@ for name in schemes
 	endif
 endfor
 set background=dark
-" hybrid_material colorscheme
-let g:enable_bold_font = 1
-let g:enable_italic_font = 1
-let g:hybrid_transparent_background = 1
 
 " Shortcuts
 noremap H 0

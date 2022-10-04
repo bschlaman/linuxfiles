@@ -180,6 +180,7 @@ highlight link javaIdentifier NONE
 highlight link javaDelimiter NONE
 
 autocmd BufWritePre *.py Black
+let g:black_preview = "true"
 
 " --quote-props consistent; --use-tabs true (although this seems to be fine already); --arrow-parens avoid
 let g:prettier#autoformat = 1

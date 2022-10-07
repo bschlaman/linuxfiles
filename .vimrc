@@ -38,7 +38,7 @@ let g:everforest_background = 'hard'
 let g:enable_bold_font = 1
 let g:enable_italic_font = 1
 let g:hybrid_transparent_background = 1
-let schemes = ["everforest", "gruvbox-material", "hybrid_material", "badwolf", "monokai", "gruvbox-material", "tender", "anderson", "deus", "gruvbox", "molokai"]
+let schemes = ["badwolf", "everforest", "gruvbox-material", "hybrid_material", "badwolf", "monokai", "gruvbox-material", "tender", "anderson", "deus", "gruvbox", "molokai"]
 for name in schemes
 	if filereadable($HOME.'/.vim/colors/'.name.'.vim')
 		execute "colorscheme " . name
@@ -159,7 +159,12 @@ vnoremap cu :s#\%V/\*\<Bar>\*/\%V##g <CR> :nohlsearch <CR>
 " make a word a tag, in any filetype
 nnoremap mt yiwi<<Esc>ea></<Esc>pa><Esc>F<
 
+" ==============
 " syntax plugins
+" ==============
+
+" https://github.com/fatih/vim-go.git
+" TODO (2022.10.07): remove those which are defaults
 let g:go_fmt_command = "goimports"
 let g:go_highlight_array_whitespace_error = 1
 let g:go_highlight_chan_whitespace_error = 1
@@ -177,6 +182,7 @@ let g:python_highlight_all = 1
 let g:python_highlight_space_errors = 0
 let g:python_highlight_func_calls = 0
 
+" https://github.com/vim-python/python-syntax.git
 highlight link pythonBuiltinFunc Yellow
 highlight link javaIdentifier NONE
 highlight link javaDelimiter NONE
@@ -184,11 +190,15 @@ highlight link javaDelimiter NONE
 autocmd BufWritePre *.py Black
 let g:black_preview = "true"
 
+" https://github.com/prettier/vim-prettier
 " --quote-props consistent; --use-tabs true (although this seems to be fine already); --arrow-parens avoid
 let g:prettier#autoformat = 1
 let g:prettier#autoformat_require_pragma = 0
 let g:prettier#config#quote_props = 'consistent' " had to manually add this to ~/.vim/pack/plugins/start/vim-prettier/autoload/prettier/resolver/config.vim
 let g:prettier#config#arrow_parens = 'avoid'
+
+" https://github.com/rust-lang/rust.vim
+let g:rustfmt_autosave = 1
 
 
 " HERE BE DRAGONS

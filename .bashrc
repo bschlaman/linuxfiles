@@ -5,7 +5,7 @@
 #|_.__/ \__,_|___/_| |_|_|  \___|
 
 # Load the dotfiles
-for FILE in ~/.{aliases,bash_prompt,bash_completion}; do
+for FILE in ~/.{aliases,bash_prompt,bash_completion,work_aliases}; do
     [ -r "$FILE" ] && [ -f "$FILE" ] && source "$FILE";
 done ; unset FILE
 

@@ -106,6 +106,7 @@ filetype plugin indent on
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 " .aliases syntax set
 autocmd BufEnter *.aliases set syntax=bash
+autocmd BufEnter *.work_aliases set syntax=bash
 " in case colorscheme doesn't recognize dockerfiles
 autocmd BufEnter *.dockerfile set filetype=dockerfile
 " Enforce italicized comments

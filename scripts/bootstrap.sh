@@ -21,12 +21,13 @@ DOTFILES="
 .vimrc
 .tmux.conf
 .aliases
+.config
 "
 # TODO: add .bash_completion
 # TODO: add file existence checks
 for df in $DOTFILES ; do
 	echo -e "copying dotfile [ ${YEL}${df}${NC} ] to ~"
-	cp -vi ../${df} ~
+	cp -vir ../${df} ~
 done
 
 mkdir -pv ~/.bin

@@ -13,7 +13,7 @@ FCEDIT=vim
 export EDITOR=vim
 
 # HERE WE GO
-[ type nvim -eq 0 ] && alias vim=nvim
+type nvim > /dev/null 2>&1 && alias vim=nvim
 
 alias ls="ls --color=auto"
 alias ll="ls -lrth"

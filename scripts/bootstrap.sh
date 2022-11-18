@@ -4,7 +4,7 @@ ROOT="$(cd "$(dirname "$0")" &>/dev/null; pwd -P)"
 echo ROOT: $ROOT
 pushd $ROOT > /dev/null
 
-#TODO: this script needs to be transformed into an update script, not just a
+# TODO: this script needs to be transformed into an update script, not just a
 # bootstrap script.  This script shoudl allow me to sync my latest dotfiles
 # keeping in mind limitations of the host OS
 
@@ -30,7 +30,18 @@ for df in $DOTFILES ; do
 	cp -vir ../${df} ~
 done
 
+# scripts
 mkdir -pv ~/.bin
+echo -e "${BLD}Copying scripts...${NC}"
+SCRIPTS="
+bh_backup.sh
+randid
+shuffle_keys
+"
+for s in $SCRIPTS ; do
+	echo -e "copying script [ ${YEL}${df}${NC} ] to ~/.bin/"
+	cp -vir ../${df} ~/.bin/
+done
 
 # vim
 echo -e "${BLD}Creating vim directories...${NC}"
@@ -52,6 +63,7 @@ vim-javascript
 vim-prettier
 rust.vim
 clang-format
+vim-plug
 exit
 "
 select opt in $options ; do
@@ -80,18 +92,21 @@ select opt in $options ; do
 			git clone --depth 1 https://github.com/uiiaoo/java-syntax.vim ~/.vim/pack/plugins/start/java-syntax/
 			;;
 		"vim-javascript")
-			git clone https://github.com/pangloss/vim-javascript.git ~/.vim/pack/vim-javascript/start/vim-javascript
+			git clone --depth 1 https://github.com/pangloss/vim-javascript.git ~/.vim/pack/vim-javascript/start/vim-javascript
 			;;
 		"vim-prettier")
-			git clone https://github.com/prettier/vim-prettier ~/.vim/pack/plugins/start/vim-prettier
+			git clone --depth 1 https://github.com/prettier/vim-prettier ~/.vim/pack/plugins/start/vim-prettier
 			;;
 		"rust.vim")
-			git clone https://github.com/rust-lang/rust.vim ~/.vim/pack/plugins/start/rust.vim
+			git clone --depth 1 https://github.com/rust-lang/rust.vim ~/.vim/pack/plugins/start/rust.vim
 			;;
 		"clang-format")
 			output=~/.bin/clang-format
-			curl -L -o $output https://github.com/muttleyxd/clang-tools-static-binaries/releases/download/master-208096c1/clang-format-14_linux-amd64 && \
-			chmod +x $output
+			curl -L -o $output https://github.com/muttleyxd/clang-tools-static-binaries/releases/download/master-208096c1/clang-format-14_linux-amd64 \
+				&& chmod +x $output
+			;;
+		"vim-plug")
+			curl -L -o ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 			;;
 		"exit") break;;
 	esac

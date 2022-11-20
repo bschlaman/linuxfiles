@@ -32,6 +32,7 @@ alias gl="git log -m -3 --pretty=format:\"Commit Hash: %h Author: %an <%ae> Date
 alias glp="git log --oneline -n 20"
 alias tf="terraform"
 alias tmux="tmux -u"
+alias mem="ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head"
 
 alias src="source ~/.bash_profile"
 alias vp="vim -S ~/.vim_sessions/profiles.vim"

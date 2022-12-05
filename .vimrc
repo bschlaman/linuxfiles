@@ -211,6 +211,11 @@ nnoremap L $
 nnoremap J <C-d>
 nnoremap K <C-u>
 
+" (2022.10.21) testing out vimplug, esp for neovim
+call plug#begin()
+	Plug 'neovim/nvim-lspconfig'
+	Plug 'averms/black-nvim', {'do': ':UpdateRemotePlugins'}
+call plug#end()
 
 " TODO (2022.10.03): purge clang-format from my life completely
 " autoformatting with clang-format

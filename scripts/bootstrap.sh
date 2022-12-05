@@ -39,8 +39,8 @@ randid
 shuffle_keys
 "
 for s in $SCRIPTS ; do
-	echo -e "copying script [ ${YEL}${df}${NC} ] to ~/.bin/"
-	cp -vir ../${df} ~/.bin/
+	echo -e "copying script [ ${YEL}${s}${NC} ] to ~/.bin/"
+	cp -vir ../${s} ~/.bin/
 done
 
 # vim

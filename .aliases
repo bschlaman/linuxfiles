@@ -29,7 +29,7 @@ alias fdate='date "+%Y-%m-%d %H:%M"'
 alias docker="sudo docker"
 alias gitcfg="git config user.name \"Brendan Schlaman\" && git config user.email \"brendan.schlaman@gmail.com\""
 alias gl="git log -m -3 --pretty=format:\"Commit Hash: %h Author: %an <%ae> Date: %cd\""
-alias glp="git log --oneline -n 20"
+alias glp="git log --graph --oneline -n 20"
 alias tf="terraform"
 alias tmux="tmux -u"
 alias mem="ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head"

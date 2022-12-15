@@ -40,7 +40,7 @@ shuffle_keys
 "
 for s in $SCRIPTS ; do
 	echo -e "copying script [ ${YEL}${s}${NC} ] to ~/.bin/"
-	cp -vir ../${s} ~/.bin/
+	cp -vir $ROOT/${s} ~/.bin/
 done
 
 # vim

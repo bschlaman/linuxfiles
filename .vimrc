@@ -188,7 +188,7 @@ highlight link pythonBuiltinFunc Yellow
 highlight link javaIdentifier NONE
 highlight link javaDelimiter NONE
 
-autocmd BufWritePre *.py Black
+" autocmd BufWritePre *.py Black
 let g:black_preview = "true"
 
 " https://github.com/prettier/vim-prettier
@@ -212,9 +212,15 @@ nnoremap J <C-d>
 nnoremap K <C-u>
 
 " (2022.10.21) testing out vimplug, esp for neovim
+" may still need to run :UpdateRemotePlugins after installation!
 call plug#begin()
+	" pip install pynvim
 	Plug 'neovim/nvim-lspconfig'
+	" pip install black
 	Plug 'averms/black-nvim', {'do': ':UpdateRemotePlugins'}
+	" pip install isort
+	Plug 'stsewd/isort.nvim', {'do': ':UpdateRemotePlugins'}
+	Plug 'prettier/vim-prettier'
 call plug#end()
 
 " TODO (2022.10.03): purge clang-format from my life completely

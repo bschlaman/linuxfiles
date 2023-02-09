@@ -110,7 +110,7 @@ autocmd BufEnter *.work_aliases set syntax=bash
 " in case colorscheme doesn't recognize dockerfiles
 autocmd BufEnter *.dockerfile set filetype=dockerfile
 " Enforce italicized comments
-highlight Comment cterm=italic
+highlight Comment cterm=italic gui=italic
 
 autocmd FileType python setlocal ts=4 sts=4 sw=4 et
 autocmd FileType solidity setlocal ts=4 sts=4 sw=4 et

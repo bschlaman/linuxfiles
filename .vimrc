@@ -221,6 +221,7 @@ call plug#begin()
 	" pip install isort
 	Plug 'stsewd/isort.nvim', {'do': ':UpdateRemotePlugins'}
 	Plug 'prettier/vim-prettier'
+	Plug 'Glench/Vim-Jinja2-Syntax'
 call plug#end()
 
 " TODO (2022.10.03): purge clang-format from my life completely

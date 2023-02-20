@@ -52,6 +52,11 @@ alias restartx="ps -ef | grep xinit | grep -v grep | awk '{print $2}' | xargs ki
 # Functions #
 #############
 
+function yel(){
+	local yellow="\e[33m"
+	local reset="\e[0m"
+	echo ${yellow}$*${reset}
+}
 # Outputs a number between 0 and $1 ; 10 by default
 function rand(){
 	def=10
@@ -73,16 +78,22 @@ function wifistop(){
     fi
 }
 function linuxcomp(){
-    [ -d ~/main/hax/linux_files/ ] && dir=~/main/hax/linux_files || dir="."
-		#find -type f | grep -v \.git | grep /\\. | cut -c 3-
-    for x in `find $dir -maxdepth 1 -name ".*" -and -not -type d -printf "%P\n"` ; do
-        echo "#### $x ####"
-        diff $dir/$x ~/$x
-    done
-    for x in `find $dir/.config -type f -printf "%P\n"` ; do
-        echo "#### $x ####"
-        diff $dir/.config/$x ~/.config/$x
-    done
+	for d in ~/main/hax/linux_files ~/Documents/linuxfiles ~/linuxfiles; do
+		[ -d $d ] && { dir=$d; break; }
+	done
+	dir="${dir:-.}"
+
+	for x in `find $dir -maxdepth 1 -name ".*" -and -not -type d -printf "%P\n"` ; do
+		echo -e "### $(yel ${x}) ###"
+		[ ! -e ~/$x ] && { echo "~/$x doesn't exist; skipping"; continue; }
+		diff ~/$x $dir/$x
+	done
+	for x in `find $dir/.config -type f -printf "%P\n"` ; do
+		x=".config/$x"
+		echo -e "### $(yel ${x}) ###"
+		[ ! -e ~/$x ] && { echo "~/$x doesn't exist; skipping"; continue; }
+		diff ~/$x $dir/$x
+	done
 }
 function comptonset(){
     [ -f ~/.config/compton/compton.conf ] && \

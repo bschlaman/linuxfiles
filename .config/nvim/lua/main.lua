@@ -26,6 +26,14 @@ local on_attach = function(client, bufnr)
 	buf_set_keymap('n', 'T', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
 end
 
-require'lspconfig'.pyright.setup{
+require("lspconfig").pyright.setup{
 	on_attach = on_attach,
+}
+
+require("lspconfig").rust_analyzer.setup{
+	capabilities = capabilities,
+	on_attach = on_attach,
+	cmd = {
+			"rustup", "run", "stable", "rust-analyzer",
+	}
 }

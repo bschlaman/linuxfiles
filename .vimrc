@@ -50,8 +50,8 @@ set background=dark
 " Shortcuts
 noremap H 0
 noremap L $
-noremap J <C-d>
-noremap K <C-u>
+noremap J <C-d>zz
+noremap K <C-u>zz
 
 " Avoiding ESC key. o for out
 " disabling for now in favor of using C-[
@@ -71,9 +71,12 @@ nnoremap <C-s> :%s//g<Left><Left>
 nnoremap vr :so ~/.vimrc<CR>
 nnoremap <leader>d "_d
 vnoremap <leader>d "_d
-vnoremap <leader>p "_dP"
+vnoremap <leader>p "_dP
 nnoremap <leader>r "_diwP
 vnoremap <leader>r "_diwP
+nnoremap <leader>y "+y
+vnoremap <leader>y "+y
+nnoremap <leader>Y "+Y
 " filename completion
 inoremap <C-F> <C-X><C-F>
 
@@ -208,8 +211,8 @@ let g:rustfmt_autosave = 1
 " TODO (2022.10.03): find a better solution
 nnoremap H 0
 nnoremap L $
-nnoremap J <C-d>
-nnoremap K <C-u>
+nnoremap J <C-d>zz
+nnoremap K <C-u>zz
 
 " (2022.10.21) testing out vimplug, esp for neovim
 " may still need to run :UpdateRemotePlugins after installation!
@@ -229,6 +232,10 @@ call plug#begin()
 	Plug 'uiiaoo/java-syntax.vim'
 	Plug 'pangloss/vim-javascript'
 	Plug 'rust-lang/rust'
+	" neovim specific
 	Plug 'ellisonleao/gruvbox.nvim'
+	Plug 'nvim-lua/plenary.nvim' " dependency of telescope
+	Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.1' }
+	Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 call plug#end()
 

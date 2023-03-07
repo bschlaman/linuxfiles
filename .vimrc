@@ -222,11 +222,11 @@ call plug#begin()
 	Plug 'stsewd/isort.nvim', {'do': ':UpdateRemotePlugins'}
 	Plug 'prettier/vim-prettier'
 	Plug 'Glench/Vim-Jinja2-Syntax'
-	Plug 'faith/vim-go'
+	Plug 'fatih/vim-go'
 	Plug 'vim-python/python-syntax'
 	Plug 'hashivim/vim-terraform'
 	Plug 'TovarishFin/vim-solidity'
-	Plug 'uiiaoo/java-syntax'
+	Plug 'uiiaoo/java-syntax.vim'
 	Plug 'pangloss/vim-javascript'
 	Plug 'rust-lang/rust'
 	Plug 'ellisonleao/gruvbox.nvim'

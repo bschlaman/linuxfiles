@@ -222,13 +222,13 @@ call plug#begin()
 	Plug 'stsewd/isort.nvim', {'do': ':UpdateRemotePlugins'}
 	Plug 'prettier/vim-prettier'
 	Plug 'Glench/Vim-Jinja2-Syntax'
+	Plug 'faith/vim-go'
+	Plug 'vim-python/python-syntax'
+	Plug 'hashivim/vim-terraform'
+	Plug 'TovarishFin/vim-solidity'
+	Plug 'uiiaoo/java-syntax'
+	Plug 'pangloss/vim-javascript'
+	Plug 'rust-lang/rust'
+	Plug 'ellisonleao/gruvbox.nvim'
 call plug#end()
 
-" TODO (2022.10.03): purge clang-format from my life completely
-" autoformatting with clang-format
-" TODO: check for existence of clang-format binary
-" autocmd FileType java setlocal formatprg=clang-format\ -assume-filename=test.java\ -style=\"{ColumnLimit:\ 0,\ IndentWidth:\ 4,\ JavaImportGroups:\ ['java',\ 'javax',\ 'org',\ 'com']}\"
-
-" TODO: this is currently not working well at all - format looks very weird.  I should really give up on clang-format
-" BinPackArguments: false is to fix InsertTrailingCommas issue
-" autocmd FileType javascript setlocal formatprg=clang-format\ -style=\"{InsertTrailingCommas:\ Wrapped,\ JavaScriptQuotes:\ Double,\ JavaScriptWrapImports:\ true,\ BinPackArguments:\ false}\"

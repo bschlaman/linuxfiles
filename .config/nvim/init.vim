@@ -4,6 +4,7 @@ source ~/.vimrc
 lua require('main')
 lua require('remap')
 lua require('plugins.telescope')
+lua require('plugins.completion')
 nnoremap <buffer><silent> <leader>f <cmd>call Black()<cr>
 nnoremap <buffer><silent> <leader>i <cmd>Isort<cr>
 " let g:black#settings = {

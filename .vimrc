@@ -121,8 +121,8 @@ autocmd FileType yaml setlocal ts=2 sts=2 sw=2 et
 autocmd FileType markdown setlocal ts=2 sts=2 sw=2 et
 autocmd FileType tf setlocal ts=2 sts=2 sw=2 et
 autocmd FileType java setlocal ts=4 sts=4 sw=4 et
-autocmd FileType json setlocal ts=2 sts=2 sw=2 et
 autocmd FileType rust setlocal ts=4 sts=4 sw=4 et
+
 
 autocmd FileType html nnoremap <Space><Space> /\[!!\]<Enter>"_d4l
 autocmd FileType html nnoremap <leader>ac F<wwi<Space>class=""<Esc>i
@@ -241,5 +241,11 @@ call plug#begin()
 	Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 	Plug 'williamboman/mason.nvim'
 	Plug 'williamboman/mason-lspconfig.nvim'
+
+	Plug 'hrsh7th/cmp-nvim-lsp'
+	Plug 'hrsh7th/cmp-buffer'
+	Plug 'hrsh7th/cmp-path'
+	Plug 'hrsh7th/cmp-cmdline'
+	Plug 'hrsh7th/nvim-cmp'
 call plug#end()
 

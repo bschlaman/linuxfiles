@@ -31,7 +31,9 @@ require("mason-lspconfig").setup {
 	ensure_installed = { "lua_ls", "pyright", },
 }
 
-require("lspconfig").lua_ls.setup {}
+require("lspconfig").lua_ls.setup {
+	on_attach = on_attach,
+}
 
 require("lspconfig").gopls.setup {}
 
@@ -40,7 +42,6 @@ require("lspconfig").pyright.setup {
 }
 
 require("lspconfig").rust_analyzer.setup{
-	capabilities = capabilities,
 	on_attach = on_attach,
 	cmd = {
 			"rustup", "run", "stable", "rust-analyzer",

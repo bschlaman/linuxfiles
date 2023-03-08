@@ -8,6 +8,7 @@ export PATH=$PATH:$HOME/.bin
 export PATH=$PATH:$HOME/.bin/go/bin
 export PATH=$PATH:$HOME/.bin/neovim/bin
 export PATH=$PATH:$HOME/.cargo/bin
+export PATH=$PATH:$HOME/go/bin
 [ -d $HOME/.bin/node-v*-linux-x64 ] && export PATH=$PATH:$(ls -d $HOME/.bin/node-v*-linux-x64)/bin
 
 [ -x nvim ] && FCEDIT=nvim || FCEDIT=vim

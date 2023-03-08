@@ -26,7 +26,16 @@ local on_attach = function(client, bufnr)
 	buf_set_keymap('n', 'T', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
 end
 
-require("lspconfig").pyright.setup{
+require("mason").setup()
+require("mason-lspconfig").setup {
+	ensure_installed = { "lua_ls", "pyright", },
+}
+
+require("lspconfig").lua_ls.setup {}
+
+require("lspconfig").gopls.setup {}
+
+require("lspconfig").pyright.setup {
 	on_attach = on_attach,
 }
 

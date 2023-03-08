@@ -227,17 +227,19 @@ call plug#begin()
 	Plug 'stsewd/isort.nvim', {'do': ':UpdateRemotePlugins'}
 	Plug 'prettier/vim-prettier'
 	Plug 'Glench/Vim-Jinja2-Syntax'
-	Plug 'fatih/vim-go'
-	Plug 'vim-python/python-syntax'
+	" Plug 'fatih/vim-go'
+	" Plug 'vim-python/python-syntax'
+	" Plug 'uiiaoo/java-syntax.vim'
+	" Plug 'rust-lang/rust'
 	Plug 'hashivim/vim-terraform'
 	Plug 'TovarishFin/vim-solidity'
-	Plug 'uiiaoo/java-syntax.vim'
 	Plug 'pangloss/vim-javascript'
-	Plug 'rust-lang/rust'
-	" neovim specific
+
 	Plug 'ellisonleao/gruvbox.nvim'
 	Plug 'nvim-lua/plenary.nvim' " dependency of telescope
 	Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.1' }
 	Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+	Plug 'williamboman/mason.nvim'
+	Plug 'williamboman/mason-lspconfig.nvim'
 call plug#end()
 

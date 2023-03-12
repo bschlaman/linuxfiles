@@ -50,8 +50,8 @@ set background=dark
 " Shortcuts
 noremap H 0
 noremap L $
-noremap J <C-d>zz
-noremap K <C-u>zz
+" noremap J <C-d>zz
+" noremap K <C-u>zz
 
 " Avoiding ESC key. o for out
 " disabling for now in favor of using C-[
@@ -213,8 +213,8 @@ let g:rustfmt_autosave = 1
 " TODO (2022.10.03): find a better solution
 nnoremap H 0
 nnoremap L $
-nnoremap J <C-d>zz
-nnoremap K <C-u>zz
+" nnoremap J <C-d>zz
+" nnoremap K <C-u>zz
 
 " (2022.10.21) testing out vimplug, esp for neovim
 " may still need to run :UpdateRemotePlugins after installation!

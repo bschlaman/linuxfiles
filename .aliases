@@ -85,7 +85,7 @@ function linuxcomp(){
 	dir="${dir:-.}"
 
 	for x in `find $dir -maxdepth 1 -name ".*" -and -not -type d -printf "%P\n"` ; do
-		echo -e "### $(yel ${x}) ###"
+		echo -e "### $(yel ${x})"
 		if [ "$WAYLAND_DISPLAY" ] && { [ "$x" = ".xinitrc" ] || [ "$x" = ".Xresources" ]; }; then
 			echo -e "Wayland: skipping $x"
 			continue
@@ -95,7 +95,7 @@ function linuxcomp(){
 	done
 	for x in `find $dir/.config -type f -printf "%P\n"` ; do
 		x=".config/$x"
-		echo -e "### $(yel ${x}) ###"
+		echo -e "### $(yel ${x})"
 		[ ! -e ~/$x ] && { echo "~/$x doesn't exist; skipping"; continue; }
 		diff ~/$x $dir/$x
 	done

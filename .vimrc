@@ -184,6 +184,7 @@ let g:go_highlight_string_spellcheck = 1
 let g:go_highlight_format_strings = 1
 let g:go_highlight_diagnostic_errors = 1
 let g:go_highlight_diagnostic_warnings = 1
+" vim-python/python-syntax
 let g:python_highlight_all = 1
 let g:python_highlight_space_errors = 0
 let g:python_highlight_func_calls = 0

@@ -33,6 +33,18 @@ require("mason-lspconfig").setup {
 
 require("lspconfig").lua_ls.setup {
 	on_attach = on_attach,
+	settings = {
+		Lua = {
+			workspace = {
+				library = vim.api.nvim_get_runtime_file("", true),
+				checkThirdParty = false,
+			},
+			diagnostics = { globals = { "vim" } },
+			telemetry = {
+				enable = false,
+			},
+		},
+	},
 }
 
 require("lspconfig").gopls.setup {}

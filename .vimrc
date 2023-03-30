@@ -237,6 +237,7 @@ call plug#begin()
 	Plug 'pangloss/vim-javascript'
 
 	Plug 'ellisonleao/gruvbox.nvim'
+	Plug 'sjl/badwolf'
 	Plug 'nvim-lua/plenary.nvim' " dependency of telescope
 	Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.1' }
 	Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}

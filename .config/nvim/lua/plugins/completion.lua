@@ -12,7 +12,7 @@ cmp.setup({
 		['<C-b>'] = cmp.mapping.scroll_docs(-4),
 		['<C-f>'] = cmp.mapping.scroll_docs(4),
 		-- { select = true }: automatically select first item
-		['<CR>'] = cmp.mapping.confirm({ select = true }),
+		['<CR>'] = cmp.mapping.confirm({ select = false }),
 	}),
 	window = {
 		completion = cmp.config.window.bordered(),

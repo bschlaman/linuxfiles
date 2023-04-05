@@ -3,6 +3,7 @@ let &packpath = &runtimepath
 source ~/.vimrc
 lua require("main")
 lua require("remap")
+lua require("lsp")
 lua require("plugins.telescope")
 lua require("plugins.completion")
 lua require("plugins.treesitter")

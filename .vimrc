@@ -32,13 +32,13 @@ syntax on
 set termguicolors
 
 " colorscheme stuff.  colorscheme specific settings should come before 'colorscheme XXX'
-" everforest colorscheme
+" settings for everforest, gruvbox_material, and hybrid_material
 let g:everforest_background = 'hard'
-" hybrid_material colorscheme
+let g:gruvbox_material_background = 'hard'
+let g:hybrid_transparent_background = 1
 let g:enable_bold_font = 1
 let g:enable_italic_font = 1
-let g:hybrid_transparent_background = 1
-let schemes = ["badwolf", "everforest", "gruvbox-material", "hybrid_material", "badwolf", "monokai", "gruvbox-material", "tender", "anderson", "deus", "gruvbox", "molokai"]
+let schemes = ["gruvbox-material", "badwolf", "everforest", "gruvbox", "hybrid_material", "monokai", "tender", "anderson", "deus"]
 for name in schemes
 	if filereadable($HOME.'/.vim/colors/'.name.'.vim')
 		execute "colorscheme " . name
@@ -46,6 +46,7 @@ for name in schemes
 	endif
 endfor
 set background=dark
+
 
 " Shortcuts
 noremap H 0
@@ -65,6 +66,8 @@ nnoremap <leader><space> :nohlsearch<CR>
 nnoremap <leader>n :set number! relativenumber!<CR>
 " Toggle paste
 nnoremap <leader>p :set paste!<CR>
+" Toggle color column
+nnoremap <leader>c :execute "set colorcolumn=" . (&colorcolumn == "" ? "80" : "")<CR>
 " Surround visual in quotes
 vnoremap <leader>" <Esc>`>a"<Esc>`<i"<Esc>`>2l
 nnoremap <C-s> :%s//g<Left><Left>
@@ -116,6 +119,7 @@ autocmd BufEnter *.dockerfile set filetype=dockerfile
 highlight Comment cterm=italic gui=italic
 
 autocmd FileType python setlocal ts=4 sts=4 sw=4 et
+autocmd FileType toml setlocal ts=4 sts=4 sw=4 et
 autocmd FileType solidity setlocal ts=4 sts=4 sw=4 et
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 et
 autocmd FileType markdown setlocal ts=2 sts=2 sw=2 et
@@ -197,6 +201,10 @@ highlight link javaDelimiter NONE
 " autocmd BufWritePre *.py Black
 let g:black_preview = "true"
 
+" this is so pynvim works if I'm in a python venv
+" I want my global pynvim installation to be accessed
+let g:python3_host_prog = '/usr/bin/python'
+
 " https://github.com/prettier/vim-prettier
 " --quote-props consistent; --use-tabs true (although this seems to be fine already); --arrow-parens avoid
 let g:prettier#autoformat = 1
@@ -235,6 +243,7 @@ call plug#begin()
 	Plug 'hashivim/vim-terraform'
 	Plug 'TovarishFin/vim-solidity'
 	Plug 'pangloss/vim-javascript'
+	Plug 'sainnhe/gruvbox-material' " broken??
 
 	Plug 'ellisonleao/gruvbox.nvim'
 	Plug 'sjl/badwolf'

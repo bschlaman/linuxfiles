@@ -38,12 +38,13 @@ let g:gruvbox_material_background = 'hard'
 let g:hybrid_transparent_background = 1
 let g:enable_bold_font = 1
 let g:enable_italic_font = 1
-let schemes = ["gruvbox-material", "badwolf", "everforest", "gruvbox", "hybrid_material", "monokai", "tender", "anderson", "deus"]
+let schemes = ["badwolf", "everforest", "gruvbox", "hybrid_material", "monokai", "tender", "anderson", "deus"]
 for name in schemes
-	if filereadable($HOME.'/.vim/colors/'.name.'.vim')
-		execute "colorscheme " . name
+	try
+		silent! colorscheme name
 		break
-	endif
+	catch
+	endtry
 endfor
 set background=dark
 
@@ -243,7 +244,7 @@ call plug#begin()
 	Plug 'hashivim/vim-terraform'
 	Plug 'TovarishFin/vim-solidity'
 	Plug 'pangloss/vim-javascript'
-	Plug 'sainnhe/gruvbox-material' " broken??
+	Plug 'sainnhe/gruvbox-material'
 
 	Plug 'ellisonleao/gruvbox.nvim'
 	Plug 'sjl/badwolf'
@@ -260,3 +261,7 @@ call plug#begin()
 	Plug 'hrsh7th/nvim-cmp'
 call plug#end()
 
+" must come after call plug#end(), since I've loaded it with a plugin
+if !exists("g:colors_name") || g:colors_name != 'gruvbox-material'
+	colorscheme gruvbox-material
+endif

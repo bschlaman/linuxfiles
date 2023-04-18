@@ -205,6 +205,10 @@ let g:black_preview = "true"
 " this is so pynvim works if I'm in a python venv
 " I want my global pynvim installation to be accessed
 let g:python3_host_prog = '/usr/bin/python'
+" allow for overriding this value (useful when /usr/bin/python is python2)
+if !empty(getenv('PYTHON3_HOST_PROG_OVERRIDE'))
+  let g:python3_host_prog = getenv('PYTHON3_HOST_PROG_OVERRIDE')
+endif
 
 " https://github.com/prettier/vim-prettier
 " --quote-props consistent; --use-tabs true (although this seems to be fine already); --arrow-parens avoid

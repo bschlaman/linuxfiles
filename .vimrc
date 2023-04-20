@@ -2,7 +2,7 @@ autocmd VimEnter * :call Init()
 function Init()
 	echo ""
 	echon "using colorscheme: "
-	echon g:colors_name
+	silent! echon g:colors_name
 endfunction
 
 " avoid 'Hit ENTER' message upon startup
@@ -270,6 +270,6 @@ call plug#begin()
 call plug#end()
 
 " must come after call plug#end(), since I've loaded it with a plugin
-if !exists("g:colors_name") || g:colors_name != 'gruvbox-material'
-	colorscheme gruvbox-material
+if !exists("g:colors_name")
+	silent! colorscheme gruvbox-material
 endif

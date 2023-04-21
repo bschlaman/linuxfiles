@@ -51,6 +51,7 @@ let schemes = [
 	\ "anderson",
 	\ "deus",
 	\ ]
+" not working?
 for name in schemes
 	try
 		silent! colorscheme name
@@ -236,13 +237,6 @@ let g:rustfmt_autosave = 1
 
 " HERE BE DRAGONS
 
-" Shortcuts again because vim-go messes this up
-" TODO (2022.10.03): find a better solution
-nnoremap H 0
-nnoremap L $
-" nnoremap J <C-d>zz
-" nnoremap K <C-u>zz
-
 " (2022.10.21) testing out vimplug, esp for neovim
 " may still need to run :UpdateRemotePlugins after installation!
 call plug#begin()
@@ -252,19 +246,25 @@ call plug#begin()
 	Plug 'averms/black-nvim', {'do': ':UpdateRemotePlugins'}
 	" pip install isort
 	Plug 'stsewd/isort.nvim', {'do': ':UpdateRemotePlugins'}
+
 	Plug 'prettier/vim-prettier'
-	Plug 'Glench/Vim-Jinja2-Syntax'
+
+	" not needed with nvim lsp / treesitter
+	" Plug 'Glench/Vim-Jinja2-Syntax'
 	" Plug 'fatih/vim-go'
 	" Plug 'vim-python/python-syntax'
 	" Plug 'uiiaoo/java-syntax.vim'
 	" Plug 'rust-lang/rust'
-	Plug 'hashivim/vim-terraform'
-	Plug 'TovarishFin/vim-solidity'
-	Plug 'pangloss/vim-javascript'
-	Plug 'sainnhe/gruvbox-material'
+	" Plug 'hashivim/vim-terraform'
+	" Plug 'TovarishFin/vim-solidity'
+	" Plug 'pangloss/vim-javascript'
 
+	" colorschemes
+	Plug 'sainnhe/gruvbox-material'
 	Plug 'ellisonleao/gruvbox.nvim'
 	Plug 'sjl/badwolf'
+	Plug 'aktersnurra/no-clown-fiesta.nvim'
+
 	Plug 'nvim-lua/plenary.nvim' " dependency of telescope
 	Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.1' }
 	Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -286,3 +286,4 @@ call plug#end()
 if !exists("g:colors_name")
 	silent! colorscheme gruvbox-material
 endif
+

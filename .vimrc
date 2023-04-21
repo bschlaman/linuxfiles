@@ -1,8 +1,10 @@
 autocmd VimEnter * :call Init()
 function Init()
-	echo ""
-	echon "using colorscheme: "
-	silent! echon g:colors_name
+	if exists("g:colors_name")
+		echom "using colorscheme: " g:colors_name
+	else
+		echom "no colorscheme found"
+	endif
 endfunction
 
 " avoid 'Hit ENTER' message upon startup
@@ -38,7 +40,17 @@ let g:gruvbox_material_background = 'hard'
 let g:hybrid_transparent_background = 1
 let g:enable_bold_font = 1
 let g:enable_italic_font = 1
-let schemes = ["badwolf", "everforest", "gruvbox", "hybrid_material", "monokai", "tender", "anderson", "deus"]
+set background=dark  " gruvbox
+let schemes = [
+	\ "badwolf",
+	\ "everforest",
+	\ "gruvbox",
+	\ "hybrid_material",
+	\ "monokai",
+	\ "tender",
+	\ "anderson",
+	\ "deus",
+	\ ]
 for name in schemes
 	try
 		silent! colorscheme name
@@ -46,12 +58,13 @@ for name in schemes
 	catch
 	endtry
 endfor
-set background=dark
 
 
 " Shortcuts
 noremap H 0
 noremap L $
+nnoremap n nzz
+nnoremap N Nzz
 " noremap J <C-d>zz
 " noremap K <C-u>zz
 

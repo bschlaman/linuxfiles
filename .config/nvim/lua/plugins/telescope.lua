@@ -7,3 +7,16 @@ vim.keymap.set('n', '<leader>gf', builtin.git_files, {})
 vim.keymap.set('n', '<leader>gg', function()
 	builtin.grep_string({ search = vim.fn.input("grep > ") });
 end)
+
+require('telescope').setup{
+	defaults = {
+		mappings = {
+			i = {
+				["<C-s>"] = require('telescope.actions').select_horizontal
+			},
+			n = {
+				["<C-s>"] = require('telescope.actions').select_horizontal
+			},
+		},
+	},
+}

@@ -51,10 +51,9 @@ let schemes = [
 	\ "anderson",
 	\ "deus",
 	\ ]
-" not working?
 for name in schemes
 	try
-		silent! colorscheme name
+		execute 'colorscheme ' name
 		break
 	catch
 	endtry

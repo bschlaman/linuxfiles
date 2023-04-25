@@ -33,33 +33,6 @@ set autoindent
 syntax on
 set termguicolors
 
-" colorscheme stuff.  colorscheme specific settings should come before 'colorscheme XXX'
-" settings for everforest, gruvbox_material, and hybrid_material
-let g:everforest_background = 'hard'
-let g:gruvbox_material_background = 'hard'
-let g:hybrid_transparent_background = 1
-let g:enable_bold_font = 1
-let g:enable_italic_font = 1
-set background=dark  " gruvbox
-let schemes = [
-	\ "badwolf",
-	\ "everforest",
-	\ "gruvbox",
-	\ "hybrid_material",
-	\ "monokai",
-	\ "tender",
-	\ "anderson",
-	\ "deus",
-	\ ]
-for name in schemes
-	try
-		execute 'colorscheme ' name
-		break
-	catch
-	endtry
-endfor
-
-
 " Shortcuts
 noremap H 0
 noremap L $
@@ -281,8 +254,36 @@ call plug#begin()
 	Plug 'hrsh7th/nvim-cmp'
 call plug#end()
 
-" must come after call plug#end(), since I've loaded it with a plugin
-if !exists("g:colors_name")
-	silent! colorscheme gruvbox-material
-endif
+" Some colorschemes are loaded via plugin, so must be set after call plug#end()
+" Colorscheme specific settings should come before 'colorscheme XXX'
+" Below variables are settings for everforest, gruvbox_material, and hybrid_material
+let g:everforest_background = 'hard'
+let g:gruvbox_material_background = 'hard'
+let g:hybrid_transparent_background = 1
+let g:enable_bold_font = 1
+let g:enable_italic_font = 1
+let schemes = [
+	\ "badwolf",
+	\ "everforest",
+	\ "gruvbox",
+	\ "hybrid_material",
+	\ "monokai",
+	\ "tender",
+	\ "anderson",
+	\ "deus",
+	\ "gruvbox-material",
+	\ ]
+" 1) first, look for some common color schemes I like
+for name in schemes
+	try
+		execute 'colorscheme ' name
+		break
+	catch
+	endtry
+endfor
+
+" 2) if there is an override, set it
+if !empty(getenv('VIM_COLORSCHEME_OVERRIDE'))
+	execute 'colorscheme ' getenv('VIM_COLORSCHEME_OVERRIDE')
+end
 

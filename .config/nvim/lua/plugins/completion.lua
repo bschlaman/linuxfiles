@@ -8,7 +8,7 @@ cmp.setup({
 		{ name = "nvim_lsp" },
 		{ name = "path" },
 		{ name = "emoji" },
-		{ name = "tmux", option = { all_panes = false } },
+		{ name = "tmux", keyword_length = 4, option = { all_panes = true } },
 		{ name = "buffer", keyword_length = 4, option = {
 			get_bufnrs = function()
 				return vim.api.nvim_list_bufs()

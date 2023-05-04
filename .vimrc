@@ -220,6 +220,7 @@ call plug#begin()
 	Plug 'stsewd/isort.nvim', {'do': ':UpdateRemotePlugins'}
 
 	Plug 'prettier/vim-prettier'
+	Plug 'crispgm/nvim-go'
 
 	" not needed with nvim lsp / treesitter
 	" Plug 'Glench/Vim-Jinja2-Syntax'

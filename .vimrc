@@ -221,6 +221,7 @@ call plug#begin()
 
 	Plug 'prettier/vim-prettier'
 	Plug 'crispgm/nvim-go'
+	Plug 'Saecki/crates.nvim'
 
 	" not needed with nvim lsp / treesitter
 	" Plug 'Glench/Vim-Jinja2-Syntax'

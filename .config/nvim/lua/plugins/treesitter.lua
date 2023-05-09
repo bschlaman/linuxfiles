@@ -21,6 +21,7 @@ require("nvim-treesitter.configs").setup {
 		"terraform",
 		"typescript",
 		"yaml",
+		"rust",
 	},
 	auto_install = false,
 	highlight = {

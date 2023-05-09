@@ -28,7 +28,7 @@ end
 
 require("mason").setup()
 require("mason-lspconfig").setup {
-	ensure_installed = { "lua_ls", "pyright", "gopls", },
+	ensure_installed = { "lua_ls", "pyright", "gopls", "rust_analyzer", },
 }
 
 require("lspconfig").lua_ls.setup {
@@ -79,3 +79,4 @@ require("lspconfig").rust_analyzer.setup{
 			"rustup", "run", "stable", "rust-analyzer",
 	}
 }
+require("crates").setup()

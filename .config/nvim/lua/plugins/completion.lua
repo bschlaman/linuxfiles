@@ -14,6 +14,7 @@ cmp.setup({
 				return vim.api.nvim_list_bufs()
 			end
 		}},
+		{ name = "crates" }, -- crates.nvim
 	}),
 	mapping = cmp.mapping.preset.insert({
 		['<C-b>'] = cmp.mapping.scroll_docs(-4),

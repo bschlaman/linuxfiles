@@ -11,11 +11,11 @@ export PATH=$PATH:$HOME/.cargo/bin
 export PATH=$PATH:$HOME/go/bin
 [ -d $HOME/.bin/node-v*-linux-x64 ] && export PATH=$PATH:$(ls -d $HOME/.bin/node-v*-linux-x64)/bin
 
-[ -x nvim ] && FCEDIT=nvim || FCEDIT=vim
-[ -x nvim ] && export EDITOR=nvim || export EDITOR=vim
 
 # HERE WE GO
-type nvim > /dev/null 2>&1 && alias vim=nvim
+type -P nvim >/dev/null 2>&1 && alias vim=nvim
+type -P nvim >/dev/null 2>&1 && FCEDIT=nvim || FCEDIT=vim
+type -P nvim >/dev/null 2>&1 && export EDITOR=nvim || export EDITOR=vim
 
 alias ls="ls --color=auto"
 alias ll="ls -lrth"
@@ -32,7 +32,7 @@ alias docker="sudo docker"
 alias gitcfg="git config user.name \"Brendan Schlaman\" && git config user.email \"brendan.schlaman@gmail.com\""
 alias gl="git log -m -3 --pretty=format:\"Commit Hash: %h Author: %an <%ae> Date: %cd\""
 # want the author email, but the committer time
-alias glp="git log --graph --pretty=tformat:'%C(auto)%h%d (%C(dim)%ch %C(blue)%al%C(auto)) %s' -n 20"
+alias glp="git log --graph --pretty=tformat:'%C(auto)%h%d (%C(dim)%ch %C(blue)%al %cl%C(auto)) %s' -n 20"
 alias tf="terraform"
 alias tmux="tmux -u"
 alias mem="ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head"

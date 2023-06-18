@@ -27,6 +27,7 @@ alias diff="diff --color=auto"
 alias tree="tree -C"
 alias rl="readlink -f"
 alias fdate='date "+%Y-%m-%d %H:%M"'
+alias btop="btop --utf-force"
 
 alias docker="sudo docker"
 alias gitcfg="git config user.name \"Brendan Schlaman\" && git config user.email \"brendan.schlaman@gmail.com\""

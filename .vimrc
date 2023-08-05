@@ -98,8 +98,10 @@ autocmd BufEnter *.dockerfile set filetype=dockerfile
 highlight Comment cterm=italic gui=italic
 
 " latex remaps
-vnoremap <leader>b c\textbf{<C-R>"}<ESC>
-vnoremap <leader>s c\boldsymbol{<C-R>"}<ESC>
+vnoremap <leader>bf c\textbf{<C-R>"}<ESC>
+vnoremap <leader>it c\textit{<C-R>"}<ESC>
+vnoremap <leader>bb c\mathbb{<C-R>"}<ESC>
+vnoremap <leader>bs c\boldsymbol{<C-R>"}<ESC>
 
 autocmd FileType python setlocal ts=4 sts=4 sw=4 et
 autocmd FileType toml setlocal ts=4 sts=4 sw=4 et

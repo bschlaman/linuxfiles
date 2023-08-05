@@ -38,14 +38,6 @@ noremap H 0
 noremap L $
 nnoremap n nzz
 nnoremap N Nzz
-" noremap J <C-d>zz
-" noremap K <C-u>zz
-
-" Avoiding ESC key. o for out
-" disabling for now in favor of using C-[
-" inoremap <C-o> <Esc>
-" vnoremap <C-o> <Esc>
-" nnoremap <C-o> <Esc>
 
 " Turn off search highlight
 nnoremap <leader><space> :nohlsearch<CR>
@@ -102,8 +94,12 @@ autocmd BufEnter *.aliases set syntax=bash
 autocmd BufEnter *.work_aliases set syntax=bash
 " in case colorscheme doesn't recognize dockerfiles
 autocmd BufEnter *.dockerfile set filetype=dockerfile
-" Enforce italicized comments
+" Enforce italicized comments (not working - neovim altering this behavior?)
 highlight Comment cterm=italic gui=italic
+
+" latex remaps
+vnoremap <leader>b c\textbf{<C-R>"}<ESC>
+vnoremap <leader>s c\boldsymbol{<C-R>"}<ESC>
 
 autocmd FileType python setlocal ts=4 sts=4 sw=4 et
 autocmd FileType toml setlocal ts=4 sts=4 sw=4 et
@@ -114,23 +110,6 @@ autocmd FileType tf setlocal ts=2 sts=2 sw=2 et
 autocmd FileType java setlocal ts=4 sts=4 sw=4 et
 autocmd FileType rust setlocal ts=4 sts=4 sw=4 et
 
-
-autocmd FileType html nnoremap <Space><Space> /\[!!\]<Enter>"_d4l
-autocmd FileType html nnoremap <leader>ac F<wwi<Space>class=""<Esc>i
-autocmd FileType html inoremap ;h1 <h1></h1>[!!]<Esc>FhT>i
-autocmd FileType html inoremap ;h2 <h2></h2>[!!]<Esc>FhT>i
-autocmd FileType html inoremap ;h3 <h3></h3>[!!]<Esc>FhT>i
-autocmd FileType html inoremap ;em <em></em>[!!]<Esc>FeT>i
-autocmd FileType html inoremap ;b <strong></strong>[!!]<Esc>FsT>i
-autocmd FileType html inoremap ;d <div>[!!]<CR></div><Esc>kTv
-autocmd FileType html inoremap ;cd <div class="">[!!]<CR></div><Esc>kci"
-autocmd FileType html inoremap ;p <p></p>[!!]<Esc>FpT>i
-autocmd FileType html inoremap ;ul <ul><CR><CR></ul><CR>[!!]<Esc>2ki
-autocmd FileType html inoremap ;ol <ol><CR><CR></ol><CR>[!!]<Esc>2ki
-autocmd FileType html inoremap ;a <a<Space>href="" target="_blank">[!!]</a>[!!]<Esc>29hi
-autocmd FileType html inoremap ;sup <sup></sup>[!!]<Esc>FsT>i
-autocmd FileType html inoremap ;sub <sub></sub>[!!]<Esc>FsT>i
-autocmd FileType java inoremap <C-s> System.out.println("");<left><left><left>
 
 function! MakeListItem()
 	normal! mm^i<li>A</li>`m
@@ -223,16 +202,6 @@ call plug#begin()
 	Plug 'crispgm/nvim-go'
 	Plug 'Saecki/crates.nvim'
 
-	" not needed with nvim lsp / treesitter
-	" Plug 'Glench/Vim-Jinja2-Syntax'
-	" Plug 'fatih/vim-go'
-	" Plug 'vim-python/python-syntax'
-	" Plug 'uiiaoo/java-syntax.vim'
-	" Plug 'rust-lang/rust'
-	" Plug 'hashivim/vim-terraform'
-	" Plug 'TovarishFin/vim-solidity'
-	" Plug 'pangloss/vim-javascript'
-
 	" colorschemes
 	Plug 'sainnhe/gruvbox-material'
 	Plug 'ellisonleao/gruvbox.nvim'
@@ -288,4 +257,33 @@ endfor
 if !empty(getenv('VIM_COLORSCHEME_OVERRIDE'))
 	execute 'colorscheme ' getenv('VIM_COLORSCHEME_OVERRIDE')
 end
+
+" DEPRECATED
+
+autocmd FileType html nnoremap <Space><Space> /\[!!\]<Enter>"_d4l
+autocmd FileType html nnoremap <leader>ac F<wwi<Space>class=""<Esc>i
+autocmd FileType html inoremap ;h1 <h1></h1>[!!]<Esc>FhT>i
+autocmd FileType html inoremap ;h2 <h2></h2>[!!]<Esc>FhT>i
+autocmd FileType html inoremap ;h3 <h3></h3>[!!]<Esc>FhT>i
+autocmd FileType html inoremap ;em <em></em>[!!]<Esc>FeT>i
+autocmd FileType html inoremap ;b <strong></strong>[!!]<Esc>FsT>i
+autocmd FileType html inoremap ;d <div>[!!]<CR></div><Esc>kTv
+autocmd FileType html inoremap ;cd <div class="">[!!]<CR></div><Esc>kci"
+autocmd FileType html inoremap ;p <p></p>[!!]<Esc>FpT>i
+autocmd FileType html inoremap ;ul <ul><CR><CR></ul><CR>[!!]<Esc>2ki
+autocmd FileType html inoremap ;ol <ol><CR><CR></ol><CR>[!!]<Esc>2ki
+autocmd FileType html inoremap ;a <a<Space>href="" target="_blank">[!!]</a>[!!]<Esc>29hi
+autocmd FileType html inoremap ;sup <sup></sup>[!!]<Esc>FsT>i
+autocmd FileType html inoremap ;sub <sub></sub>[!!]<Esc>FsT>i
+autocmd FileType java inoremap <C-s> System.out.println("");<left><left><left>
+
+" not needed with nvim lsp / treesitter
+" Plug 'Glench/Vim-Jinja2-Syntax'
+" Plug 'fatih/vim-go'
+" Plug 'vim-python/python-syntax'
+" Plug 'uiiaoo/java-syntax.vim'
+" Plug 'rust-lang/rust'
+" Plug 'hashivim/vim-terraform'
+" Plug 'TovarishFin/vim-solidity'
+" Plug 'pangloss/vim-javascript'
 

@@ -13,9 +13,9 @@ export PATH=$PATH:$HOME/go/bin
 
 
 # HERE WE GO
-type -P nvim >/dev/null 2>&1 && alias vim=nvim
-type -P nvim >/dev/null 2>&1 && FCEDIT=nvim || FCEDIT=vim
-type -P nvim >/dev/null 2>&1 && export EDITOR=nvim || export EDITOR=vim
+type nvim >/dev/null 2>&1 && alias vim=nvim
+type nvim >/dev/null 2>&1 && FCEDIT=nvim || FCEDIT=vim
+type nvim >/dev/null 2>&1 && export EDITOR=nvim || export EDITOR=vim
 
 alias ls="ls --color=auto"
 alias ll="ls -lrth"

@@ -28,7 +28,7 @@ end
 
 require("mason").setup()
 require("mason-lspconfig").setup {
-	ensure_installed = { "lua_ls", "pyright", "gopls", "rust_analyzer", },
+	ensure_installed = { "lua_ls", "pyright", "gopls", "rust_analyzer", "tsserver",},
 }
 
 require("lspconfig").lua_ls.setup {
@@ -69,6 +69,8 @@ require("go").setup({
 
 require("lspconfig").gopls.setup {}
 
+require("lspconfig").tsserver.setup {}
+
 require("lspconfig").pyright.setup {
 	on_attach = on_attach,
 }
@@ -80,3 +82,4 @@ require("lspconfig").rust_analyzer.setup{
 	}
 }
 require("crates").setup()
+

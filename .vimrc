@@ -100,7 +100,7 @@ highlight Comment cterm=italic gui=italic
 " latex remaps
 vnoremap <leader>bf c\textbf{<C-R>"}<ESC>
 vnoremap <leader>it c\textit{<C-R>"}<ESC>
-vnoremap <leader>bb c\mathbb{<C-R>"}<ESC>
+vnoremap <leader>bb c\mathbf{<C-R>"}<ESC>
 vnoremap <leader>bs c\boldsymbol{<C-R>"}<ESC>
 
 autocmd FileType python setlocal ts=4 sts=4 sw=4 et

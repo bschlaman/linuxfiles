@@ -211,7 +211,7 @@ call plug#begin()
 	Plug 'aktersnurra/no-clown-fiesta.nvim'
 
 	Plug 'nvim-lua/plenary.nvim' " dependency of telescope
-	Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.1' }
+	Plug 'nvim-telescope/telescope.nvim'
 	Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 	Plug 'williamboman/mason.nvim'
 	Plug 'williamboman/mason-lspconfig.nvim'
@@ -236,13 +236,13 @@ let g:hybrid_transparent_background = 1
 let g:enable_bold_font = 1
 let g:enable_italic_font = 1
 let schemes = [
+	\ "anderson",
 	\ "badwolf",
 	\ "everforest",
 	\ "gruvbox",
 	\ "hybrid_material",
 	\ "monokai",
 	\ "tender",
-	\ "anderson",
 	\ "deus",
 	\ "gruvbox-material",
 	\ ]

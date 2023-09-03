@@ -33,7 +33,7 @@ alias docker="sudo docker"
 alias gitcfg="git config user.name \"Brendan Schlaman\" && git config user.email \"brendan.schlaman@gmail.com\""
 alias gl="git log -m -3 --pretty=format:\"Commit Hash: %h Author: %an <%ae> Date: %cd\""
 # want the author email, but the committer time
-alias glp="git log --graph --pretty=tformat:'%C(auto)%h%d (%C(dim)%ch %C(blue)%al %cl%C(auto)) %s' -n 20"
+alias glp="git --no-pager log --graph --pretty=tformat:'%C(auto)%h%d (%C(dim)%ch %C(blue)%al %cl%C(auto)) %s' -n 20"
 alias tf="terraform"
 alias tmux="tmux -u"
 alias mem="ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head"
@@ -103,12 +103,18 @@ function linuxcomp(){
 	done
 }
 function comptonset(){
-    [ -f ~/.config/compton/compton.conf ] && \
-    lspci | grep -i virtualbox > /dev/null && \
-    echo "You are in a VBox guest. Turning off compton vsync..." && \
-    sed -i '/vsync =/s/true/false/' ~/.config/compton/compton.conf \ ||
-    echo "You are not in a VBox guest; nothing to do." 
+	[ -f ~/.config/compton/compton.conf ] && \
+		lspci | grep -i virtualbox > /dev/null && \
+		echo "You are in a VBox guest. Turning off compton vsync..." && \
+		sed -i '/vsync =/s/true/false/' ~/.config/compton/compton.conf \ ||
+		echo "You are not in a VBox guest; nothing to do."
 }
 function slideshow(){
-    [ "$1" = "-r" ] && feh -dz -. -B black || feh -d -. -B black
+	[ "$1" = "-r" ] && feh -dz -. -B black || feh -d -. -B black
+}
+function fix_git_history(){
+	# Update commit history by setting the current configured user as the committer and author
+	[ -z "$1" ] && return 1
+	echo "Fixing git history from commit $1 onwards"
+	git -c rebase.instructionFormat='%s%nexec GIT_COMMITTER_DATE="%cD" GIT_AUTHOR_DATE="%aD" git commit --amend --no-edit --reset-author' rebase -f $1
 }

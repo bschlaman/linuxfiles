@@ -27,7 +27,7 @@ require("nvim-treesitter.configs").setup {
 	highlight = {
 		-- workaround for vscode-neovim highlighting getting weird
 		-- when treesitter highlight is enabled
-		enable = vim.g.vscode and false or true,
+		enable = not vim.g.vscode,
 		additional_vim_regex_highlighting = false,
 	},
 }

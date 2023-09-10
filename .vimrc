@@ -216,6 +216,7 @@ call plug#begin()
 	Plug 'williamboman/mason.nvim'
 	Plug 'williamboman/mason-lspconfig.nvim'
 	Plug 'onsails/lspkind.nvim'
+	Plug 'lvimuser/lsp-inlayhints.nvim'
 
 	Plug 'hrsh7th/cmp-nvim-lsp'
 	Plug 'hrsh7th/cmp-nvim-lua'
@@ -224,6 +225,7 @@ call plug#begin()
 	Plug 'hrsh7th/cmp-emoji'
 	Plug 'hrsh7th/cmp-path'
 	Plug 'hrsh7th/cmp-cmdline'
+	Plug 'hrsh7th/cmp-vsnip'
 	Plug 'hrsh7th/nvim-cmp'
 call plug#end()
 

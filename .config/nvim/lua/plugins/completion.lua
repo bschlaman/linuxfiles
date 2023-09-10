@@ -6,6 +6,7 @@ cmp.setup({
 	sources = cmp.config.sources({
 		{ name = "nvim_lua" },
 		{ name = "nvim_lsp" },
+		{ name = "vsnip" },
 		{ name = "path" },
 		{ name = "emoji" },
 		{ name = "tmux", keyword_length = 4, option = { all_panes = true } },
@@ -32,6 +33,7 @@ cmp.setup({
 			menu = ({
 				nvim_lua = "[Lua]",
 				nvim_lsp = "[LSP]",
+				vsnip = "[vsnip]",
 				path = "[path]",
 				cmdline = "[cmdline]",
 				emoji = "[emoji]",

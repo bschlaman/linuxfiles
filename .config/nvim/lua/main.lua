@@ -5,7 +5,6 @@ vim.o.updatetime = 250
 -- vim.cmd [[autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
 
 local on_attach = function(client, bufnr)
-	local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
 	vim.api.nvim_create_autocmd("CursorHold", {
 		buffer = bufnr,
 		callback = function()
@@ -21,9 +20,6 @@ local on_attach = function(client, bufnr)
 			vim.diagnostic.open_float(nil, opts)
 		end
 	})
-
-	local opts = { noremap=true, silent=true }
-	buf_set_keymap('n', 'T', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
 end
 
 require("mason").setup()
@@ -45,6 +41,11 @@ require("lspconfig").lua_ls.setup {
 			},
 		},
 	},
+}
+
+-- TODO: currently not working
+require("lsp-inlayhints").setup {
+	on_attach = on_attach,
 }
 
 require("go").setup({
@@ -77,8 +78,13 @@ require("lspconfig").pyright.setup {
 
 require("lspconfig").rust_analyzer.setup{
 	on_attach = on_attach,
+	settings = {
+		["rust-analyzer"] = {
+			check = { command = "clippy" },
+		},
+	},
 	cmd = {
-			"rustup", "run", "stable", "rust-analyzer",
+		"rustup", "run", "stable", "rust-analyzer",
 	}
 }
 require("crates").setup()

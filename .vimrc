@@ -24,11 +24,10 @@ set splitright splitbelow
 set directory=~/.vim/swap//
 
 " tabs or spaces?
-set tabstop=2
-set softtabstop=2
-set shiftwidth=2
+set tabstop=2 " whitespace cols for \t
+set softtabstop=2 " whitespace cols for <TAB> or backspace
+set shiftwidth=2 " whitespace cols for indentation
 set noexpandtab
-set autoindent
 
 syntax on
 set termguicolors
@@ -62,8 +61,10 @@ nnoremap <leader>Y "+Y
 " filename completion
 inoremap <C-F> <C-X><C-F>
 
+" TODO: currently not working well; after opening {, cursor indents twice
+" this only happens for some filetypes, like .vim and .py
 " Autocomplete brackets
-inoremap {<CR> {<CR>}<Esc>O<TAB>
+inoremap {<CR> {<CR>}<Esc>O
 
 " Resize splits
 noremap <C-n> <C-w><

@@ -60,6 +60,8 @@ vnoremap <leader>y "+y
 nnoremap <leader>Y "+Y
 " filename completion
 inoremap <C-F> <C-X><C-F>
+" vim-surround mapping
+vmap s S
 
 " TODO: currently not working well; after opening {, cursor indents twice
 " this only happens for some filetypes, like .vim and .py
@@ -130,10 +132,10 @@ endfunction
 " 	exe ":s#\\%V".g:Comment."\\<Bar>".g:EndComment."\\%V##g"
 " endfunction
 " map visual mode keycombo 'co' to this function
-vnoremap co :call CommentLines()<CR>
+" vnoremap co :call CommentLines()<CR>
 " vnoremap cz :call UnCommentLines()<CR>
 " vnoremap cx :s#\%V\(.*\)\%V\(.\)#\/*\1\2*\/#g <CR> :nohlsearch <CR>
-vnoremap cu :s#\%V/\*\<Bar>\*/\%V##g <CR> :nohlsearch <CR>
+" vnoremap cu :s#\%V/\*\<Bar>\*/\%V##g <CR> :nohlsearch <CR>
 
 " make a word a tag, in any filetype
 nnoremap mt yiwi<<Esc>ea></<Esc>pa><Esc>F<
@@ -201,16 +203,20 @@ call plug#begin()
 	" pip install isort
 	Plug 'stsewd/isort.nvim', {'do': ':UpdateRemotePlugins'}
 
+	" various
 	Plug 'prettier/vim-prettier'
 	Plug 'crispgm/nvim-go'
 	Plug 'Saecki/crates.nvim'
+	Plug 'tpope/vim-surround'
 
 	" colorschemes
 	Plug 'sainnhe/gruvbox-material'
 	Plug 'ellisonleao/gruvbox.nvim'
+	Plug 'sainnhe/everforest'
 	Plug 'sjl/badwolf'
 	Plug 'aktersnurra/no-clown-fiesta.nvim'
 
+	" neovim lsp stuff
 	Plug 'nvim-lua/plenary.nvim' " dependency of telescope
 	Plug 'nvim-telescope/telescope.nvim'
 	Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -219,6 +225,7 @@ call plug#begin()
 	Plug 'onsails/lspkind.nvim'
 	Plug 'lvimuser/lsp-inlayhints.nvim'
 
+	" nvim-cmp
 	Plug 'hrsh7th/cmp-nvim-lsp'
 	Plug 'hrsh7th/cmp-nvim-lua'
 	Plug 'andersevenrud/cmp-tmux'
@@ -291,4 +298,3 @@ autocmd FileType java inoremap <C-s> System.out.println("");<left><left><left>
 " Plug 'hashivim/vim-terraform'
 " Plug 'TovarishFin/vim-solidity'
 " Plug 'pangloss/vim-javascript'
-

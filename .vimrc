@@ -239,7 +239,9 @@ call plug#end()
 
 " Some colorschemes are loaded via plugin, so must be set after call plug#end()
 " Colorscheme specific settings should come before 'colorscheme XXX'
-" Below variables are settings for everforest, gruvbox_material, and hybrid_material
+" Below variables are settings for gruvbox, everforest, gruvbox_material, and hybrid_material
+let g:gruvbox_italic = 1 " gruvbox
+set bg=dark " gruvbox
 let g:everforest_background = 'hard'
 let g:gruvbox_material_background = 'hard'
 let g:hybrid_transparent_background = 1

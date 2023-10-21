@@ -2,7 +2,6 @@
 vim.opt.mouse = nil
 
 vim.o.updatetime = 250
--- vim.cmd [[autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
 
 local on_attach = function(client, bufnr)
 	vim.api.nvim_create_autocmd("CursorHold", {
@@ -68,9 +67,9 @@ require("go").setup({
 
 })
 
-require("lspconfig").gopls.setup {}
+require("lspconfig").gopls.setup { on_attach = on_attach }
 
-require("lspconfig").tsserver.setup {}
+require("lspconfig").tsserver.setup { on_attach = on_attach }
 
 require("lspconfig").pyright.setup {
 	on_attach = on_attach,

@@ -23,7 +23,17 @@ end
 
 require("mason").setup()
 require("mason-lspconfig").setup {
-	ensure_installed = { "lua_ls", "pyright", "gopls", "rust_analyzer", "tsserver",},
+	ensure_installed = {
+		"lua_ls",
+		"rust_analyzer",
+		-- The installs below will fail if certain
+		-- dependencies (e.g. `npm`, `go`) are not present
+		-- Force an install with :LspInstall
+		"pyright",
+		"gopls",
+		"tsserver",
+	},
+	automatic_installation = false
 }
 
 require("lspconfig").lua_ls.setup {

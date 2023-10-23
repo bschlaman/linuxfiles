@@ -26,14 +26,13 @@ require("mason-lspconfig").setup {
 	ensure_installed = {
 		"lua_ls",
 		"rust_analyzer",
-		-- The installs below will fail if certain
-		-- dependencies (e.g. `npm`, `go`) are not present
-		-- Force an install with :LspInstall
-		"pyright",
-		"gopls",
-		"tsserver",
+		-- The installs below will fail if certain dependencies
+		-- (e.g. `npm`, `go`) are not present
+		-- TODO (2023.10.23): create a command to install these
+		-- "pyright",
+		-- "gopls",
+		-- "tsserver",
 	},
-	automatic_installation = false
 }
 
 require("lspconfig").lua_ls.setup {

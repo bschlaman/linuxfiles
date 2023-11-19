@@ -119,3 +119,11 @@ function fix_git_history(){
 	echo "Fixing git history from commit $1 onwards"
 	git -c rebase.instructionFormat='%s%nexec GIT_COMMITTER_DATE="%cD" GIT_AUTHOR_DATE="%aD" git commit --amend --no-edit --reset-author' rebase -f $1
 }
+function fix_vscodium(){
+	# wow thanks microsoft
+	# below is currently not enough!  Also need to edit these lines:
+	# TODO (2023.11.08): automate the full solution below
+	# https://github.com/VSCodium/vscodium/discussions/1641
+	sudo sed -i 's/Code - OSS/Visual Studio Code/' \
+		/usr/lib/code/product.json
+}

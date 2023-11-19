@@ -49,7 +49,7 @@ nnoremap <leader>c :execute "set colorcolumn=" . (&colorcolumn == "" ? "80" : ""
 " Surround visual in quotes
 vnoremap <leader>" <Esc>`>a"<Esc>`<i"<Esc>`>2l
 nnoremap <C-s> :%s//g<Left><Left>
-nnoremap vr :so ~/.vimrc<CR>
+nnoremap <leader>vr :so ~/.vimrc<CR>
 nnoremap <leader>d "_d
 vnoremap <leader>d "_d
 vnoremap <leader>p "_dP
@@ -105,6 +105,9 @@ vnoremap <leader>bf c\textbf{<C-R>"}<ESC>
 vnoremap <leader>it c\textit{<C-R>"}<ESC>
 vnoremap <leader>bb c\mathbf{<C-R>"}<ESC>
 vnoremap <leader>bs c\boldsymbol{<C-R>"}<ESC>
+" 'q' for quadratic.
+" Note that this may conflict with some software for which this shortcut is 'quit program'
+nnoremap <C-q> wgea^2<ESC>
 
 autocmd FileType python setlocal ts=4 sts=4 sw=4 et
 autocmd FileType toml setlocal ts=4 sts=4 sw=4 et
@@ -248,9 +251,9 @@ let g:hybrid_transparent_background = 1
 let g:enable_bold_font = 1
 let g:enable_italic_font = 1
 let schemes = [
+	\ "everforest",
 	\ "anderson",
 	\ "badwolf",
-	\ "everforest",
 	\ "gruvbox",
 	\ "hybrid_material",
 	\ "monokai",

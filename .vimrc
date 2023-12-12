@@ -46,18 +46,23 @@ nnoremap <leader>n :set number! relativenumber!<CR>
 nnoremap <leader>p :set paste!<CR>
 " Toggle color column
 nnoremap <leader>c :execute "set colorcolumn=" . (&colorcolumn == "" ? "80" : "")<CR>
-" Surround visual in quotes
+" Surround visual in quotes (redundant to vim-surround)
 vnoremap <leader>" <Esc>`>a"<Esc>`<i"<Esc>`>2l
+" split long bash commands into multiple lines
+vnoremap <leader>f :s/\s\+-/ \\\r\t-/g<CR>:noh<CR>
 nnoremap <C-s> :%s//g<Left><Left>
 nnoremap <leader>vr :so ~/.vimrc<CR>
+
+" perform operations without writing to copy register
 nnoremap <leader>d "_d
 vnoremap <leader>d "_d
 vnoremap <leader>p "_dP
 nnoremap <leader>r "_diwP
 vnoremap <leader>r "_diwP
+" yank to clipboard provider (:h clipboard)
 nnoremap <leader>y "+y
 vnoremap <leader>y "+y
-nnoremap <leader>Y "+Y
+
 " filename completion
 inoremap <C-F> <C-X><C-F>
 " vim-surround mapping

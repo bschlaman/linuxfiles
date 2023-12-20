@@ -22,6 +22,8 @@ require("nvim-treesitter.configs").setup {
 		"typescript",
 		"yaml",
 		"rust",
+		"markdown",
+		"markdown_inline",
 	},
 	auto_install = false,
 	highlight = {

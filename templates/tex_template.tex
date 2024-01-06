@@ -42,7 +42,12 @@
 % =============================
 \usepackage{framed} % nice framed sections
 \usepackage{mdframed} % needed for faside
+% Used for placeholder text.
 \usepackage{lipsum}
+% `lipsum` will cause compilation warning unless the
+% following hyphen substitute is explicitly declared
+\usepackage{hyphsubst} % silence lipsum warning
+\HyphSubstLet{latin}{english} % silence lipsum warning
 
 % ===========================================
 % SECTION 1.5) PACKAGES: color and highlights
@@ -253,6 +258,26 @@
 \section{Lorem text}
 
 \lipsum[1-2]
+
+\section{Math}
+\label{sec:SectionToReference}
+
+Standard form of a hyperplane:
+
+\begin{equation}
+    \label{eq:MyEquation}
+    \boldsymbol{\theta}^T \mathbf{x} + \theta_0 = 0
+\end{equation}
+
+\section{Refs}
+
+\subsection{bnameref (used for section refs)}
+Here is a ref to the previous section:
+\bnameref{sec:SectionToReference}
+
+\subsection{bref (used for equation refs)}
+
+Here is a ref to an equation: \bref{eq:MyEquation}
 
 \section{Code}
 

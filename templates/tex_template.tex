@@ -1,0 +1,295 @@
+% README:
+% This preamble should be copy-pasted at the top of all tex documents.
+% All choices below MUST be well documented!
+
+% \documentclass[titlepage] ensures titlepage
+% (either via `titlepage` env or \maketitle)
+% is on its own page
+\documentclass[titlepage]{article}
+
+% ==========================================
+% SECTION 1.1) PACKAGES: document dimensions
+% ==========================================
+% set dimensions of the document.
+% margin=1in with the rest default is my sweet spot
+\usepackage[margin=1in]{geometry}
+% uncomment this package for debugging the document geometry
+% \usepackage{showframe}
+% can be used to configure par spacing; I just use it with defaults
+% to remove indents in the document, which is better for mathy docs
+\usepackage{parskip}
+% provides \thetitle, \theauthor, \thedate
+% for using in the `titlepage` env
+\usepackage{titling}
+
+% ============================================
+% SECTION 1.2) PACKAGES: fonts and typeography
+% ============================================
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+% =============================
+% SECTION 1.3) PACKAGES: tables
+% =============================
+\usepackage{array} % needed for >{\bfseries}l
+\usepackage{tabularx} % used for auto-width columns in some custom envs
+\usepackage{arydshln} % dashed lines in tabular envs
+\usepackage{booktabs} % provides \toprule, \midrule, \bottomrule
+
+% =============================
+% SECTION 1.4) PACKAGES: errata
+% =============================
+\usepackage{framed} % nice framed sections
+\usepackage{mdframed} % needed for faside
+\usepackage{lipsum}
+
+% ===========================================
+% SECTION 1.5) PACKAGES: color and highlights
+% ===========================================
+\usepackage[colorlinks=true, allcolors=blue]{hyperref} % clickable links in doc
+\usepackage[table,dvipsnames]{xcolor} % dvipsnames for extra colors like RedViolet
+\usepackage{soul} % for \hl
+\usepackage{listings} % code highlights
+
+% ========================================================
+% SECTION 2.1) CUSTOM: math operators and symbol shortcuts
+% ========================================================
+% these are my operators and notation for
+% some common concepts in math and finance
+\DeclareMathOperator{\Cov}{Cov}
+\DeclareMathOperator{\Corr}{Corr}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\Bias}{Bias}
+\DeclareMathOperator{\PV}{PV}
+\DeclareMathOperator{\VaR}{VaR}
+\DeclareMathOperator{\ES}{ES}
+\DeclareMathOperator*{\argmin}{argmin}
+\DeclareMathOperator*{\argmax}{argmax}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\EE}{\mathbb{E}}
+\newcommand{\VV}{\mathbb{V}}
+\newcommand{\PP}{\mathbb{P}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\TT}{\mathbb{T}}
+\newcommand{\N}{\mathcal{N}}
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\R}{\mathcal{R}}
+\newcommand{\E}{\mathcal{E}}
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\X}{\mathcal{X}}
+\newcommand{\G}{\mathcal{G}}
+\newcommand{\D}{\mathcal{D}}
+% `\renewcommand` must be used, since these were existing commands in tex.
+% I am fine with overriding them, as I don't use their defaults.
+\renewcommand{\S}{\mathcal{S}}
+\renewcommand{\L}{\mathcal{L}}
+\renewcommand{\H}{\mathcal{H}}
+
+% =============================
+% SECTION 2.2) CUSTOM: commands
+% =============================
+\newcommand{\node}[2]{\text{Node}(#1, #2)}
+% command for a clickable linked ref in the doc; looks like '(3)'
+\newcommand{\bref}[1]{\hyperref[#1]{(\ref*{#1})}}
+% command for a clickable named ref in the doc; looks like '(3 Some section)'
+\newcommand{\bnameref}[1]{(\ref{#1} \nameref{#1})}
+% simple centered rule for visual sectioning.
+% some additional spacing below it (3x height of letter 'x')
+\newcommand{\brule}{
+    \begin{center}
+    \rule{0.75\textwidth}{0.4pt}\\[3ex]
+    \end{center}
+}
+
+% =================================
+% SECTION 2.3) CUSTOM: environments
+% =================================
+
+% `faside` (fmt-aside) is a grey block used for asides
+\newmdenv[
+    linecolor=gray,
+    linewidth=0.3em,
+    topline=false,
+    bottomline=false,
+    rightline=false,
+    leftmargin=1em,
+    rightmargin=1em,
+    skipabove=2em,
+    skipbelow=2em,
+    backgroundcolor=gray!20,
+]{faside}
+
+% `termdef` (term-definition) is a convenience env
+% which creates a table of terms and definitions.
+% Should be used with `\bitem`
+\newenvironment{termdef}{
+    \renewcommand{\arraystretch}{1.5}
+    \center
+    \tabularx{0.8\textwidth}{>{\bfseries}p{0.2\textwidth}|X}
+    % Due to tabularx weirdness, I need to use the command
+    % versions of things like \tabularx and \center.
+    % The `tabular` version of this is simpler / cleaner,
+    % but I lose the ability to have dynamically sized columns.
+    \toprule
+    \textbf{Term} & \textbf{Definition} \\
+    \midrule
+}{
+    \bottomrule
+    \endtabularx
+    \endcenter
+    \renewcommand{\arraystretch}{1.0}
+}
+% `vardef` (variable-definition) is a convenience env
+% which creates a table of variables and their definitions.
+% Indtended for use as a "where" clause after equations.
+% Should be used with `\bitem`
+\newenvironment{vardef}{
+    \renewcommand{\arraystretch}{1.5}
+    \center
+    \rowcolors{2}{lightgray}{white}
+    \tabularx{0.8\textwidth}{l|X}
+    \toprule
+    \textbf{Variable} & \textbf{Definition} \\
+    \midrule
+}{
+    \bottomrule
+    \endtabularx
+    \endcenter
+    \renewcommand{\arraystretch}{1.0}
+}
+% `\bitem` (b-item) encapsulates a 2 column table row
+\newcommand{\bitem}[2]{
+    #1 & #2 \\
+}
+% Weird thing required for tabularx to handle rowcolors offset correctly.
+% Just accept that it works and is required.
+\newcounter{tblerows}
+\expandafter\let\csname c@tblerows\endcsname\rownum
+
+% ===========================================
+% SECTION 3.1) CODE: color defs
+% ===========================================
+% color definitions.  note \definecolor: color model `gray` - 0 to 1
+\definecolor{CodeBlockBackground}{rgb}{0.96,0.96,0.93}
+\definecolor{CodeInlineBackground}{gray}{0.93}
+% ===========================================
+% SECTION 3.2) CODE: inline code
+% ===========================================
+\sethlcolor{CodeInlineBackground}
+\newcommand{\code}[1]{\texttt{\textcolor{RedViolet}{\hl{\;#1\;}}}}
+% ===========================================
+% SECTION 3.3) CODE: block code
+% ===========================================
+% configure the lstlistings environment
+\lstset{
+    backgroundcolor=\color{CodeBlockBackground},
+    commentstyle=\color{Gray},
+    keywordstyle=\color{purple},
+    numberstyle=\tiny\color{Gray},
+    stringstyle=\color{OliveGreen},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    numbers=left,
+    numbersep=5pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=2
+}
+
+% ================================================
+% SECTION 4) Declare title, author, date, subtitle
+% ================================================
+% `titling` does not have builtin for subtitle, so create it
+\newcommand{\subtitle}[1]{\def\thesubtitle{#1}}
+% surrounding functions with no args (like \LaTeX below)
+% in brackets improves spacing around them
+\title{\bfseries Brendan's {\LaTeX} Template}
+\subtitle{
+    Preamble, titlepage, and examples for use in my math-focused {\LaTeX} documents.
+}
+\author{Brendan Schlaman}
+\date{\today}
+
+\begin{document}
+% ============================
+% SECTION 5) Custom title page
+% ============================
+\begin{titlepage}
+    \centering
+    % spacing from the top.
+    % can also do \vspace*{\stretch{1}} and \vspace*{\stretch{2}}
+    % at the bottom to have relative spacing
+    \vspace*{2in}
+
+    % Either include a newline in src code after each line
+    % or force a newline with `\\`.
+    % Otherwise, each line is treated as part of the same text block
+    % For spacing, either \\[2ex] or \\ (newline) \vspace*{2ex} works
+    {\LARGE \thetitle}\\[2ex]
+    {\small \thesubtitle}\\[2ex]
+    \rule{\textwidth}{1pt}\\[8ex]
+    {\Large \theauthor}\\[2ex]
+    {\thedate}
+\end{titlepage}
+
+% ============================
+% SECTION 6) Table of contents
+% ============================
+\tableofcontents
+% \documentclass[titlepage] takes care of the newpage
+% before the table of contents; manually insert newpage after it
+\newpage
+
+% ============================================
+% ============= BEGIN CONTENT ================
+% ============================================
+
+\section{Lorem text}
+
+\lipsum[1-2]
+
+\section{Code}
+
+\subsection{Inline Code}
+
+Here is an example of inline code:
+\code{df.map(np.log).diff().mean()}
+
+\subsection{Block Code}
+
+\begin{minipage}{\linewidth}
+\begin{lstlisting}[
+    language=Python,
+    frame=single,
+    caption=Calculate YTM for a bond in a given IR environment
+]
+def calculate_ytm(
+    spot_rates: dict[int, float], bond_coupon: float, bond_par: float
+) -> float:
+    """Calculate YTM for a bond in a given IR environment"""
+    _s = "string example"
+    coupons_present_value_total = (
+        bond_par
+        * bond_coupon
+        * sum(
+            (1 + spot_rate) ** -maturity for maturity, spot_rate in spot_rates.items()
+        )
+    )
+    bond_maturity = max(spot_rates)  # assume spot rates cover maturity of bond
+    par_present_value = bond_par * (1 + spot_rates[bond_maturity]) ** -bond_maturity
+    coefficients = (
+        [coupons_present_value_total + par_present_value]
+        + [-bond_coupon * bond_par] * (len(spot_rates) - 1)
+        + [-bond_par * (1 + bond_coupon)]
+    )
+    return np.real(np.roots(coefficients)[0] - 1)
+\end{lstlisting}
+\end{minipage}
+
+\end{document}

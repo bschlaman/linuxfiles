@@ -271,13 +271,22 @@ Standard form of a hyperplane:
 
 \section{Refs}
 
-\subsection{bnameref (used for section refs)}
+\subsection{\texttt{{\normalfont \textbackslash}bnameref} (clickable refs to sections)}
 Here is a ref to the previous section:
 \bnameref{sec:SectionToReference}
 
-\subsection{bref (used for equation refs)}
+\subsection{\texttt{{\normalfont \textbackslash}bref} (clickable refs to labels)}
 
-Here is a ref to an equation: \bref{eq:MyEquation}
+% no real good way to escape backslashes, so use `\textbackslash`.
+% Latex then complains about the font, so use \normalfont
+\code{{\normalfont \textbackslash}bref}
+works for any
+\code{{\normalfont \textbackslash}label}
+
+\begin{itemize}
+    \item ref to an equation: \bref{eq:MyEquation}
+    \item ref to a listing: \bref{lst:CodeBlock1}
+\end{itemize}
 
 \section{Code}
 
@@ -291,8 +300,9 @@ Here is an example of inline code:
 \begin{minipage}{\linewidth}
 \begin{lstlisting}[
     language=Python,
-    frame=single,
-    caption=Calculate YTM for a bond in a given IR environment
+    frame=single, % border around the code block
+    caption=Calculate YTM for a bond in a given IR environment,
+    label={lst:CodeBlock1},
 ]
 def calculate_ytm(
     spot_rates: dict[int, float], bond_coupon: float, bond_par: float

@@ -1,0 +1,28 @@
+% ============================
+% SECTION 5) Custom title page
+% ============================
+\begin{titlepage}
+    \centering
+    % spacing from the top.
+    % can also do \vspace*{\stretch{1}} and \vspace*{\stretch{2}}
+    % at the bottom to have relative spacing
+    \vspace*{2in}
+
+    % Either include a newline in src code after each line
+    % or force a newline with `\\`.
+    % Otherwise, each line is treated as part of the same text block
+    % For spacing, either \\[2ex] or \\ (newline) \vspace*{2ex} works
+    {\LARGE \bfseries \thetitle}\\[2ex]
+    {\small \thesubtitle}\\[2ex]
+    \rule{\textwidth}{1pt}\\[8ex]
+    {\Large \theauthor}\\[2ex]
+    {\thedate}
+\end{titlepage}
+
+% ============================
+% SECTION 6) Table of contents
+% ============================
+\tableofcontents
+% \documentclass[titlepage] takes care of the newpage
+% before the table of contents; manually insert newpage after it
+\newpage

@@ -1,0 +1,175 @@
+% This file has example content to demo the template settings
+
+% ============================================
+\section{Lorem text}
+
+\lipsum[1-2]
+
+% ============================================
+\section{Typeography and fonts}
+
+These packages provide many symbols, fonts, and commands.
+The examples below are a small subset which I've used in the past.
+% TODO (2024.01.06): Make this a nice table
+\begin{itemize}
+    \item \texttt{amsmath} provides many useful commands like \texttt{text}
+    \item \texttt{amssymb} provides symbols like
+        \texttt{triangleq}: $\triangleq$
+        and fonts like \texttt{mathbb}: $\QQ$
+    \item \texttt{mathrsfs} provides \texttt{mathscr} font: $\mathscr{H}$
+    \item \texttt{bbm} provides \texttt{mathbbm} font: $\mathbbm{1}$
+\end{itemize}
+
+
+% ============================================
+\section{Math (\(\lambda\))}
+\label{sec:SectionToReference}
+
+Standard form of a hyperplane:
+
+\begin{equation}
+    \label{eq:MyEquation}
+    \boldsymbol{\theta}^T \mathbf{x} + \theta_0 = 0
+\end{equation}
+
+
+% ============================================
+\section{Tables and figures}
+
+\subsection{Standard \texttt{tabular}}
+
+\begin{center}
+\begin{tabular}{|>{\bfseries}l|l|l|l|l|}
+    \hline
+    Tenor $T_i$ & 0.08 & 0.17 & 0.25 & 0.33 \\
+    \hline
+    Spot & 0.5052\% & 0.5295\% & 0.5500\% & 0.5682\% \\
+    \hline
+    $Z(0, T_i)$ & 0.9996 & 0.9991 & 0.9986 & 0.9981 \\
+    \hline
+    Forward $f_i$ & 0.5063\% & 0.5552\% & 0.5927\% & 0.6244\% \\
+    \hline
+\end{tabular}
+\end{center}
+
+\subsection{Custom env: \texttt{vardef}}
+
+For a model $f$ and an instance $x$,
+the SHAP value $\phi_i$ for feature $i$ is given by
+\begin{equation}
+    \label{eq:SHAPValue}
+    \phi_i = \sum_{S \subseteq F \setminus \{i\}}
+    \frac{|S|! (|F| - |S| - 1)!}{|F|!} \left[
+        f_x(S \cup \{i\}) - f_x(S)
+    \right]
+\end{equation}
+
+\begin{vardef}
+    \bitem{$\phi_i(x)$}{
+        the SHAP value for feature $i$ for the instance $x$.
+    }
+    \bitem{$F$}{
+        the set of all features
+    }
+    \bitem{$S$}{
+        a subset of all features $F$ excluding $i$
+    }
+    \bitem{$|S|$}{
+        the cardinality of set $S$
+    }
+    \bitem{$f_x(S)$}{
+        prediction of the model $f$ using feature subset $S$
+    }
+\end{vardef}
+
+The equation \bref{eq:SHAPValue} calculates the average impact
+of adding the feature $i$ to all possible subsets of features.
+
+\subsection{Custom env: \texttt{termdef}}
+
+\begin{termdef}
+    \bitem{
+        Bootstrapping / Stripping
+    }{
+        This method involves deriving the zero rates by sequentially stripping
+        out the coupons, effectively isolating the yield of each cash flow.
+        It's done by subtracting the present value of each coupon from the bond price,
+        thereby revealing the yield of each cash flow.
+    }
+    \bitem{
+        Parametric / Interpolation Models
+    }{
+        These models use interpolation techniques combined with smoothing to
+        fit the curve data points to a predefined function.
+        A common approach in this category is the
+        \textit{Nelson-Siegel-Svensson methodology},
+        which fits the yield curve data points to a
+        specially designed functional form.
+    }
+\end{termdef}
+
+
+% ============================================
+\section{Refs}
+
+\subsection{\texttt{{\normalfont \textbackslash}bnameref} (clickable refs to sections)}
+Here is a ref to the previous section:
+\bnameref{sec:SectionToReference}
+
+\subsection{\texttt{{\normalfont \textbackslash}bref} (clickable refs to labels)}
+
+% no real good way to escape backslashes, so use `\textbackslash`.
+% Latex then complains about the font, so use \normalfont
+\code{{\normalfont \textbackslash}bref}
+works for any
+\code{{\normalfont \textbackslash}label}
+
+\begin{itemize}
+    \item ref to an equation: \bref{eq:MyEquation}
+    \item ref to a listing: \bref{lst:CodeBlock1}
+\end{itemize}
+
+\subsection{Bib refs}
+
+Here is a ref from the \code{.bib} file: \textcite{Guilhoto2018}.
+
+
+% ============================================
+\section{Code}
+
+\subsection{Inline Code}
+
+Here is an example of inline code:
+\code{df.map(np.log).diff().mean()}
+
+\subsection{Block Code}
+
+\begin{minipage}{\linewidth}
+\begin{lstlisting}[
+    language=Python,
+    frame=single, % border around the code block
+    caption=Calculate YTM for a bond in a given IR environment,
+    label={lst:CodeBlock1},
+]
+def calculate_ytm(
+    spot_rates: dict[int, float], bond_coupon: float, bond_par: float
+) -> float:
+    """Calculate YTM for a bond in a given IR environment"""
+    _s = "string example"
+    coupons_present_value_total = (
+        bond_par
+        * bond_coupon
+        * sum(
+            (1 + spot_rate) ** -maturity for maturity, spot_rate in spot_rates.items()
+        )
+    )
+    bond_maturity = max(spot_rates)  # assume spot rates cover maturity of bond
+    par_present_value = bond_par * (1 + spot_rates[bond_maturity]) ** -bond_maturity
+    coefficients = (
+        [coupons_present_value_total + par_present_value]
+        + [-bond_coupon * bond_par] * (len(spot_rates) - 1)
+        + [-bond_par * (1 + bond_coupon)]
+    )
+    return np.real(np.roots(coefficients)[0] - 1)
+\end{lstlisting}
+\end{minipage}

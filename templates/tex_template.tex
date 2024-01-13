@@ -48,6 +48,8 @@
 % following hyphen substitute is explicitly declared
 \usepackage{hyphsubst} % silence lipsum warning
 \HyphSubstLet{latin}{english} % silence lipsum warning
+\usepackage{biblatex}
+\addbibresource{refs.bib}
 
 % ===========================================
 % SECTION 1.5) PACKAGES: color and highlights
@@ -440,5 +442,7 @@ def calculate_ytm(
     return np.real(np.roots(coefficients)[0] - 1)
 \end{lstlisting}
 \end{minipage}
+
+\printbibliography
 
 \end{document}

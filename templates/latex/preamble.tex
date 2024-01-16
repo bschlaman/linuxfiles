@@ -21,6 +21,13 @@
 % provides \thetitle, \theauthor, \thedate
 % for using in the `titlepage` env
 \usepackage{titling}
+% nice headers.  What populates \leftmark and \rightmark
+% is determined by the document type; below is a simple config I like
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+% \slshape to slant instead of italics with \itshape
+\lhead{\slshape\nouppercase\leftmark}
+\rhead{\theauthor}
 
 % ============================================
 % SECTION 1.2) PACKAGES: fonts and typeography
@@ -30,12 +37,18 @@
 \usepackage{bbm} % provides \mathbbm
 \usepackage{mathrsfs} % provides \mathscr
 
-% =============================
-% SECTION 1.3) PACKAGES: tables
-% =============================
+% =========================================
+% SECTION 1.3) PACKAGES: tables and figures
+% =========================================
 % tabularx must be imported after booktabs!
 \usepackage{booktabs} % provides \toprule, \midrule, \bottomrule
 \usepackage{tabularx} % used for auto-width columns in some custom envs
+\usepackage{float} % floating tables and figures
+\usepackage{graphicx} % provides \includegraphics for images
+% provides additional configuration for graphics like framing
+% `export` exports these options to \includegraphics;
+% i.e. \includegraphics[frame]
+\usepackage[export]{adjustbox}
 
 % =============================
 % SECTION 1.4) PACKAGES: errata

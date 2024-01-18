@@ -108,6 +108,7 @@ highlight Comment cterm=italic gui=italic
 " latex remaps
 vnoremap <leader>bf c\textbf{<C-R>"}<ESC>
 vnoremap <leader>it c\textit{<C-R>"}<ESC>
+vnoremap <leader>tt c\texttt{<C-R>"}<ESC>
 vnoremap <leader>bb c\mathbf{<C-R>"}<ESC>
 vnoremap <leader>bs c\boldsymbol{<C-R>"}<ESC>
 " 'q' for quadratic.

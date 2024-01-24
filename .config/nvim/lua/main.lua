@@ -84,6 +84,8 @@ require("lspconfig").pyright.setup {
 	on_attach = on_attach,
 }
 
+require("nvim-web-devicons").setup{}
+
 require("lspconfig").rust_analyzer.setup{
 	on_attach = on_attach,
 	settings = {

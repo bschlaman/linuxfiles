@@ -227,6 +227,7 @@ call plug#begin()
 
 	" neovim lsp stuff
 	Plug 'nvim-lua/plenary.nvim' " dependency of telescope
+	Plug 'nvim-tree/nvim-web-devicons' " optional dependency of telescope; requires a nerd font
 	Plug 'nvim-telescope/telescope.nvim'
 	Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 	Plug 'williamboman/mason.nvim'

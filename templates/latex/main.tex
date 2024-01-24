@@ -122,7 +122,7 @@ Here is a ref to the previous section:
 % Latex then complains about the font, so use \normalfont
 \code{{\normalfont \textbackslash}bref}
 works for any
-\code{{\normalfont \textbackslash}label}
+\texttt{{\normalfont \textbackslash}label}
 
 \begin{itemize}
     \item ref to an equation: \bref{eq:MyEquation}
@@ -133,6 +133,18 @@ works for any
 
 Here is a ref from the \code{.bib} file: \textcite{Guilhoto2018}.
 
+\subsection{Acronyms}
+
+\newacronym{EMH}{EMH}{efficient market hypothesis}
+\newacronym{RNN}{RNN}{recurrent neural network}
+\newacronym{OCR}{OCR}{optical character recognition}
+
+\begin{itemize}
+    \item The first time an acronym is used: \gls{EMH}
+    \item The second time an acronym is used: \gls{EMH}
+    \item First time with capital letter: \Gls{OCR}
+    \item Custom command for title casing: \GlsTC{RNN}
+\end{itemize}
 
 % ============================================
 \section{Code}

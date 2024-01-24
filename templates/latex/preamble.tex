@@ -61,8 +61,6 @@
 % following hyphen substitute is explicitly declared
 \usepackage{hyphsubst} % silence lipsum warning
 \HyphSubstLet{latin}{english} % silence lipsum warning
-\usepackage{biblatex}
-\addbibresource{refs.bib}
 
 % ===========================================
 % SECTION 1.5) PACKAGES: color and highlights
@@ -84,6 +82,19 @@
 \usepackage[table,dvipsnames]{xcolor} % dvipsnames for extra colors like RedViolet
 \usepackage{soul} % for \hl
 \usepackage{listings} % code highlights
+
+% ==================================================
+% SECTION 1.5) PACKAGES: bibliography and glossaries
+% ==================================================
+% glossaries must be loaded after hyperref
+% automake is required to automatically compile required files
+\usepackage[automake,acronym]{glossaries}
+% there is no out-of-the-box title case solution, so defining a custom one
+% this does not carry over to the Acronyms glossary section
+\newcommand{\GlsTC}[1]{\glslink{#1}{\glsentrytitlecase{#1}{long}}}
+\makeglossaries
+\usepackage{biblatex}
+\addbibresource{refs.bib}
 
 % ========================================================
 % SECTION 2.1) CUSTOM: math operators and symbol shortcuts

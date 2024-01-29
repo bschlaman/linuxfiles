@@ -96,46 +96,14 @@
 \usepackage{biblatex}
 \addbibresource{refs.bib}
 
-% ========================================================
-% SECTION 2.1) CUSTOM: math operators and symbol shortcuts
-% ========================================================
-% these are my operators and notation for
-% some common concepts in math and finance
-\DeclareMathOperator{\Cov}{Cov}
-\DeclareMathOperator{\Corr}{Corr}
-\DeclareMathOperator{\Var}{Var}
-\DeclareMathOperator{\Bias}{Bias}
-\DeclareMathOperator{\PV}{PV}
-\DeclareMathOperator{\VaR}{VaR}
-\DeclareMathOperator{\ES}{ES}
-\DeclareMathOperator*{\argmin}{argmin}
-\DeclareMathOperator*{\argmax}{argmax}
-\newcommand{\CC}{\mathbb{C}}
-\newcommand{\RR}{\mathbb{R}}
-\newcommand{\EE}{\mathbb{E}}
-\newcommand{\VV}{\mathbb{V}}
-\newcommand{\PP}{\mathbb{P}}
-\newcommand{\QQ}{\mathbb{Q}}
-\newcommand{\TT}{\mathbb{T}}
-\newcommand{\N}{\mathcal{N}}
-\newcommand{\F}{\mathcal{F}}
-\newcommand{\R}{\mathcal{R}}
-\newcommand{\E}{\mathcal{E}}
-\newcommand{\B}{\mathcal{B}}
-\newcommand{\X}{\mathcal{X}}
-\newcommand{\G}{\mathcal{G}}
-\newcommand{\D}{\mathcal{D}}
-% `\renewcommand` must be used, since these were existing commands in tex.
-% I am fine with overriding them, as I don't use their defaults.
-\renewcommand{\S}{\mathcal{S}}
-\renewcommand{\L}{\mathcal{L}}
-\renewcommand{\H}{\mathcal{H}}
+% =============================
+% SECTION 2.1) CUSTOM: commands
+% =============================
 
-% =============================
-% SECTION 2.2) CUSTOM: commands
-% =============================
 \newcommand{\node}[2]{\text{Node}(#1, #2)}
 % command for a clickable linked ref in the doc; looks like '(3)'
+% this should be used for things OTHER than equations,
+% because the behavior is basically the same as \eqref
 \newcommand{\bref}[1]{\hyperref[#1]{(\ref*{#1})}}
 % command for a clickable named ref in the doc; looks like '(3 Some section)'
 \newcommand{\bnameref}[1]{(\ref{#1} \nameref{#1})}
@@ -148,7 +116,7 @@
 }
 
 % =================================
-% SECTION 2.3) CUSTOM: environments
+% SECTION 2.2) CUSTOM: environments
 % =================================
 
 % `faside` (fmt-aside) is a grey block used for asides
@@ -261,3 +229,53 @@
 }
 \author{Brendan Schlaman}
 \date{\today}
+
+
+% =====================================================
+% SECTION 5) CUSTOM math operators and common equations
+% =====================================================
+% these are my operators and notation for
+% some common concepts in math and finance
+\DeclareMathOperator{\Cov}{Cov}
+\DeclareMathOperator{\Corr}{Corr}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\Bias}{Bias}
+\DeclareMathOperator{\PV}{PV}
+\DeclareMathOperator{\VaR}{VaR}
+\DeclareMathOperator{\ES}{ES}
+\DeclareMathOperator*{\argmin}{argmin}
+\DeclareMathOperator*{\argmax}{argmax}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\EE}{\mathbb{E}}
+\newcommand{\VV}{\mathbb{V}}
+\newcommand{\PP}{\mathbb{P}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\TT}{\mathbb{T}}
+\newcommand{\N}{\mathcal{N}}
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\R}{\mathcal{R}}
+\newcommand{\E}{\mathcal{E}}
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\X}{\mathcal{X}}
+\newcommand{\G}{\mathcal{G}}
+\newcommand{\D}{\mathcal{D}}
+% `\renewcommand` must be used, since these were existing commands in tex.
+% I am fine with overriding them, as I don't use their defaults.
+\renewcommand{\S}{\mathcal{S}}
+\renewcommand{\L}{\mathcal{L}}
+\renewcommand{\H}{\mathcal{H}}
+
+% \newcommand{\Ito}[1]{Itô #1 \eqref{eq:Ito#1}}
+% \newcommand{\Ito}{Itô}
+% TODO: latex messes up the spacing when using \Ito instead of \Ito{}
+% followed by a space
+\makeatletter
+\newcommand{\Ito}[1][]{%
+    Itô%
+    \ifx\@empty#1\@empty
+    \else
+        ~#1 \eqref{eq:Ito#1}%
+    \fi
+}
+\makeatother

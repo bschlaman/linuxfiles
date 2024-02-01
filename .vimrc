@@ -50,6 +50,7 @@ nnoremap <leader>c :execute "set colorcolumn=" . (&colorcolumn == "" ? "80" : ""
 vnoremap <leader>" <Esc>`>a"<Esc>`<i"<Esc>`>2l
 " split long bash commands into multiple lines
 vnoremap <leader>f :s/\s\+-/ \\\r\t-/g<CR>:noh<CR>
+nnoremap <leader>f :s/{\zs\([^}]*\)\ze}/\="\r".repeat(" ", &shiftwidth).submatch(1)."\r"/<CR>
 nnoremap <C-s> :%s//g<Left><Left>
 nnoremap <leader>vr :so ~/.vimrc<CR>
 
@@ -123,6 +124,7 @@ autocmd FileType markdown setlocal ts=2 sts=2 sw=2 et
 autocmd FileType tf setlocal ts=2 sts=2 sw=2 et
 autocmd FileType java setlocal ts=4 sts=4 sw=4 et
 autocmd FileType rust setlocal ts=4 sts=4 sw=4 et
+autocmd FileType tex setlocal ts=4 sts=4 sw=4 et
 
 
 function! MakeListItem()

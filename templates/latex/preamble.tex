@@ -94,7 +94,13 @@
 \newcommand{\GlsTC}[1]{\glslink{#1}{\glsentrytitlecase{#1}{long}}}
 \makeglossaries
 \usepackage{biblatex}
+% bib resource for academic-style papers and books
 \addbibresource{refs.bib}
+% bib resource for links
+\addbibresource{links.bib}
+% cite urls with a title and hyperlink to the full url in the bibliography
+\newcommand{\urlcite}[1]{\citetitle{#1} \cite{#1}}
+
 
 % =============================
 % SECTION 2.1) CUSTOM: commands

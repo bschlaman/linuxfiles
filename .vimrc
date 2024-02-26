@@ -50,6 +50,7 @@ nnoremap <leader>c :execute "set colorcolumn=" . (&colorcolumn == "" ? "80" : ""
 vnoremap <leader>" <Esc>`>a"<Esc>`<i"<Esc>`>2l
 " split long bash commands into multiple lines
 vnoremap <leader>f :s/\s\+-/ \\\r\t-/g<CR>:noh<CR>
+" TODO: figure out what this does
 nnoremap <leader>f :s/{\zs\([^}]*\)\ze}/\="\r".repeat(" ", &shiftwidth).submatch(1)."\r"/<CR>
 nnoremap <C-s> :%s//g<Left><Left>
 nnoremap <leader>vr :so ~/.vimrc<CR>
@@ -75,13 +76,17 @@ vmap s S
 inoremap {<CR> {<CR>}<Esc>O
 
 " Resize splits
-noremap <C-n> <C-w><
-noremap <C-m> <C-w>>
+noremap <C-m> <C-w><
+" noremap <C-n> <C-w>>
 " Move between splits
 noremap <C-h> <C-w>h
 noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
+
+" quickfix shortcuts
+noremap <C-n> :cn<CR>
+noremap <C-p> :cp<CR>
 
 " Resizing and moving in terminal mode
 if has("terminal")

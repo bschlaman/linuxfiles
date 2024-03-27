@@ -1,7 +1,15 @@
-
 vim.opt.mouse = nil
 
-vim.o.updatetime = 250
+-- vscode
+if vim.g.vscode then
+	vim.cmd("syntax off")
+	vim.g.clipboard = vim.g.vscode_clipboard
+else
+	-- vscode-neovim recommends not overriding these
+	-- 0: globally
+	-- (Is this even working?  "Identifier" doesn't seem to match anything, at least for python)
+	vim.api.nvim_set_hl(0, "Identifier", { fg = "LightGray" })
+end
 
 local on_attach = function(client, bufnr)
 	vim.api.nvim_create_autocmd("CursorHold", {
@@ -21,7 +29,7 @@ local on_attach = function(client, bufnr)
 	})
 end
 
-require("mason").setup()
+require("mason").setup{}
 require("mason-lspconfig").setup {
 	ensure_installed = {
 		"lua_ls",
@@ -35,28 +43,12 @@ require("mason-lspconfig").setup {
 	},
 }
 
-require("lspconfig").lua_ls.setup {
-	on_attach = on_attach,
-	settings = {
-		Lua = {
-			workspace = {
-				library = vim.api.nvim_get_runtime_file("", true),
-				checkThirdParty = false,
-			},
-			diagnostics = { globals = { "vim" } },
-			telemetry = {
-				enable = false,
-			},
-		},
-	},
-}
-
 -- TODO: currently not working
 require("lsp-inlayhints").setup {
 	on_attach = on_attach,
 }
 
-require("go").setup({
+require("go").setup{
 	auto_format = true,
 	auto_lint = true,
 	linter = 'revive',
@@ -74,17 +66,31 @@ require("go").setup({
 	-- quick type
 	quick_type_flags = {'--just-types'},
 
-})
+}
 
-require("lspconfig").gopls.setup { on_attach = on_attach }
+require("lspconfig").gopls.setup{ on_attach = on_attach }
 
-require("lspconfig").tsserver.setup { on_attach = on_attach }
+require("lspconfig").tsserver.setup{ on_attach = on_attach }
 
-require("lspconfig").pyright.setup {
+require("lspconfig").pyright.setup{
 	on_attach = on_attach,
 }
 
-require("nvim-web-devicons").setup{}
+require("lspconfig").lua_ls.setup{
+	on_attach = on_attach,
+	settings = {
+		Lua = {
+			workspace = {
+				library = vim.api.nvim_get_runtime_file("", true),
+				checkThirdParty = false,
+			},
+			diagnostics = { globals = { "vim" } },
+			telemetry = {
+				enable = false,
+			},
+		},
+	},
+}
 
 require("lspconfig").rust_analyzer.setup{
 	on_attach = on_attach,
@@ -97,5 +103,7 @@ require("lspconfig").rust_analyzer.setup{
 		"rustup", "run", "stable", "rust-analyzer",
 	}
 }
-require("crates").setup()
 
+require("crates").setup{}
+
+require("nvim-web-devicons").setup{}

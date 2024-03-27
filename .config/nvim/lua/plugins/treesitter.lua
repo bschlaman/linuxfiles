@@ -33,6 +33,3 @@ require("nvim-treesitter.configs").setup {
 		additional_vim_regex_highlighting = false,
 	},
 }
-
--- 0: globally
-vim.api.nvim_set_hl(0, "Identifier", { fg = "LightGray" })

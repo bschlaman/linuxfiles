@@ -84,6 +84,9 @@ noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
 
+vnoremap < <gv
+vnoremap > >gv
+
 " quickfix shortcuts
 noremap <C-n> :cn<CR>
 noremap <C-p> :cp<CR>

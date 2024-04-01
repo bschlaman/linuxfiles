@@ -65,6 +65,9 @@ vnoremap <leader>r "_diwP
 nnoremap <leader>y "+y
 vnoremap <leader>y "+y
 
+" code folding (candidate config)
+nnoremap zff zf%
+
 " filename completion
 inoremap <C-F> <C-X><C-F>
 " vim-surround mapping

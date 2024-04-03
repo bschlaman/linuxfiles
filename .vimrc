@@ -78,6 +78,9 @@ vmap s S
 " Autocomplete brackets
 inoremap {<CR> {<CR>}<Esc>O
 
+" make a word a tag, in any filetype
+nnoremap mt yiwi<<Esc>ea></<Esc>pa><Esc>F<
+
 " Resize splits
 noremap <C-m> <C-w><
 " noremap <C-n> <C-w>>
@@ -159,38 +162,6 @@ endfunction
 " vnoremap cx :s#\%V\(.*\)\%V\(.\)#\/*\1\2*\/#g <CR> :nohlsearch <CR>
 " vnoremap cu :s#\%V/\*\<Bar>\*/\%V##g <CR> :nohlsearch <CR>
 
-" make a word a tag, in any filetype
-nnoremap mt yiwi<<Esc>ea></<Esc>pa><Esc>F<
-
-" ==============
-" syntax plugins
-" ==============
-
-" https://github.com/fatih/vim-go.git
-" TODO (2022.10.07): remove those which are defaults
-let g:go_fmt_command = "goimports"
-let g:go_highlight_array_whitespace_error = 1
-let g:go_highlight_chan_whitespace_error = 1
-let g:go_highlight_extra_types = 1
-let g:go_highlight_space_tab_error = 0
-let g:go_highlight_trailing_whitespace_error = 0
-let g:go_highlight_operators = 1
-let g:go_highlight_types = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_string_spellcheck = 1
-let g:go_highlight_format_strings = 1
-let g:go_highlight_diagnostic_errors = 1
-let g:go_highlight_diagnostic_warnings = 1
-" vim-python/python-syntax
-let g:python_highlight_all = 1
-let g:python_highlight_space_errors = 0
-let g:python_highlight_func_calls = 0
-
-" https://github.com/vim-python/python-syntax.git
-highlight link pythonBuiltinFunc Yellow
-highlight link javaIdentifier NONE
-highlight link javaDelimiter NONE
-
 " autocmd BufWritePre *.py Black
 let g:black_preview = "true"
 
@@ -271,6 +242,7 @@ let g:hybrid_transparent_background = 1
 let g:enable_bold_font = 1
 let g:enable_italic_font = 1
 let schemes = [
+	\ "gruvbox-material",
 	\ "everforest",
 	\ "anderson",
 	\ "badwolf",
@@ -279,21 +251,25 @@ let schemes = [
 	\ "monokai",
 	\ "tender",
 	\ "deus",
-	\ "gruvbox-material",
 	\ ]
-" 1) first, look for some common color schemes I like
-for name in schemes
-	try
-		execute 'colorscheme ' name
-		break
-	catch
-	endtry
-endfor
 
-" 2) if there is an override, set it
+" 1) if there is an override, set it
+" note that running colorscheme more than once can cause weird behavior
 if !empty(getenv('VIM_COLORSCHEME_OVERRIDE'))
 	execute 'colorscheme ' getenv('VIM_COLORSCHEME_OVERRIDE')
+else
+	" 2) else, look for some common color schemes I like
+	for name in schemes
+		try
+			execute 'colorscheme ' name
+			break
+		catch
+		endtry
+	endfor
 end
+
+" Enforce italicized comments (must come after colorscheme is loaded)
+highlight Comment cterm=italic gui=italic
 
 " DEPRECATED
 
@@ -323,3 +299,33 @@ autocmd FileType java inoremap <C-s> System.out.println("");<left><left><left>
 " Plug 'hashivim/vim-terraform'
 " Plug 'TovarishFin/vim-solidity'
 " Plug 'pangloss/vim-javascript'
+
+" ==============
+" syntax plugins
+" ==============
+
+" https://github.com/fatih/vim-go.git
+" TODO (2022.10.07): remove those which are defaults
+" let g:go_fmt_command = "goimports"
+" let g:go_highlight_array_whitespace_error = 1
+" let g:go_highlight_chan_whitespace_error = 1
+" let g:go_highlight_extra_types = 1
+" let g:go_highlight_space_tab_error = 0
+" let g:go_highlight_trailing_whitespace_error = 0
+" let g:go_highlight_operators = 1
+" let g:go_highlight_types = 1
+" let g:go_highlight_fields = 1
+" let g:go_highlight_string_spellcheck = 1
+" let g:go_highlight_format_strings = 1
+" let g:go_highlight_diagnostic_errors = 1
+" let g:go_highlight_diagnostic_warnings = 1
+" vim-python/python-syntax
+" let g:python_highlight_all = 1
+" let g:python_highlight_space_errors = 0
+" let g:python_highlight_func_calls = 0
+
+" https://github.com/vim-python/python-syntax.git
+" I don't think these are working
+" highlight link pythonBuiltinFunc Yellow
+" highlight link javaIdentifier NONE
+" highlight link javaDelimiter NONE

@@ -38,6 +38,7 @@ alias glp="git --no-pager log --graph --pretty=tformat:'%C(auto)%h%d (%C(dim)%ch
 alias tf="terraform"
 alias tmux="tmux -u"
 alias mem="ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head"
+alias sts="aws sts get-caller-identity | jq '.Arn'"
 
 alias src="source ~/.bash_profile"
 alias vp="vim -S ~/.vim_sessions/profiles.vim"

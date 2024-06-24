@@ -165,8 +165,12 @@ endfunction
 " autocmd BufWritePre *.py Black
 let g:black_preview = "true"
 
-" this is so pynvim works if I'm in a python venv
-" I want my global pynvim installation to be accessed
+" g:python3_host_prog configures the python executable
+" that loads and runs plugins written in python (like Black and Isort).
+" This only really matters to import pynvim;
+" it has nothing to do with pyright via Mason.
+" It's useful to set as absolute path '/usr/bin/python' if I am in a virtualenv
+" so that I can just use my global installation of pynvim.
 let g:python3_host_prog = '/usr/bin/python'
 " allow for overriding this value (useful when /usr/bin/python is python2)
 if !empty(getenv('PYTHON3_HOST_PROG_OVERRIDE'))

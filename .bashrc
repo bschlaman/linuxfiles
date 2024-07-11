@@ -20,4 +20,4 @@ shopt -s histappend
 # disable Ctrl-S and Ctrl-Q (freeze and unfreeze) in terminal
 [[ $- == *i* ]] && stty -ixon
 # fix for st del key
-tput smkx
+[[ $- == *i* ]] && tput smkx

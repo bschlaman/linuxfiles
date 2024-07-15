@@ -9,8 +9,7 @@ export PATH=$PATH:$HOME/.bin/go/bin
 export PATH=$PATH:$HOME/.bin/neovim/bin
 export PATH=$PATH:$HOME/.cargo/bin
 export PATH=$PATH:$HOME/go/bin
-[ -d $HOME/.bin/node-v*-linux-x64 ] && export PATH=$PATH:$(ls -d $HOME/.bin/node-v*-linux-x64)/bin
-
+export PATH=$PATH:$(ls -d $HOME/.bin/node-v*-linux-x64 | sort -V | tail -n 1)/bin
 
 # HERE WE GO
 type nvim >/dev/null 2>&1 && alias vim=nvim

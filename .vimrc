@@ -28,6 +28,10 @@ set tabstop=2 " whitespace cols for \t
 set softtabstop=2 " whitespace cols for <TAB> or backspace
 set shiftwidth=2 " whitespace cols for indentation
 set noexpandtab
+" Show tabs and special characters in insert mode
+" Wanted this to be visual mode, but there is no VisualEnter/Exit event
+autocmd InsertEnter * set list
+autocmd InsertLeave * set nolist
 
 syntax on
 set termguicolors
@@ -117,6 +121,8 @@ autocmd BufEnter *.aliases set syntax=bash
 autocmd BufEnter *.work_aliases set syntax=bash
 " in case colorscheme doesn't recognize dockerfiles
 autocmd BufEnter *.dockerfile set filetype=dockerfile
+" I lose json syntax hl, but vscode will properly indent things
+autocmd BufEnter *.ipynb set filetype=jupyter
 " Enforce italicized comments (not working - neovim altering this behavior?)
 highlight Comment cterm=italic gui=italic
 
@@ -131,6 +137,7 @@ vnoremap <leader>bs c\boldsymbol{<C-R>"}<ESC>
 nnoremap <C-q> wgea^2<ESC>
 
 autocmd FileType python setlocal ts=4 sts=4 sw=4 et
+autocmd FileType jupyter setlocal ts=4 sts=4 sw=4 et " custom FileType
 autocmd FileType toml setlocal ts=4 sts=4 sw=4 et
 autocmd FileType solidity setlocal ts=4 sts=4 sw=4 et
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 et

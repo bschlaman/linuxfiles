@@ -39,7 +39,7 @@ require("mason-lspconfig").setup {
 		-- TODO (2023.10.23): create a command to install these
 		-- "pyright",
 		-- "gopls",
-		-- "tsserver",
+		-- "ts_ls",
 	},
 }
 
@@ -70,7 +70,7 @@ require("go").setup{
 
 require("lspconfig").gopls.setup{ on_attach = on_attach }
 
-require("lspconfig").tsserver.setup{ on_attach = on_attach }
+require("lspconfig").ts_ls.setup{ on_attach = on_attach }
 
 require("lspconfig").pyright.setup{
 	on_attach = on_attach,

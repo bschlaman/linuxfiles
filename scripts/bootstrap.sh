@@ -74,11 +74,15 @@ select opt in $options ; do
 	esac
 done
 
+echo "writing PS1 to ~/.aliases"
+echo 'export PS1="\[\e[34m\][\[\e[0m\]\[\e[37m\]\u\[\e[34m\]@\[\e[37m\]\h \[\e[35m\]\W\$(prompt_git \"\[\e[37m\] on \[\e[32m\]\")\[\e[34m\]]\[\e[37m\]$ \[\e[0m\]"' | tee -a ~/.aliases
 # other programs
-echo 'export PS1="\[\e[34m\][\[\e[0m\]\[\e[37m\]\u\[\e[34m\]@\[\e[37m\]\h \[\e[35m\]\W\$(prompt_git \"\[\e[37m\] on \[\e[32m\]\")\[\e[34m\]]\[\e[37m\]$ \[\e[0m\]"' >> ~/.aliases
-PROGRAMS="vim jq htop figlet git which ripgrep"
+PROGRAMS="vim jq htop figlet git which ripgrep tmux"
+# unfortunately, biber depends on perl
+LATEX_PROGRAMS="texlive-latex texlive-latexrecommended texlive-latexextra texlive-basic texlive-binextra texlive-fontsrecommended texlive-fontsextra texlive-plaingeneric biber texlive-bibtexextra"
 echo -e "You might want to install..."
 echo -e "sudo pacman -Sy ${PROGRAMS}"
+echo -e "sudo pacman -S ${LATEX_PROGRAMS}"
 
 echo -e "${BLD}source ~/.bashrc${NC}"
 

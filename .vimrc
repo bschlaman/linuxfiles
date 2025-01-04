@@ -94,6 +94,10 @@ noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
 
+" terminal-like navigation in insert mode
+inoremap <C-a> <Esc>I
+inoremap <C-e> <Esc>A
+
 vnoremap < <gv
 vnoremap > >gv
 
@@ -132,6 +136,7 @@ vnoremap <leader>it c\textit{<C-R>"}<ESC>
 vnoremap <leader>tt c\texttt{<C-R>"}<ESC>
 vnoremap <leader>bb c\mathbf{<C-R>"}<ESC>
 vnoremap <leader>bs c\boldsymbol{<C-R>"}<ESC>
+vnoremap <leader>) c\left(<C-R>"\right)<ESC>
 " 'q' for quadratic.
 " Note that this may conflict with some software for which this shortcut is 'quit program'
 nnoremap <C-q> wgea^2<ESC>

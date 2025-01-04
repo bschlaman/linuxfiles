@@ -51,7 +51,7 @@ nnoremap <leader>p :set paste!<CR>
 " Toggle color column
 nnoremap <leader>c :execute "set colorcolumn=" . (&colorcolumn == "" ? "80" : "")<CR>
 " Surround visual in quotes (redundant to vim-surround)
-vnoremap <leader>" <Esc>`>a"<Esc>`<i"<Esc>`>2l
+" vnoremap <leader>" <Esc>`>a"<Esc>`<i"<Esc>`>2l
 " split long bash commands into multiple lines
 vnoremap <leader>f :s/\s\+-/ \\\r\t-/g<CR>:noh<CR>
 " TODO: figure out what this does
@@ -140,6 +140,10 @@ vnoremap <leader>) c\left(<C-R>"\right)<ESC>
 " 'q' for quadratic.
 " Note that this may conflict with some software for which this shortcut is 'quit program'
 nnoremap <C-q> wgea^2<ESC>
+" vim-surround: latex environment, e.g. align*
+let g:surround_{char2nr("l")} = "\\begin{\1environment: \1}\n\t\r\n\\end{\1\1}"
+" vim-surround: latex \[\]
+let g:surround_{char2nr("e")} = "\\[\n\t\r\n\\]"
 
 autocmd FileType python setlocal ts=4 sts=4 sw=4 et
 autocmd FileType jupyter setlocal ts=4 sts=4 sw=4 et " custom FileType

@@ -101,6 +101,9 @@ inoremap <C-e> <Esc>A
 vnoremap < <gv
 vnoremap > >gv
 
+" highlight the last modified area of text
+nnoremap <expr> gV '`[' . getregtype()[0] . '`]'
+
 " quickfix shortcuts
 noremap <C-n> :cn<CR>
 noremap <C-p> :cp<CR>

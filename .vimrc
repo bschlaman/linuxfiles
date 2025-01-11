@@ -2,8 +2,6 @@ autocmd VimEnter * :call Init()
 function Init()
 	if exists("g:colors_name")
 		echom "using colorscheme: " g:colors_name
-	else
-		echom "no colorscheme found"
 	endif
 endfunction
 
@@ -130,8 +128,6 @@ autocmd BufEnter *.work_aliases set syntax=bash
 autocmd BufEnter *.dockerfile set filetype=dockerfile
 " I lose json syntax hl, but vscode will properly indent things
 autocmd BufEnter *.ipynb set filetype=jupyter
-" Enforce italicized comments (not working - neovim altering this behavior?)
-highlight Comment cterm=italic gui=italic
 
 " latex remaps
 vnoremap <leader>bf c\textbf{<C-R>"}<ESC>
@@ -198,7 +194,7 @@ endif
 
 " https://github.com/prettier/vim-prettier
 " --quote-props consistent; --use-tabs true (although this seems to be fine already); --arrow-parens avoid
-let g:prettier#autoformat = 1
+let g:prettier#autoformat = 0
 let g:prettier#autoformat_require_pragma = 0
 let g:prettier#config#quote_props = 'consistent' " had to manually add this to ~/.vim/pack/plugins/start/vim-prettier/autoload/prettier/resolver/config.vim
 let g:prettier#config#arrow_parens = 'avoid'
@@ -279,7 +275,9 @@ let schemes = [
 " 1) if there is an override, set it
 " note that running colorscheme more than once can cause weird behavior
 if !empty(getenv('VIM_COLORSCHEME_OVERRIDE'))
-	execute 'colorscheme ' getenv('VIM_COLORSCHEME_OVERRIDE')
+	if getenv('VIM_COLORSCHEME_OVERRIDE') != 'false' " allow default neovim colorscheme which is quite good
+		execute 'colorscheme ' getenv('VIM_COLORSCHEME_OVERRIDE')
+	endif
 else
 	" 2) else, look for some common color schemes I like
 	for name in schemes

@@ -79,7 +79,7 @@ echo 'export PS1="\[\e[34m\][\[\e[0m\]\[\e[37m\]\u\[\e[34m\]@\[\e[37m\]\h \[\e[3
 # other programs
 PROGRAMS="vim jq htop figlet git which ripgrep tmux"
 # unfortunately, biber depends on perl
-LATEX_PROGRAMS="texlive-latex texlive-latexrecommended texlive-latexextra texlive-basic texlive-binextra texlive-fontsrecommended texlive-fontsextra texlive-plaingeneric biber texlive-bibtexextra"
+LATEX_PROGRAMS="texlive-latex texlive-latexrecommended texlive-latexextra texlive-basic texlive-binextra texlive-fontsrecommended texlive-fontsextra texlive-plaingeneric biber texlive-bibtexextra texlive-mathscience"
 echo -e "You might want to install..."
 echo -e "sudo pacman -Sy ${PROGRAMS}"
 echo -e "sudo pacman -S ${LATEX_PROGRAMS}"

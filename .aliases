@@ -38,6 +38,9 @@ alias tf="terraform"
 alias tmux="tmux -u"
 alias mem="ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head"
 alias sts="aws sts get-caller-identity | jq '.Arn'"
+function azmap() {
+	aws ec2 describe-availability-zones --region "$1" | jq -r '.[][] | .ZoneName + " → " + .ZoneId'
+}
 
 alias src="source ~/.bash_profile"
 alias vp="vim -S ~/.vim_sessions/profiles.vim"

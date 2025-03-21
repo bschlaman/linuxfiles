@@ -236,7 +236,11 @@ call plug#begin()
 	Plug 'williamboman/mason.nvim'
 	Plug 'williamboman/mason-lspconfig.nvim'
 	Plug 'onsails/lspkind.nvim'
-	Plug 'lvimuser/lsp-inlayhints.nvim'
+	" archived in git; not sure why
+	" https://github.com/lvimuser/lsp-inlayhints.nvim
+	" Also, I commented 'not working' in main.lua, so will keep this disabled for now.
+	" Plug 'lvimuser/lsp-inlayhints.nvim'
+
 
 	" nvim-cmp
 	Plug 'hrsh7th/cmp-nvim-lsp'

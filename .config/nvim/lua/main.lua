@@ -44,9 +44,12 @@ require("mason-lspconfig").setup {
 }
 
 -- TODO: currently not working
-require("lsp-inlayhints").setup {
-	on_attach = on_attach,
-}
+-- ^ not sure what it was supposed to do
+-- The git repo was archived in 02.2024.
+-- Will keep this disabled
+-- require("lsp-inlayhints").setup {
+-- 	on_attach = on_attach,
+-- }
 
 require("go").setup{
 	auto_format = true,

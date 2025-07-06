@@ -134,7 +134,9 @@ vnoremap <leader>bf c\textbf{<C-R>"}<ESC>
 vnoremap <leader>it c\emph{<C-R>"}<ESC>
 vnoremap <leader>tt c\texttt{<C-R>"}<ESC>
 vnoremap <leader>bb c\mathbf{<C-R>"}<ESC>
-vnoremap <leader>bs c\boldsymbol{<C-R>"}<ESC>
+vnoremap <leader>bs c\bm{<C-R>"}<ESC>
+vnoremap <leader>bm c\bm{<C-R>"}<ESC>
+vnoremap <leader>te c\text{<C-R>"}<ESC>
 vnoremap <leader>) c\left(<C-R>"\right)<ESC>
 " 'q' for quadratic.
 " Note that this may conflict with some software for which this shortcut is 'quit program'

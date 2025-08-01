@@ -42,6 +42,7 @@ end
 
 require("mason").setup{}
 require("mason-lspconfig").setup {
+	automatic_enable = true,
 	ensure_installed = {
 		"lua_ls",
 		"rust_analyzer",
@@ -66,11 +67,12 @@ require("lspconfig").lua_ls.setup{
 	on_attach = on_attach,
 	settings = {
 		Lua = {
+			diagnostics = { globals = { "vim" } },
 			workspace = {
 				library = vim.api.nvim_get_runtime_file("", true),
+				-- library = { vim.env.VIMRUNTIME }, -- this is in the docs, but vim.api.nvim_get_runtime_file returns more
 				checkThirdParty = false,
 			},
-			diagnostics = { globals = { "vim" } },
 			telemetry = {
 				enable = false,
 			},

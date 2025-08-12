@@ -83,6 +83,7 @@ LATEX_PROGRAMS="texlive-latex texlive-latexrecommended texlive-latexextra texliv
 echo -e "You might want to install..."
 echo -e "sudo pacman -Sy ${PROGRAMS}"
 echo -e "sudo pacman -S ${LATEX_PROGRAMS}"
+echo "sed -i 's/#FastConnectable = false/FastConnectable = true/' /etc/bluetooth/main.conf"
 
 echo -e "${BLD}source ~/.bashrc${NC}"
 

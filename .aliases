@@ -54,6 +54,7 @@ alias num="xset q | grep \"Num Lock\" | awk '{ print \$8 }'"
 alias fonts="fc-list | cut -d: -f2 | sort | uniq"
 alias restartx="ps -ef | grep xinit | grep -v grep | awk '{print $2}' | xargs kill"
 
+
 #############
 # Functions #
 #############
@@ -63,6 +64,7 @@ function yel(){
 	local reset="\e[0m"
 	echo ${yellow}$*${reset}
 }
+
 # Outputs a number between 0 and $1 ; 10 by default
 function rand(){
 	def=10
@@ -71,11 +73,13 @@ function rand(){
 	# Also valid shell randomizer:
 	# shuf -i 0-$def -n 1
 }
+
 function setwall(){
 	[ $# -ne 1 ] && return
 	FULLPATH=`realpath $1`
 	feh --bg-scale $FULLPATH
 }
+
 function wifistop(){
     active=`netctl list | grep \* | sed 's/* \([^\s]\+\)/\1/'`
     if [ ! -z "$active" ] ; then
@@ -83,6 +87,7 @@ function wifistop(){
         sudo netctl stop $active
     fi
 }
+
 function linuxcomp(){
 	for d in ~/main/hax/linux_files ~/Documents/linuxfiles ~/linuxfiles; do
 		[ -d $d ] && { dir=$d; break; }
@@ -105,6 +110,7 @@ function linuxcomp(){
 		diff ~/$x $dir/$x
 	done
 }
+
 function comptonset(){
 	[ -f ~/.config/compton/compton.conf ] && \
 		lspci | grep -i virtualbox > /dev/null && \
@@ -112,15 +118,18 @@ function comptonset(){
 		sed -i '/vsync =/s/true/false/' ~/.config/compton/compton.conf \ ||
 		echo "You are not in a VBox guest; nothing to do."
 }
+
 function slideshow(){
 	[ "$1" = "-r" ] && feh -dz -. -B black || feh -d -. -B black
 }
+
 function fix_git_history(){
 	# Update commit history by setting the current configured user as the committer and author
 	[ -z "$1" ] && return 1
 	echo "Fixing git history from commit $1 onwards"
 	git -c rebase.instructionFormat='%s%nexec GIT_COMMITTER_DATE="%cD" GIT_AUTHOR_DATE="%aD" git commit --amend --no-edit --reset-author' rebase -f $1
 }
+
 function fix_vscodium(){
 	# wow thanks microsoft
 	# below is currently not enough!  Also need to edit these lines:
@@ -129,3 +138,14 @@ function fix_vscodium(){
 	sudo sed -i 's/Code - OSS/Visual Studio Code/' \
 		/usr/lib/code/product.json
 }
+
+# ========================================
+# setups for common tools
+# ========================================
+
+# pyenv
+if [[ -d "$HOME/.pyenv" ]]; then
+  export PYENV_ROOT="$HOME/.pyenv"
+  [[ -d "$PYENV_ROOT/bin" ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+  [[ -d "$PYENV_ROOT/bin" ]] && eval "$(pyenv init - bash)"
+fi

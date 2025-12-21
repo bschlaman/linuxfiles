@@ -1,5 +1,12 @@
 #!/bin/sh
 
+# Check if running with bash
+if [ -z "$BASH_VERSION" ]; then
+    echo "Error: This script requires bash to run properly."
+    echo "bash scripts/bootstrap.sh"
+    exit 1
+fi
+
 ROOT="$(cd "$(dirname "$0")" &>/dev/null; pwd -P)"
 echo ROOT: $ROOT
 pushd $ROOT > /dev/null
@@ -49,26 +56,38 @@ mkdir -pv ~/.vim/colors
 mkdir -pv ~/.vim/pack/plugins/start
 mkdir -pv ~/.vim/swap
 
+function check_git() {
+	if ! command -v git >/dev/null 2>&1; then
+		echo -e "${RED}Error: git is required but not installed. Please install git first.${NC}"
+		return 1
+	fi
+	return 0
+}
+
 # optional addons
 echo -e "${BLD}Optional addons${NC}"
 PS3=" > "
 options="
 gruvbox
 vim-plug
+tmux-plugin-manager
 exit
 "
 select opt in $options ; do
 	case $opt in
 		"gruvbox")
-			mkdir tmp
-			pushd tmp > /dev/null
-			git clone --depth 1 https://github.com/morhetz/gruvbox.git
-			cp ./gruvbox/colors/gruvbox.vim ~/.vim/colors/
-			popd > /dev/null
-			rm -rf ./tmp
+			echo -e "${BLD}Installing gruvbox colorscheme...${NC}"
+			curl -L -o ~/.vim/colors/gruvbox.vim --create-dirs https://raw.githubusercontent.com/morhetz/gruvbox/master/colors/gruvbox.vim
 			;;
 		"vim-plug")
 			curl -L -o ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+			;;
+		"tmux-plugin-manager")
+			if ! check_git; then
+				continue
+			fi
+			echo -e "${BLD}Installing tmux-plugin-manager...${NC}"
+			git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 			;;
 		"exit") break;;
 	esac

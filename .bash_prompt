@@ -1,21 +1,6 @@
 #!/bin/bash
 
-# Color variables for prompt (wrapped for non-printing characters)
-PROMPT_RESET="\[\e[0m\]"
-PROMPT_BOLD="\[\e[1m\]"
-PROMPT_RED="\[\e[31m\]"
-PROMPT_GREEN="\[\e[32m\]"
-PROMPT_YELLOW="\[\e[33m\]"
-PROMPT_BLUE="\[\e[34m\]"
-PROMPT_MAGENTA="\[\e[35m\]"
-PROMPT_WHITE="\[\e[37m\]"
-
-# Bold color variants
-PROMPT_BOLD_GREEN="\[\033[01;32m\]"
-PROMPT_BOLD_BLUE="\[\033[01;34m\]"
-PROMPT_BOLD_WHITE="\[\033[01;37m\]"
-PROMPT_RESET_ALT="\[\033[00m\]"
-
+# Lightweight git branch helper for prompt
 function prompt_git(){
   local branchName=''
   branchName="$(git branch 2> /dev/null)"
@@ -25,26 +10,53 @@ function prompt_git(){
 	fi
 }
 
-### (arch rainbow): [brendan@host ~]$
-# export PS1="${PROMPT_BOLD}${PROMPT_RED}[${PROMPT_YELLOW}\u${PROMPT_GREEN}@${PROMPT_BLUE}\h ${PROMPT_MAGENTA}\W\$(prompt_git \"${PROMPT_WHITE} on ${PROMPT_GREEN}\")${PROMPT_RED}]${PROMPT_WHITE}$${PROMPT_RESET} "
+# in a function to avoid env pollution
+set_bash_prompt() {
+	# wrapped for non-printing characters
+	local PROMPT_RESET="\[\e[0m\]"
+	local PROMPT_BOLD="\[\e[1m\]"
+	local PROMPT_RED="\[\e[31m\]"
+	local PROMPT_GREEN="\[\e[32m\]"
+	local PROMPT_YELLOW="\[\e[33m\]"
+	local PROMPT_BLUE="\[\e[34m\]"
+	local PROMPT_MAGENTA="\[\e[35m\]"
+	local PROMPT_WHITE="\[\e[37m\]"
+	local PROMPT_BOLD_GREEN="\[\033[01;32m\]"
+	local PROMPT_BOLD_BLUE="\[\033[01;34m\]"
+	local PROMPT_BOLD_WHITE="\[\033[01;37m\]"
+	local PROMPT_RESET_ALT="\[\033[00m\]"
 
-### (pi3 rainbow): [brendan@host ~]$
-# export PS1="${PROMPT_BOLD}${PROMPT_BLUE}[${PROMPT_YELLOW}\u${PROMPT_GREEN}@${PROMPT_RED}\h ${PROMPT_MAGENTA}\W\$(prompt_git \"${PROMPT_WHITE} on ${PROMPT_GREEN}\")${PROMPT_BLUE}]${PROMPT_WHITE}$ ${PROMPT_RESET}"
+	### (arch rainbow)
+	# [brendan@host ~]$
+	# PS1="${PROMPT_BOLD}${PROMPT_RED}[${PROMPT_YELLOW}\u${PROMPT_GREEN}@${PROMPT_BLUE}\h ${PROMPT_MAGENTA}\W\$(prompt_git \"${PROMPT_WHITE} on ${PROMPT_GREEN}\")${PROMPT_RED}]${PROMPT_WHITE}$${PROMPT_RESET} "
 
-### (minimalist newline): [ brendan ~ ]\n $
-# export PS1="[ \u ${PROMPT_YELLOW}\w${PROMPT_RESET} ]\$(prompt_git \"${PROMPT_WHITE} on ${PROMPT_GREEN}\")${PROMPT_RESET}\n \\$ ${PROMPT_RESET}"
+	### (pi3 rainbow)
+	# [brendan@host ~]$
+	# PS1="${PROMPT_BOLD}${PROMPT_BLUE}[${PROMPT_YELLOW}\u${PROMPT_GREEN}@${PROMPT_RED}\h ${PROMPT_MAGENTA}\W\$(prompt_git \"${PROMPT_WHITE} on ${PROMPT_GREEN}\")${PROMPT_BLUE}]${PROMPT_WHITE}$ ${PROMPT_RESET}"
 
-### (rainbow newline): [brendan@host] ~ on master\n $
-# export PS1="${PROMPT_BOLD}${PROMPT_BLUE}[${PROMPT_YELLOW}\u${PROMPT_WHITE}@${PROMPT_RED}\h${PROMPT_BLUE}]${PROMPT_WHITE} ${PROMPT_GREEN}\w\$(prompt_git \"${PROMPT_WHITE} on ${PROMPT_MAGENTA}\")${PROMPT_RESET}\n ${PROMPT_BOLD_WHITE}\$ ${PROMPT_RESET}"
+	### (minimalist newline)
+	# [ brendan ~ ]
+	#  $
+	# PS1="[ \u ${PROMPT_YELLOW}\w${PROMPT_RESET} ]\$(prompt_git \"${PROMPT_WHITE} on ${PROMPT_GREEN}\")${PROMPT_RESET}\n \\$ ${PROMPT_RESET}"
 
-### (debian-style green): brendan@host:~$
-# export PS1="\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}${PROMPT_BOLD_GREEN}\u@\h${PROMPT_RESET_ALT}:${PROMPT_BOLD_BLUE}\w${PROMPT_RESET_ALT}\$ "
+	### (rainbow newline)
+	# [brendan@host] ~ on master
+	#  $
+	# PS1="${PROMPT_BOLD}${PROMPT_BLUE}[${PROMPT_YELLOW}\u${PROMPT_WHITE}@${PROMPT_RED}\h${PROMPT_BLUE}]${PROMPT_WHITE} ${PROMPT_GREEN}\w\$(prompt_git \"${PROMPT_WHITE} on ${PROMPT_MAGENTA}\")${PROMPT_RESET}\n ${PROMPT_BOLD_WHITE}\$ ${PROMPT_RESET}"
 
-### (manjaro-style green): [brendan@manjarohp Documents]$
-# export PS1="${PROMPT_BOLD_GREEN}[\u@\h${PROMPT_BOLD_WHITE} \W${PROMPT_BOLD_GREEN}]\$${PROMPT_RESET_ALT} "
+	### (manjaro-style green)
+	# [brendan@manjarohp Documents]$
+	# PS1="${PROMPT_BOLD_GREEN}[\u@\h${PROMPT_BOLD_WHITE} \W${PROMPT_BOLD_GREEN}]\$${PROMPT_RESET_ALT} "
 
-### (bootstrap subtle): [brendan@server ~ on master]$
-# export PS1="${PROMPT_BLUE}[${PROMPT_RESET}${PROMPT_WHITE}\u${PROMPT_BLUE}@${PROMPT_WHITE}\h ${PROMPT_MAGENTA}\W\$(prompt_git \"${PROMPT_WHITE} on ${PROMPT_GREEN}\")${PROMPT_BLUE}]${PROMPT_WHITE}$ ${PROMPT_RESET}"
+	### (bootstrap subtle)
+	# [brendan@server ~ on master]$
+	# PS1="${PROMPT_BLUE}[${PROMPT_RESET}${PROMPT_WHITE}\u${PROMPT_BLUE}@${PROMPT_WHITE}\h ${PROMPT_MAGENTA}\W\$(prompt_git \"${PROMPT_WHITE} on ${PROMPT_GREEN}\")${PROMPT_BLUE}]${PROMPT_WHITE}$ ${PROMPT_RESET}"
 
-### (minimal): user ~/dir on master$
-# export PS1="${PROMPT_BLUE}\u ${PROMPT_MAGENTA}\W\$(prompt_git \"${PROMPT_WHITE} on ${PROMPT_GREEN}\")${PROMPT_RESET} \$ "
+	### (minimal)
+	# user ~/dir on master
+	#  $
+	# PS1="${PROMPT_BLUE}\u ${PROMPT_MAGENTA}\W\$(prompt_git \"${PROMPT_WHITE} on ${PROMPT_GREEN}\")${PROMPT_RESET}\n ${PROMPT_BOLD_WHITE}$ ${PROMPT_RESET}"
+}
+
+set_bash_prompt
+unset -f set_bash_prompt

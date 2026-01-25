@@ -21,7 +21,6 @@ pushd $ROOT > /dev/null
 # dotfiles
 echo -e "${BLD}Copying dotfiles...${NC}"
 DOTFILES="
-.profile
 .bash_profile
 .bashrc
 .bash_prompt
@@ -32,9 +31,48 @@ DOTFILES="
 "
 # TODO: add .bash_completion
 # TODO: add file existence checks
-for df in $DOTFILES ; do
-	echo -e "copying dotfile [ ${YEL}${df}${NC} ] to ~"
-	cp -vir ../${df} ~
+
+# handle legacy ~/.profile separately
+if [ -e "$HOME/.profile" ]; then
+	read -rp "Found ~/.profile. Delete it? [y/N] " del_profile_response
+	case "$del_profile_response" in
+		[yY]|[yY][eE][sS])
+			rm -v "$HOME/.profile"
+			;;
+		*)
+			echo "Keeping existing ~/.profile"
+			;;
+	esac
+else
+	echo no ~/.profile found ✓
+fi
+
+# Show which dotfiles would be overwritten
+echo -e "${BLD}Checking for existing dotfiles...${NC}"
+overwrites=()
+for dotfile in $DOTFILES ; do
+	dest="$HOME/${dotfile}"
+	[ -e "$dest" ] && overwrites+=("$dotfile")
+done
+
+if [ ${#overwrites[@]} -eq 0 ]; then
+	echo "No existing dotfiles will be overwritten."
+else
+	echo "The following dotfiles already exist and will be overwritten:"
+	for dotfile in "${overwrites[@]}"; do
+		echo -e " - ${YEL}${dotfile}${NC}"
+	done
+fi
+
+read -rp "Proceed with copying dotfiles? [y/N] " confirm
+case "$confirm" in
+	[yY]|[yY][eE][sS]) ;;
+	*) echo "Aborting dotfile copy."; exit 0;;
+esac
+
+for dotfile in $DOTFILES ; do
+	echo -e "copying dotfile [ ${YEL}${dotfile}${NC} ] to ~"
+	cp -vr ../${dotfile} ~
 done
 
 # scripts

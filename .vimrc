@@ -56,7 +56,7 @@ vnoremap <leader>f :s/\s\+-/ \\\r\t-/g<CR>:noh<CR>
 nnoremap <leader>f :s/{\zs\([^}]*\)\ze}/\="\r".repeat(" ", &shiftwidth).submatch(1)."\r"/<CR>
 nnoremap <C-s> :%s//g<Left><Left>
 nnoremap <leader>vr :so ~/.vimrc<CR>
-nnoremap <leader>m :%s/\\mathcal{\([A-Z]\)}/\\\1/g<CR>
+nnoremap <leader>m :%s/\\mathcal{\([A-Z]\)}/\\\1/ge<CR>:%s/\\mathbb{\([ERPQ]\)}/\\\1\1/ge<CR>
 nnoremap <leader>B :%s/\$\$\s\+\(.*\)\s\+\$\$/\$\$\r    \1\r\$\$/g<CR>
 
 " perform operations without writing to copy register

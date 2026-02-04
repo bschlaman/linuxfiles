@@ -10,9 +10,11 @@ function prompt_git(){
 	fi
 }
 
-# in a function to avoid env pollution
 set_bash_prompt() {
-	# wrapped for non-printing characters
+	local style="$1"
+
+	# color codes (wrapped for non-printing characters)
+	# local to avoid env pollution
 	local PROMPT_RESET="\[\e[0m\]"
 	local PROMPT_BOLD="\[\e[1m\]"
 	local PROMPT_RED="\[\e[31m\]"
@@ -26,37 +28,43 @@ set_bash_prompt() {
 	local PROMPT_BOLD_WHITE="\[\033[01;37m\]"
 	local PROMPT_RESET_ALT="\[\033[00m\]"
 
-	### (arch rainbow)
-	# [brendan@host ~]$
-	# PS1="${PROMPT_BOLD}${PROMPT_RED}[${PROMPT_YELLOW}\u${PROMPT_GREEN}@${PROMPT_BLUE}\h ${PROMPT_MAGENTA}\W\$(prompt_git \"${PROMPT_WHITE} on ${PROMPT_GREEN}\")${PROMPT_RED}]${PROMPT_WHITE}$${PROMPT_RESET} "
-
-	### (pi3 rainbow)
-	# [brendan@host ~]$
-	# PS1="${PROMPT_BOLD}${PROMPT_BLUE}[${PROMPT_YELLOW}\u${PROMPT_GREEN}@${PROMPT_RED}\h ${PROMPT_MAGENTA}\W\$(prompt_git \"${PROMPT_WHITE} on ${PROMPT_GREEN}\")${PROMPT_BLUE}]${PROMPT_WHITE}$ ${PROMPT_RESET}"
-
-	### (minimalist newline)
-	# [ brendan ~ ]
-	#  $
-	# PS1="[ \u ${PROMPT_YELLOW}\w${PROMPT_RESET} ]\$(prompt_git \"${PROMPT_WHITE} on ${PROMPT_GREEN}\")${PROMPT_RESET}\n \\$ ${PROMPT_RESET}"
-
-	### (rainbow newline)
-	# [brendan@host] ~ on master
-	#  $
-	# PS1="${PROMPT_BOLD}${PROMPT_BLUE}[${PROMPT_YELLOW}\u${PROMPT_WHITE}@${PROMPT_RED}\h${PROMPT_BLUE}]${PROMPT_WHITE} ${PROMPT_GREEN}\w\$(prompt_git \"${PROMPT_WHITE} on ${PROMPT_MAGENTA}\")${PROMPT_RESET}\n ${PROMPT_BOLD_WHITE}\$ ${PROMPT_RESET}"
-
-	### (manjaro-style green)
-	# [brendan@manjarohp Documents]$
-	# PS1="${PROMPT_BOLD_GREEN}[\u@\h${PROMPT_BOLD_WHITE} \W${PROMPT_BOLD_GREEN}]\$${PROMPT_RESET_ALT} "
-
-	### (bootstrap subtle)
-	# [brendan@server ~ on master]$
-	# PS1="${PROMPT_BLUE}[${PROMPT_RESET}${PROMPT_WHITE}\u${PROMPT_BLUE}@${PROMPT_WHITE}\h ${PROMPT_MAGENTA}\W\$(prompt_git \"${PROMPT_WHITE} on ${PROMPT_GREEN}\")${PROMPT_BLUE}]${PROMPT_WHITE}$ ${PROMPT_RESET}"
-
-	### (minimal)
-	# user ~/dir on master
-	#  $
-	# PS1="${PROMPT_BLUE}\u ${PROMPT_MAGENTA}\W\$(prompt_git \"${PROMPT_WHITE} on ${PROMPT_GREEN}\")${PROMPT_RESET}\n ${PROMPT_BOLD_WHITE}$ ${PROMPT_RESET}"
+	case "$style" in
+		"arch-rainbow")
+			# [brendan@host ~]$
+			PS1="${PROMPT_BOLD}${PROMPT_RED}[${PROMPT_YELLOW}\u${PROMPT_GREEN}@${PROMPT_BLUE}\h ${PROMPT_MAGENTA}\W\$(prompt_git \"${PROMPT_WHITE} on ${PROMPT_GREEN}\")${PROMPT_RED}]${PROMPT_WHITE}$${PROMPT_RESET} "
+			;;
+		"pi3-rainbow")
+			# [brendan@host ~]$
+			PS1="${PROMPT_BOLD}${PROMPT_BLUE}[${PROMPT_YELLOW}\u${PROMPT_GREEN}@${PROMPT_RED}\h ${PROMPT_MAGENTA}\W\$(prompt_git \"${PROMPT_WHITE} on ${PROMPT_GREEN}\")${PROMPT_BLUE}]${PROMPT_WHITE}$ ${PROMPT_RESET}"
+			;;
+		"minimalist-newline")
+			# [ brendan ~ ]
+			#  $
+			PS1="[ \u ${PROMPT_YELLOW}\w${PROMPT_RESET} ]\$(prompt_git \"${PROMPT_WHITE} on ${PROMPT_GREEN}\")${PROMPT_RESET}\n \\$ ${PROMPT_RESET}"
+			;;
+		"rainbow-newline")
+			# [brendan@host] ~ on master
+			#  $
+			PS1="${PROMPT_BOLD}${PROMPT_BLUE}[${PROMPT_YELLOW}\u${PROMPT_WHITE}@${PROMPT_RED}\h${PROMPT_BLUE}]${PROMPT_WHITE} ${PROMPT_GREEN}\w\$(prompt_git \"${PROMPT_WHITE} on ${PROMPT_MAGENTA}\")${PROMPT_RESET}\n ${PROMPT_BOLD_WHITE}\$ ${PROMPT_RESET}"
+			;;
+		"manjaro-green")
+			# [brendan@manjarohp Documents]$
+			PS1="${PROMPT_BOLD_GREEN}[\u@\h${PROMPT_BOLD_WHITE} \W${PROMPT_BOLD_GREEN}]\$${PROMPT_RESET_ALT} "
+			;;
+		"bootstrap-subtle")
+			# [brendan@server ~ on master]$
+			PS1="${PROMPT_BLUE}[${PROMPT_RESET}${PROMPT_WHITE}\u${PROMPT_BLUE}@${PROMPT_WHITE}\h ${PROMPT_MAGENTA}\W\$(prompt_git \"${PROMPT_WHITE} on ${PROMPT_GREEN}\")${PROMPT_BLUE}]${PROMPT_WHITE}$ ${PROMPT_RESET}"
+			;;
+		"minimal")
+			# user ~/dir on master
+			#  $
+			PS1="${PROMPT_BLUE}\u ${PROMPT_MAGENTA}\W\$(prompt_git \"${PROMPT_WHITE} on ${PROMPT_GREEN}\")${PROMPT_RESET}\n ${PROMPT_BOLD_WHITE}$ ${PROMPT_RESET}"
+			;;
+		*)
+			echo "Unknown prompt style: $style"
+			return 1
+			;;
+	esac
 }
 
-set_bash_prompt
-unset -f set_bash_prompt
+set_bash_prompt "bootstrap-subtle"

@@ -40,54 +40,60 @@ local on_attach = function(client, bufnr)
 	})
 end
 
-require("mason").setup{}
-require("mason-lspconfig").setup {
-	automatic_enable = true,
-	ensure_installed = {
-		"lua_ls",
-		"rust_analyzer",
-		-- The installs below will fail if certain dependencies
-		-- (e.g. `npm`, `go`) are not present
-		-- TODO (2023.10.23): create a command to install these
-		-- "pyright",
-		-- "gopls",
-		-- "ts_ls",
-	},
+-- vim.lsp.config.gopls.setup{ on_attach = on_attach }
+
+-- vim.lsp.config.ts_ls.setup{ on_attach = on_attach }
+
+-- vim.lsp.config.pyright.setup{
+-- 	on_attach = on_attach,
+-- }
+vim.lsp.enable('pyright')
+
+---@type vim.lsp.Config
+local config = {
+  ---@type lspconfig.settings.lua_ls
+  settings = {
+    Lua = {
+      runtime = {
+        version = 'LuaJIT',
+      },
+      workspace = {
+        checkThirdParty = false,
+        preloadFileSize = 10000,
+        library = {
+          vim.env.VIMRUNTIME,
+        }
+      },
+    },
+  },
 }
+vim.lsp.config('lua_ls', config)
+-- vim.lsp.enable('lua_ls')
+-- vim.lsp.config("lua_ls", {
+-- 	on_attach = on_attach,
+-- 	settings = {
+-- 		Lua = {
+-- 			diagnostics = { globals = { "vim" } },
+-- 			workspace = {
+-- 				library = vim.api.nvim_get_runtime_file("", true),
+-- 				-- library = { vim.env.VIMRUNTIME }, -- this is in the docs, but vim.api.nvim_get_runtime_file returns more
+-- 				checkThirdParty = false,
+-- 			},
+-- 			telemetry = {
+-- 				enable = false,
+-- 			},
+-- 		},
+-- 	},
+-- })
 
-require("lspconfig").gopls.setup{ on_attach = on_attach }
-
-require("lspconfig").ts_ls.setup{ on_attach = on_attach }
-
-require("lspconfig").pyright.setup{
-	on_attach = on_attach,
-}
-
-require("lspconfig").lua_ls.setup{
-	on_attach = on_attach,
-	settings = {
-		Lua = {
-			diagnostics = { globals = { "vim" } },
-			workspace = {
-				library = vim.api.nvim_get_runtime_file("", true),
-				-- library = { vim.env.VIMRUNTIME }, -- this is in the docs, but vim.api.nvim_get_runtime_file returns more
-				checkThirdParty = false,
-			},
-			telemetry = {
-				enable = false,
-			},
-		},
-	},
-}
-
-require("lspconfig").rust_analyzer.setup{
-	on_attach = on_attach,
-	settings = {
-		["rust-analyzer"] = {
-			check = { command = "clippy" },
-		},
-	},
-	cmd = {
-		"rustup", "run", "stable", "rust-analyzer",
-	}
-}
+-- vim.lsp.config.rust_analyzer.setup{
+-- 	on_attach = on_attach,
+-- 	settings = {
+-- 		["rust-analyzer"] = {
+-- 			check = { command = "clippy" },
+-- 		},
+-- 	},
+-- 	cmd = {
+-- 		"rustup", "run", "stable", "rust-analyzer",
+-- 	}
+-- }

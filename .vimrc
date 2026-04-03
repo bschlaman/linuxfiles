@@ -240,7 +240,8 @@ call plug#begin()
 	Plug 'nvim-telescope/telescope.nvim'
 	Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 	Plug 'williamboman/mason.nvim'
-	Plug 'williamboman/mason-lspconfig.nvim'
+	" no longer really required due to vim.lsp.config in Neovim 0.11
+	" Plug 'williamboman/mason-lspconfig.nvim'
 	Plug 'onsails/lspkind.nvim'
 	" archived in git; not sure why
 	" https://github.com/lvimuser/lsp-inlayhints.nvim

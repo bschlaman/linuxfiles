@@ -1,4 +1,4 @@
-require("nvim-treesitter.configs").setup {
+require("nvim-treesitter").setup {
 	ensure_installed = {
 		"vim",
 		"vimdoc",
@@ -24,6 +24,7 @@ require("nvim-treesitter.configs").setup {
 		"rust",
 		"markdown",
 		"markdown_inline",
+		"latex",
 	},
 	auto_install = false,
 	highlight = {
@@ -32,4 +33,20 @@ require("nvim-treesitter.configs").setup {
 		enable = not vim.g.vscode,
 		additional_vim_regex_highlighting = false,
 	},
+}
+require('nvim-treesitter').install{
+	"vim",
+	"vimdoc",
+	"lua",
+	"c",
+	"python",
+	"html",
+	"css",
+	"jq",
+	"json",
+	"json5",
+	"yaml",
+	"markdown",
+	"markdown_inline",
+	"latex",
 }

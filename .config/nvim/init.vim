@@ -2,7 +2,7 @@ set runtimepath^=~/.vim runtimepath+=~/.vim/after
 let &packpath = &runtimepath
 source ~/.vimrc
 lua require("main")
-lua require("plugins.plugin-manager")
+lua require("pack")
 lua require("remap")
 lua require("lsp")
 lua require("lsp-langspecific") -- consider importing from within lsp.lua

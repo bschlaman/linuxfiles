@@ -79,12 +79,12 @@ mkdir -pv ~/.bin
 echo -e "${BLD}Copying scripts...${NC}"
 SCRIPTS="
 bh_backup.sh
-randid
-shuffle_keys
+randid.py
 "
 for s in $SCRIPTS ; do
 	echo -e "copying script [ ${YEL}${s}${NC} ] to ~/.bin/"
 	cp -vir $ROOT/${s} ~/.bin/
+	chmod +x ~/.bin/${s}
 done
 
 # vim

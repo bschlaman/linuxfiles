@@ -4,6 +4,7 @@ vim.opt.mouse = ""
 if vim.g.vscode then
 	vim.cmd("syntax off")
 	vim.g.clipboard = vim.g.vscode_clipboard
+	vim.o.cmdheight = 4 -- required for neovim-0.11+
 else
 	-- vscode-neovim recommends not overriding these
 	-- 0: globally

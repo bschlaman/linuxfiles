@@ -12,7 +12,7 @@ done ; unset FILE
 # Infinite history, history file size
 HISTSIZE=
 HISTFILESIZE=
-HISTCONTROL=ignoredups
+# HISTCONTROL=ignoredups
 HISTTIMEFORMAT="%d/%m/%y %T "
 PROMPT_COMMAND="history -a;$PROMPT_COMMAND"
 shopt -s histappend

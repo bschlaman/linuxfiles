@@ -162,30 +162,6 @@ autocmd FileType rust setlocal ts=4 sts=4 sw=4 et
 autocmd FileType tex setlocal ts=4 sts=4 sw=4 et
 
 
-function! MakeListItem()
-	normal! mm^i<li>A</li>`m
-endfunction
-nnoremap <leader>l :call MakeListItem()<CR>
-
-autocmd FileType html let Comment="<!--" | let EndComment="-->"
-autocmd FileType css let Comment="/*" | let EndComment="*/"
-
-function CommentLines()
-	exe ":s#\\%V\\(.*\\)\\%V\\(.\\)#".g:Comment."\\1\\2".g:EndComment."#g"
-endfunction
-" not working right now
-" function UnCommentLines()
-" 	exe ":s#\\%V".g:Comment."\\<Bar>".g:EndComment."\\%V##g"
-" endfunction
-" map visual mode keycombo 'co' to this function
-" vnoremap co :call CommentLines()<CR>
-" vnoremap cz :call UnCommentLines()<CR>
-" vnoremap cx :s#\%V\(.*\)\%V\(.\)#\/*\1\2*\/#g <CR> :nohlsearch <CR>
-" vnoremap cu :s#\%V/\*\<Bar>\*/\%V##g <CR> :nohlsearch <CR>
-
-" autocmd BufWritePre *.py Black
-let g:black_preview = "true"
-
 " g:python3_host_prog configures the python executable
 " that loads and runs plugins written in python (like Black and Isort).
 " This only really matters to import pynvim;
@@ -198,72 +174,35 @@ if !empty(getenv('PYTHON3_HOST_PROG_OVERRIDE'))
   let g:python3_host_prog = getenv('PYTHON3_HOST_PROG_OVERRIDE')
 endif
 
-" https://github.com/prettier/vim-prettier
-" --quote-props consistent; --use-tabs true (although this seems to be fine already); --arrow-parens avoid
-let g:prettier#autoformat = 0
-let g:prettier#autoformat_require_pragma = 0
-let g:prettier#config#quote_props = 'consistent' " had to manually add this to ~/.vim/pack/plugins/start/vim-prettier/autoload/prettier/resolver/config.vim
-let g:prettier#config#arrow_parens = 'avoid'
-
-" https://github.com/rust-lang/rust.vim
-let g:rustfmt_autosave = 1
 
 
 " HERE BE DRAGONS
 
-" (2022.10.21) testing out vimplug, esp for neovim
-" may still need to run :UpdateRemotePlugins after installation!
-call plug#begin()
-	" pip install pynvim
-	Plug 'neovim/nvim-lspconfig'
-	" pip install black
-	Plug 'averms/black-nvim', {'do': ':UpdateRemotePlugins'}
-	" pip install isort
-	Plug 'stsewd/isort.nvim', {'do': ':UpdateRemotePlugins'}
+" (2022.10.21) testing out vimplug
+if !has('nvim')
+	call plug#begin()
+		Plug 'tpope/vim-surround'
+		Plug 'prettier/vim-prettier'
 
-	" various
-	Plug 'prettier/vim-prettier'
-	Plug 'crispgm/nvim-go'
-	Plug 'Saecki/crates.nvim'
-	Plug 'tpope/vim-surround'
+		" language & syntax
+		Plug 'Glench/Vim-Jinja2-Syntax'
+		Plug 'fatih/vim-go'
+		Plug 'vim-python/python-syntax'
+		Plug 'uiiaoo/java-syntax.vim'
+		Plug 'rust-lang/rust'
+		Plug 'hashivim/vim-terraform'
+		Plug 'TovarishFin/vim-solidity'
+		Plug 'pangloss/vim-javascript'
 
-	" colorschemes
-	Plug 'sainnhe/gruvbox-material'
-	Plug 'ellisonleao/gruvbox.nvim'
-	Plug 'sainnhe/everforest'
-	Plug 'sjl/badwolf'
-	Plug 'aktersnurra/no-clown-fiesta.nvim'
-
-	" neovim lsp stuff
-	Plug 'nvim-lua/plenary.nvim' " dependency of telescope
-	Plug 'nvim-tree/nvim-web-devicons' " optional dependency of telescope; requires a nerd font
-	Plug 'nvim-telescope/telescope.nvim'
-	Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-	Plug 'williamboman/mason.nvim'
-	" no longer really required due to vim.lsp.config in Neovim 0.11
-	" Plug 'williamboman/mason-lspconfig.nvim'
-	Plug 'onsails/lspkind.nvim'
-	" archived in git; not sure why
-	" https://github.com/lvimuser/lsp-inlayhints.nvim
-	" Also, I commented 'not working' in main.lua, so will keep this disabled for now.
-	" Plug 'lvimuser/lsp-inlayhints.nvim'
-
-
-	" nvim-cmp
-	Plug 'hrsh7th/cmp-nvim-lsp'
-	Plug 'hrsh7th/cmp-nvim-lua'
-	Plug 'andersevenrud/cmp-tmux'
-	Plug 'hrsh7th/cmp-buffer'
-	Plug 'hrsh7th/cmp-emoji'
-	Plug 'hrsh7th/cmp-path'
-	Plug 'hrsh7th/cmp-cmdline'
-	Plug 'hrsh7th/cmp-vsnip'
-	Plug 'hrsh7th/nvim-cmp'
-call plug#end()
+		" colorschemes
+		Plug 'sainnhe/gruvbox-material'
+		Plug 'sainnhe/everforest'
+		Plug 'sjl/badwolf'
+	call plug#end()
+endif
 
 " Some colorschemes are loaded via plugin, so must be set after call plug#end()
 " Colorscheme specific settings should come before 'colorscheme XXX'
-" Below variables are settings for gruvbox, everforest, gruvbox_material, and hybrid_material
 let g:gruvbox_italic = 1 " gruvbox
 set bg=dark " gruvbox
 let g:everforest_background = 'hard'
@@ -271,17 +210,6 @@ let g:gruvbox_material_background = 'hard'
 let g:hybrid_transparent_background = 1
 let g:enable_bold_font = 1
 let g:enable_italic_font = 1
-let schemes = [
-	\ "gruvbox-material",
-	\ "everforest",
-	\ "anderson",
-	\ "badwolf",
-	\ "gruvbox",
-	\ "hybrid_material",
-	\ "monokai",
-	\ "tender",
-	\ "deus",
-	\ ]
 
 " 1) if there is an override, set it
 " note that running colorscheme more than once can cause weird behavior
@@ -291,7 +219,10 @@ if !empty(getenv('VIM_COLORSCHEME_OVERRIDE'))
 	endif
 else
 	" 2) else, look for some common color schemes I like
-	for name in schemes
+	for name in [
+	\ "gruvbox-material", "everforest", "anderson",
+	\ "badwolf", "gruvbox", "hybrid_material",
+	\ "monokai", "tender", "deus"]
 		try
 			execute 'colorscheme ' name
 			break
@@ -303,38 +234,28 @@ end
 " Enforce italicized comments (must come after colorscheme is loaded)
 highlight Comment cterm=italic gui=italic
 
-" DEPRECATED
 
-autocmd FileType html nnoremap <Space><Space> /\[!!\]<Enter>"_d4l
-autocmd FileType html nnoremap <leader>ac F<wwi<Space>class=""<Esc>i
-autocmd FileType html inoremap ;h1 <h1></h1>[!!]<Esc>FhT>i
-autocmd FileType html inoremap ;h2 <h2></h2>[!!]<Esc>FhT>i
-autocmd FileType html inoremap ;h3 <h3></h3>[!!]<Esc>FhT>i
-autocmd FileType html inoremap ;em <em></em>[!!]<Esc>FeT>i
-autocmd FileType html inoremap ;b <strong></strong>[!!]<Esc>FsT>i
-autocmd FileType html inoremap ;d <div>[!!]<CR></div><Esc>kTv
-autocmd FileType html inoremap ;cd <div class="">[!!]<CR></div><Esc>kci"
-autocmd FileType html inoremap ;p <p></p>[!!]<Esc>FpT>i
-autocmd FileType html inoremap ;ul <ul><CR><CR></ul><CR>[!!]<Esc>2ki
-autocmd FileType html inoremap ;ol <ol><CR><CR></ol><CR>[!!]<Esc>2ki
-autocmd FileType html inoremap ;a <a<Space>href="" target="_blank">[!!]</a>[!!]<Esc>29hi
-autocmd FileType html inoremap ;sup <sup></sup>[!!]<Esc>FsT>i
-autocmd FileType html inoremap ;sub <sub></sub>[!!]<Esc>FsT>i
-autocmd FileType java inoremap <C-s> System.out.println("");<left><left><left>
 
-" not needed with nvim lsp / treesitter
-" Plug 'Glench/Vim-Jinja2-Syntax'
-" Plug 'fatih/vim-go'
-" Plug 'vim-python/python-syntax'
-" Plug 'uiiaoo/java-syntax.vim'
-" Plug 'rust-lang/rust'
-" Plug 'hashivim/vim-terraform'
-" Plug 'TovarishFin/vim-solidity'
-" Plug 'pangloss/vim-javascript'
+" =========================
+" language & syntax plugins
+" =========================
 
-" ==============
-" syntax plugins
-" ==============
+
+" https://github.com/prettier/vim-prettier
+" --quote-props consistent; --use-tabs true (although this seems to be fine already); --arrow-parens avoid
+let g:prettier#autoformat = 0
+let g:prettier#autoformat_require_pragma = 0
+let g:prettier#config#quote_props = 'consistent' " had to manually add this to ~/.vim/pack/plugins/start/vim-prettier/autoload/prettier/resolver/config.vim
+let g:prettier#config#arrow_parens = 'avoid'
+
+" https://github.com/rust-lang/rust.vim
+let g:rustfmt_autosave = 1
+
+" https://github.com/vim-python/python-syntax.git
+" I don't think these are working
+" highlight link pythonBuiltinFunc Yellow
+" highlight link javaIdentifier NONE
+" highlight link javaDelimiter NONE
 
 " https://github.com/fatih/vim-go.git
 " TODO (2022.10.07): remove those which are defaults
@@ -356,8 +277,3 @@ autocmd FileType java inoremap <C-s> System.out.println("");<left><left><left>
 " let g:python_highlight_space_errors = 0
 " let g:python_highlight_func_calls = 0
 
-" https://github.com/vim-python/python-syntax.git
-" I don't think these are working
-" highlight link pythonBuiltinFunc Yellow
-" highlight link javaIdentifier NONE
-" highlight link javaDelimiter NONE

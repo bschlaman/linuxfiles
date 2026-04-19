@@ -25,7 +25,6 @@ DOTFILES="
 .bashrc
 .bash_prompt
 .vimrc
-.tmux.conf
 .aliases
 .config
 "

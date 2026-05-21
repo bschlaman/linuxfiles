@@ -56,8 +56,7 @@ vnoremap <leader>f :s/\s\+-/ \\\r\t-/g<CR>:noh<CR>
 nnoremap <leader>f :s/{\zs\([^}]*\)\ze}/\="\r".repeat(" ", &shiftwidth).submatch(1)."\r"/<CR>
 nnoremap <C-s> :%s//g<Left><Left>
 nnoremap <leader>vr :so ~/.vimrc<CR>
-nnoremap <leader>m :%s/\\mathcal{\([A-Z]\)}/\\\1/ge<CR>:%s/\\mathbb{\([ERPQ]\)}/\\\1\1/ge<CR>
-nnoremap <leader>B :%s/\$\$\s\+\(.*\)\s\+\$\$/\$\$\r    \1\r\$\$/g<CR>
+
 
 " perform operations without writing to copy register
 nnoremap <leader>d "_d
@@ -136,18 +135,22 @@ vnoremap <leader>bf c\textbf{<C-R>"}<ESC>
 vnoremap <leader>it c\emph{<C-R>"}<ESC>
 vnoremap <leader>tt c\texttt{<C-R>"}<ESC>
 vnoremap <leader>bb c\mathbf{<C-R>"}<ESC>
-vnoremap <leader>bs c\bm{<C-R>"}<ESC>
 vnoremap <leader>bm c\bm{<C-R>"}<ESC>
 vnoremap <leader>te c\text{<C-R>"}<ESC>
 vnoremap <leader>) c\left(<C-R>"\right)<ESC>
 nnoremap <leader>( yi)"_da)i\!\left(<C-R>"\right)<ESC>
 nnoremap <leader>[ yi]"_da]i\!\left[<C-R>"\right]<ESC>
 " 'q' for quadratic.
-" Note that this may conflict with some software for which this shortcut is 'quit program'
 nnoremap <C-q> wgea^2<ESC>
-" vim-surround: latex environment, e.g. align*
+" formatting
+vnoremap <leader>m :s/\\mathcal{\([A-Z]\)}/\\\1/ge<CR>:%s/\\mathbb{\([ERPQ]\)}/\\\1\1/ge<CR>
+vnoremap <leader>B :s/\$\$\s\+\(.*\)\s\+\$\$/\$\$\r    \1\r\$\$/g<CR>
+" vim-surround: latex environment (user input)
 let g:surround_{char2nr("l")} = "\\begin{\1environment: \1}\n\t\r\n\\end{\1\1}"
-" vim-surround: latex \[\]
+" vim-surround: common latex
+let g:surround_{char2nr("a")} = "\\begin{align*}\n\t\r\n\\end{align*}"
+let g:surround_{char2nr("g")} = "\\begin{gather*}\n\t\r\n\\end{gather*}"
+let g:surround_{char2nr("f")} = "\\begin{faside2}\n\t\r\n\\end{faside2}"
 let g:surround_{char2nr("e")} = "\\[\n\t\r\n\\]"
 
 autocmd FileType python setlocal ts=4 sts=4 sw=4 et

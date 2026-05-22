@@ -142,9 +142,6 @@ nnoremap <leader>( yi)"_da)i\!\left(<C-R>"\right)<ESC>
 nnoremap <leader>[ yi]"_da]i\!\left[<C-R>"\right]<ESC>
 " 'q' for quadratic.
 nnoremap <C-q> wgea^2<ESC>
-" formatting
-vnoremap <leader>m :s/\\mathcal{\([A-Z]\)}/\\\1/ge<CR>:%s/\\mathbb{\([ERPQ]\)}/\\\1\1/ge<CR>
-vnoremap <leader>B :s/\$\$\s\+\(.*\)\s\+\$\$/\$\$\r    \1\r\$\$/g<CR>
 " vim-surround: latex environment (user input)
 let g:surround_{char2nr("l")} = "\\begin{\1environment: \1}\n\t\r\n\\end{\1\1}"
 " vim-surround: common latex

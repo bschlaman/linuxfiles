@@ -1,99 +1,99 @@
 if vim.g.vscode then
-	return
+  return
 end
 
--- Use LspAttach autocommand to only map the following keys
--- after the language server attaches to the current buffer
-vim.api.nvim_create_autocmd("LspAttach", {
-	group = vim.api.nvim_create_augroup("UserLspConfig", {}),
-	callback = function(ev)
-		-- Enable completion triggered by <c-x><c-o>
-		vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
+-- =============================================================================
+-- Diagnostics (global)
+-- =============================================================================
+vim.diagnostic.config({
+  virtual_text = true,
+  severity_sort = true,
+  float = {
+    border = 'rounded',
+    source = true, -- replaces the deprecated string 'always'
+  },
+})
 
-		-- Buffer local mappings.
-		-- See `:help vim.lsp.*` for documentation on any of the below functions
-		local opts = { buffer = ev.buf }
-		vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
-		vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-		vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-		vim.keymap.set("n", "ga", vim.lsp.buf.code_action, opts)
-		vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
-	end
+-- Auto-open the diagnostic float on CursorHold.
+-- Trigger speed is controlled by `:set updatetime` (default 4000ms).
+vim.api.nvim_create_autocmd('CursorHold', {
+  group = vim.api.nvim_create_augroup('UserDiagnosticHover', {}),
+  callback = function()
+    vim.diagnostic.open_float(nil, { focusable = false })
+  end,
+})
+
+vim.lsp.config('*', {
+  capabilities = require('cmp_nvim_lsp').default_capabilities(),
+})
+
+vim.lsp.config('*', {
+	root_markers = { '.git' },
+	capabilities = {
+		textDocument = {
+	  		semanticTokens = {
+				multilineTokenSupport = true,
+	  		}
+		}
+	}
 })
 
 
-local on_attach = function(client, bufnr)
-	vim.api.nvim_create_autocmd("CursorHold", {
-		buffer = bufnr,
-		callback = function()
-			local opts = {
-				focusable = false,
-				close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
-				border = 'rounded',
-				source = 'always',
-				prefix = ' ',
-				-- want to trigger if cursor is anywhere on the line
-				-- scope = 'cursor',
-			}
-			vim.diagnostic.open_float(nil, opts)
-		end
-	})
-end
+vim.api.nvim_create_autocmd('LspAttach', {
+  group = vim.api.nvim_create_augroup('my.lsp.remap', {}),
+  callback = function(ev)
+    local opts = { buffer = ev.buf }
+    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
+  end,
+})
 
--- vim.lsp.config.gopls.setup{ on_attach = on_attach }
+vim.api.nvim_create_autocmd('LspAttach', {
+  group = vim.api.nvim_create_augroup('my.lsp.cmp', {}),
+  callback = function(ev)
+    local client = assert(vim.lsp.get_client_by_id(ev.data.client_id))
 
--- vim.lsp.config.ts_ls.setup{ on_attach = on_attach }
+    -- Enable auto-completion. Note: Use CTRL-Y to select an item. |complete_CTRL-Y|
+    if client:supports_method('textDocument/completion') then
+      vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
+    end
+  end,
+})
 
--- vim.lsp.config.pyright.setup{
--- 	on_attach = on_attach,
--- }
-vim.lsp.enable('pyright')
+-- Document highlight requirements
+--   server:      `textDocument/documentHighlight`
+--   colorscheme: LspReferenceText / LspReferenceRead / LspReferenceWrite
+vim.api.nvim_create_autocmd('LspAttach', {
+  group = vim.api.nvim_create_augroup('my.lsp.document_highlight', {}),
+  callback = function(ev)
+    local client = assert(vim.lsp.get_client_by_id(ev.data.client_id))
+    if not client:supports_method('textDocument/documentHighlight') then
+      return
+    end
 
----@type vim.lsp.Config
-local config = {
-  ---@type lspconfig.settings.lua_ls
-  settings = {
-    Lua = {
-      runtime = {
-        version = 'LuaJIT',
-      },
-      workspace = {
-        checkThirdParty = false,
-        preloadFileSize = 10000,
-        library = {
-          vim.env.VIMRUNTIME,
-        }
-      },
-    },
-  },
-}
-vim.lsp.config('lua_ls', config)
--- vim.lsp.enable('lua_ls')
--- vim.lsp.config("lua_ls", {
--- 	on_attach = on_attach,
--- 	settings = {
--- 		Lua = {
--- 			diagnostics = { globals = { "vim" } },
--- 			workspace = {
--- 				library = vim.api.nvim_get_runtime_file("", true),
--- 				-- library = { vim.env.VIMRUNTIME }, -- this is in the docs, but vim.api.nvim_get_runtime_file returns more
--- 				checkThirdParty = false,
--- 			},
--- 			telemetry = {
--- 				enable = false,
--- 			},
--- 		},
--- 	},
--- })
+    local hl_group = vim.api.nvim_create_augroup('my.lsp.document_highlight.buf', { clear = false })
+    -- Clear any prior autocmds for this buffer in case multiple clients attach.
+    vim.api.nvim_clear_autocmds({ buffer = ev.buf, group = hl_group })
 
--- vim.lsp.config.rust_analyzer.setup{
--- 	on_attach = on_attach,
--- 	settings = {
--- 		["rust-analyzer"] = {
--- 			check = { command = "clippy" },
--- 		},
--- 	},
--- 	cmd = {
--- 		"rustup", "run", "stable", "rust-analyzer",
--- 	}
--- }
+    vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
+      group = hl_group,
+      buffer = ev.buf,
+      callback = vim.lsp.buf.document_highlight,
+    })
+    vim.api.nvim_create_autocmd('CursorMoved', {
+      group = hl_group,
+      buffer = ev.buf,
+      callback = vim.lsp.buf.clear_references,
+    })
+  end,
+})
+
+
+-- =============================================================================
+-- Enable language servers
+-- =============================================================================
+vim.lsp.enable({
+  'lua_ls',
+  'pyright',
+  'ts_ls',
+})

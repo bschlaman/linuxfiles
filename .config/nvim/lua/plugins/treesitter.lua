@@ -1,3 +1,4 @@
+-- is this needed anymore?
 require("nvim-treesitter").setup {
 	ensure_installed = {
 		"vim",
@@ -34,20 +35,27 @@ require("nvim-treesitter").setup {
 		additional_vim_regex_highlighting = false,
 	},
 }
+
 require('nvim-treesitter').install{
 	"vim",
 	"vimdoc",
 	"lua",
+	"html",
+	"html_tags",
+	"css",
 	"c",
 	"python",
-	"html",
-	"css",
+	"typescript",
+	"tsx",
+	"javascript",
+	"query",
+	"sql",
+	"latex",
+	"regex",
 	"jq",
 	"json",
 	"json5",
 	"yaml",
 	"markdown",
 	"markdown_inline",
-	"latex",
-	"regex",
 }

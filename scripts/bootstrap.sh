@@ -133,7 +133,7 @@ done
 echo "writing PS1 to ~/.aliases"
 echo 'export PS1="\[\e[34m\][\[\e[0m\]\[\e[37m\]\u\[\e[34m\]@\[\e[37m\]\h \[\e[35m\]\W\$(prompt_git \"\[\e[37m\] on \[\e[32m\]\")\[\e[34m\]]\[\e[37m\]$ \[\e[0m\]"' | tee -a ~/.aliases
 # other programs
-PROGRAMS="vim jq htop figlet git which ripgrep tmux"
+PROGRAMS="jq htop figlet git ripgrep tmux tree-sitter-cli"
 # unfortunately, biber depends on perl
 LATEX_PROGRAMS="texlive-latex texlive-latexrecommended texlive-latexextra texlive-basic texlive-binextra texlive-fontsrecommended texlive-fontsextra texlive-plaingeneric biber texlive-bibtexextra texlive-mathscience"
 echo -e "You might want to install..."

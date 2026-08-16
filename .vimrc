@@ -138,8 +138,8 @@ vnoremap <leader>bb c\mathbf{<C-R>"}<ESC>
 vnoremap <leader>bm c\bm{<C-R>"}<ESC>
 vnoremap <leader>te c\text{<C-R>"}<ESC>
 vnoremap <leader>) c\left(<C-R>"\right)<ESC>
-nnoremap <leader>( yi)"_da)i\!\left(<C-R>"\right)<ESC>
-nnoremap <leader>[ yi]"_da]i\!\left[<C-R>"\right]<ESC>
+nnoremap <leader>( yi)"_ca)\!\left(<C-R>"\right)<ESC>
+nnoremap <leader>[ yi]"_ca]\!\left[<C-R>"\right]<ESC>
 " 'q' for quadratic.
 nnoremap <C-q> wgea^2<ESC>
 " vim-surround: latex environment (user input)

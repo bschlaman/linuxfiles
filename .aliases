@@ -29,6 +29,7 @@ alias yum="yum --color=on"
 alias tree="tree -C"
 alias rl="readlink -f"
 alias fdate='date "+%Y-%m-%d %H:%M (W%V)"'
+alias iso="date --iso-8601=seconds"
 
 alias docker="sudo docker"
 alias gitcfg="git config user.name \"Brendan Schlaman\" && git config user.email \"brendan.schlaman@gmail.com\""

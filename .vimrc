@@ -149,6 +149,7 @@ let g:surround_{char2nr("a")} = "\\begin{align*}\n\t\r\n\\end{align*}"
 let g:surround_{char2nr("g")} = "\\begin{gather*}\n\t\r\n\\end{gather*}"
 let g:surround_{char2nr("f")} = "\\begin{faside2}\n\t\r\n\\end{faside2}"
 let g:surround_{char2nr("e")} = "\\[\n\t\r\n\\]"
+let g:surround_{char2nr("q")} = "\\begin{equation}\n\t\r\n\\end{equation}"
 
 autocmd FileType python setlocal ts=4 sts=4 sw=4 et
 autocmd FileType jupyter setlocal ts=4 sts=4 sw=4 et " custom FileType
@@ -159,7 +160,7 @@ autocmd FileType markdown setlocal ts=2 sts=2 sw=2 et
 autocmd FileType tf setlocal ts=2 sts=2 sw=2 et
 autocmd FileType java setlocal ts=4 sts=4 sw=4 et
 autocmd FileType rust setlocal ts=4 sts=4 sw=4 et
-autocmd FileType tex setlocal ts=4 sts=4 sw=4 et
+autocmd FileType tex,plaintex setlocal ts=4 sts=4 sw=4 et
 
 
 " g:python3_host_prog configures the python executable
@@ -276,4 +277,3 @@ let g:rustfmt_autosave = 1
 " let g:python_highlight_all = 1
 " let g:python_highlight_space_errors = 0
 " let g:python_highlight_func_calls = 0
-

@@ -22,9 +22,9 @@ set splitright splitbelow
 set directory=~/.vim/swap//
 
 " tabs or spaces?
-set tabstop=2 " whitespace cols for \t
-set softtabstop=2 " whitespace cols for <TAB> or backspace
-set shiftwidth=2 " whitespace cols for indentation
+setglobal tabstop=2 " whitespace cols for \t
+setglobal softtabstop=2 " whitespace cols for <TAB> or backspace
+setglobal shiftwidth=2 " whitespace cols for indentation
 " set noexpandtab
 " Show tabs and special characters in insert mode
 " Wanted this to be visual mode, but there is no VisualEnter/Exit event
@@ -56,6 +56,8 @@ vnoremap <leader>f :s/\s\+-/ \\\r\t-/g<CR>:noh<CR>
 nnoremap <leader>f :s/{\zs\([^}]*\)\ze}/\="\r".repeat(" ", &shiftwidth).submatch(1)."\r"/<CR>
 nnoremap <C-s> :%s//g<Left><Left>
 nnoremap <leader>vr :so ~/.vimrc<CR>
+" trial; substitute only in selection
+xnoremap <leader>s :s/\%V
 
 
 " perform operations without writing to copy register
